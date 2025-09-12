@@ -8,23 +8,16 @@ struct CatalogView: View {
     @State private var viewModel = CatalogViewModel()
     
     var body: some View {
-        //        Button {
-        //            showNft()
-        //        } label: {
-        //            Text(Constants.openNftTitle)
-        //                .tint(.blue)
-        //        }
-        //        .backgroundStyle(.background)
-        //        .sheet(isPresented: $presentingNft) {
-        //            NftDetailBridgeView()
-        //        }
         NavigationStack {
-            List(viewModel.collections) { collection in
-                NftCollectionRowView(collection: collection)
-                    .listRowSeparator(.hidden)
+            ScrollView {
+                LazyVStack(alignment: .leading, spacing: 0) {
+                    ForEach(viewModel.collections) { collection in
+                        NftCollectionRowView(collection: collection)
+                            .padding(.top, 20)
+                            .padding(.horizontal, 16)
+                    }
+                }
             }
-            .padding(.top, 20)
-            .listStyle(.plain)
             .overlay {
                 if viewModel.isLoading {
                     CustomProgressView()
@@ -38,7 +31,6 @@ struct CatalogView: View {
                 }
             }
         }
-        
         .confirmationDialog(
             "Sort.title",
             isPresented: $presentingDialog,
@@ -52,18 +44,10 @@ struct CatalogView: View {
         }
     }
     
-    //    func showNft() {
-    //        presentingNft = true
-    //    }
     private func showDialog() {
         presentingDialog = true
     }
 }
-
-private enum Constants {
-    static let openNftTitle = NSLocalizedString("Catalog.openNft", comment: "")
-}
-
 
 #Preview {
     CatalogView()
