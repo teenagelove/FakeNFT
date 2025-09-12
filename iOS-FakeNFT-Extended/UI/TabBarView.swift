@@ -16,7 +16,7 @@ struct TabBarView: View {
     
     var body: some View {
         TabView {
-            CatalogView()
+            TestCatalogView()
                 .tabItem {
                     Label(
                         NSLocalizedString("Tab.catalog", comment: ""),
