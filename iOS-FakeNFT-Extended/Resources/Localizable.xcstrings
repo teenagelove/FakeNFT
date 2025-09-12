@@ -29,6 +29,7 @@
       }
     },
     "Close" : {
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -113,6 +114,7 @@
       }
     },
     "Sort.byName" : {
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -129,6 +131,7 @@
       }
     },
     "Sort.byNftCount" : {
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
