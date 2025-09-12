@@ -1,11 +1,8 @@
 import SwiftUI
-import ProgressHUD
 
 struct CatalogView: View {
-    @Environment(ServicesAssembly.self) var servicesAssembly
-    //    @State private var presentingNft = false
+    @State var viewModel: CatalogViewModel
     @State private var presentingDialog = false
-    @State private var viewModel = CatalogViewModel()
     
     var body: some View {
         NavigationStack {
@@ -31,6 +28,9 @@ struct CatalogView: View {
                 }
             }
         }
+        .task {
+            await viewModel.loadData()
+        }
         .confirmationDialog(
             "Sort.title",
             isPresented: $presentingDialog,
@@ -50,6 +50,13 @@ struct CatalogView: View {
 }
 
 #Preview {
-    CatalogView()
-        .environment(ServicesAssembly(networkClient: DefaultNetworkClient(), nftStorage: NftStorageImpl()))
+    CatalogView(
+        viewModel: CatalogViewModel(
+            service: ServicesAssembly(
+                networkClient: DefaultNetworkClient(),
+                nftStorage: NftStorageImpl(),
+                nftCollectionsStorage: NftCollectionsStorageImpl()
+            ).nftCollectionsService
+        )
+    )
 }
