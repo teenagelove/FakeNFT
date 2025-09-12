@@ -44,11 +44,11 @@ struct CatalogView: View {
             isPresented: $presentingDialog,
             titleVisibility: .visible
         ) {
-            Button("По названию") { viewModel.sortByName() }
+            Button("Sort.byName") { viewModel.sortByName() }
             
-            Button("По количеству NFT") { viewModel.sortByNftCount() }
+            Button("Sort.byNftCount") { viewModel.sortByNftCount() }
             
-            Button("Закрыть", role: .cancel) {}
+            Button("Close", role: .cancel) {}
         }
     }
     
