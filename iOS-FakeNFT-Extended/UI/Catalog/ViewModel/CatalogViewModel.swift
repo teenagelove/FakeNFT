@@ -12,7 +12,7 @@ import Observation
 @Observable
 final class CatalogViewModel {
     var isLoading = false
-    var collections: [Collection]
+    var collections: [NftCollection]
     
     init() {
         collections = []
@@ -38,8 +38,8 @@ final class CatalogViewModel {
 
 
 extension CatalogViewModel {
-    static let mockData: [Collection] = [
-        Collection(
+    static let mockData: [NftCollection] = [
+        NftCollection(
             name: "Peach",
             cover: URL(string: "https://picsum.photos/200/300?random=1")!,
             nfts: [
@@ -51,7 +51,7 @@ extension CatalogViewModel {
             author: "Alice",
             id: UUID().uuidString
         ),
-        Collection(
+        NftCollection(
             name: "Blue",
             cover: URL(string: "https://picsum.photos/200/300?random=2")!,
             nfts: [
@@ -64,7 +64,7 @@ extension CatalogViewModel {
             author: "Bob",
             id: UUID().uuidString
         ),
-        Collection(
+        NftCollection(
             name: "Brown",
             cover: URL(string: "https://picsum.photos/200/300?random=3")!,
             nfts: [
@@ -75,7 +75,7 @@ extension CatalogViewModel {
             author: "Charlie",
             id: UUID().uuidString
         ),
-        Collection(
+        NftCollection(
             name: "Green",
             cover: URL(string: "https://picsum.photos/200/300?random=4")!,
             nfts: [
@@ -89,7 +89,7 @@ extension CatalogViewModel {
             author: "Diana",
             id: UUID().uuidString
         ),
-        Collection(
+        NftCollection(
             name: "Purple",
             cover: URL(string: "https://picsum.photos/200/300?random=5")!,
             nfts: [

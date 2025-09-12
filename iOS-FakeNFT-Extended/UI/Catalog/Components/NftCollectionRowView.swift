@@ -8,7 +8,7 @@ import SwiftUI
 import Kingfisher
 
 struct NftCollectionRowView: View {
-    let collection: Collection
+    let collection: NftCollection
     
     var body: some View {
         VStack(spacing: 4) {
