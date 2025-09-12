@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		408461A12E74889E002E3187 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408461A02E74889E002E3187 /* RatingView.swift */; };
+		408461A32E748F4B002E3187 /* UserCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408461A22E748F4B002E3187 /* UserCollectionCell.swift */; };
 		ABC5E16C2C31F5AF002B4068 /* iOS_FakeNFT_ExtendedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC5E16B2C31F5AF002B4068 /* iOS_FakeNFT_ExtendedApp.swift */; };
 		ABC5E16E2C31F5AF002B4068 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC5E16D2C31F5AF002B4068 /* ContentView.swift */; };
 		ABC5E1702C31F5AF002B4068 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABC5E16F2C31F5AF002B4068 /* Assets.xcassets */; };
@@ -67,6 +68,7 @@
 
 /* Begin PBXFileReference section */
 		408461A02E74889E002E3187 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
+		408461A22E748F4B002E3187 /* UserCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionCell.swift; sourceTree = "<group>"; };
 		ABC5E16B2C31F5AF002B4068 /* iOS_FakeNFT_ExtendedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_FakeNFT_ExtendedApp.swift; sourceTree = "<group>"; };
 		ABC5E16D2C31F5AF002B4068 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		ABC5E16F2C31F5AF002B4068 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				408461A02E74889E002E3187 /* RatingView.swift */,
+				408461A22E748F4B002E3187 /* UserCollectionCell.swift */,
 			);
 			path = Statistics;
 			sourceTree = "<group>";
@@ -493,6 +496,7 @@
 				ABC5E1972C31F656002B4068 /* Colors.swift in Sources */,
 				AC006C402E73EDFA00480194 /* SortButton.swift in Sources */,
 				AC006C412E73EDFA00480194 /* CustomProgressView.swift in Sources */,
+				408461A32E748F4B002E3187 /* UserCollectionCell.swift in Sources */,
 				ABC5E1A42C31F800002B4068 /* NetworkClient.swift in Sources */,
 				ABC5E1D32C320438002B4068 /* NftDetailAssembly.swift in Sources */,
 				ACF6F10F2E73F02200376287 /* Images.swift in Sources */,
