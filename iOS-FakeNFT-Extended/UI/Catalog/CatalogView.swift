@@ -3,21 +3,21 @@ import ProgressHUD
 
 struct CatalogView: View {
     @Environment(ServicesAssembly.self) var servicesAssembly
-//    @State private var presentingNft = false
+    //    @State private var presentingNft = false
     @State private var presentingDialog = false
     @State private var viewModel = CatalogViewModel()
-
+    
     var body: some View {
-//        Button {
-//            showNft()
-//        } label: {
-//            Text(Constants.openNftTitle)
-//                .tint(.blue)
-//        }
-//        .backgroundStyle(.background)
-//        .sheet(isPresented: $presentingNft) {
-//            NftDetailBridgeView()
-//        }
+        //        Button {
+        //            showNft()
+        //        } label: {
+        //            Text(Constants.openNftTitle)
+        //                .tint(.blue)
+        //        }
+        //        .backgroundStyle(.background)
+        //        .sheet(isPresented: $presentingNft) {
+        //            NftDetailBridgeView()
+        //        }
         NavigationStack {
             List(viewModel.collections) { collection in
                 NftCollectionRowView(collection: collection)
@@ -25,6 +25,11 @@ struct CatalogView: View {
             }
             .padding(.top, 20)
             .listStyle(.plain)
+            .overlay {
+                if viewModel.isLoading {
+                    CustomProgressView()
+                }
+            }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     SortButton {
@@ -33,7 +38,7 @@ struct CatalogView: View {
                 }
             }
         }
-
+        
         .confirmationDialog(
             "Sort.title",
             isPresented: $presentingDialog,
@@ -46,10 +51,10 @@ struct CatalogView: View {
             Button("Закрыть", role: .cancel) {}
         }
     }
-
-//    func showNft() {
-//        presentingNft = true
-//    }
+    
+    //    func showNft() {
+    //        presentingNft = true
+    //    }
     private func showDialog() {
         presentingDialog = true
     }
