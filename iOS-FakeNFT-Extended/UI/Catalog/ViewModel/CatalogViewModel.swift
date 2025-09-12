@@ -12,6 +12,7 @@ import Observation
 @Observable
 final class CatalogViewModel {
     var isLoading = false
+    var isFailed = false
     var collections: [NftCollection] = []
     
     private let service: NftCollectionsService
@@ -26,8 +27,10 @@ final class CatalogViewModel {
         
         do {
             collections = try await service.loadCollections()
+            isFailed = false
         } catch {
             collections = CatalogViewModel.mockData
+            isFailed = true
         }
     }
     

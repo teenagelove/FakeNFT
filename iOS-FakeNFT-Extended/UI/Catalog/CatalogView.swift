@@ -42,6 +42,15 @@ struct CatalogView: View {
             
             Button("Close", role: .cancel) {}
         }
+        .alert("Error.network", isPresented: $viewModel.isFailed) {
+            Button("Cancel", role: .cancel) {}
+            
+            Button("Error.repeat") {
+                Task {
+                    await viewModel.loadData()
+                }
+            }
+        }
     }
     
     private func showDialog() {
