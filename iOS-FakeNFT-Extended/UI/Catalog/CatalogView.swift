@@ -59,13 +59,12 @@ private extension CatalogView {
 }
 
 #Preview {
-    CatalogView(
-        viewModel: CatalogViewModel(
-            service: ServicesAssembly(
-                networkClient: DefaultNetworkClient(),
-                nftStorage: NftStorageImpl(),
-                nftCollectionsStorage: NftCollectionsStorageImpl()
-            ).nftCollectionsService
-        )
+    let service = ServicesAssembly(
+        networkClient: DefaultNetworkClient(),
+        nftStorage: NftStorageImpl(),
+        nftCollectionsStorage: NftCollectionsStorageImpl()
     )
+    
+    let vm = CatalogViewModel(service: service.nftCollectionsService)
+    CatalogView(viewModel: vm)
 }
