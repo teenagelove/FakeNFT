@@ -6,55 +6,55 @@ struct CatalogView: View {
     
     var body: some View {
         NavigationStack {
-            ScrollView {
-                LazyVStack(alignment: .leading, spacing: 0) {
-                    ForEach(viewModel.collections) { collection in
-                        NftCollectionRowView(collection: collection)
-                            .padding(.top, 20)
-                            .padding(.horizontal, 16)
-                    }
-                }
-            }
-            .overlay {
-                if viewModel.isLoading {
-                    CustomProgressView()
-                }
-            }
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    SortButton {
-                        showDialog()
-                    }
-                }
-            }
+            content
+                .overlay(viewModel.isLoading ? CustomProgressView() : nil)
+                .toolbar { toolbar }
         }
-        .task {
-            await viewModel.loadData()
-        }
+        .task { await viewModel.loadData() }
         .confirmationDialog(
             "Sort.title",
             isPresented: $presentingDialog,
-            titleVisibility: .visible
-        ) {
-            Button("Sort.byName") { viewModel.sortByName() }
-            
-            Button("Sort.byNftCount") { viewModel.sortByNftCount() }
-            
-            Button("Close", role: .cancel) {}
-        }
-        .alert("Error.network", isPresented: $viewModel.isFailed) {
-            Button("Cancel", role: .cancel) {}
-            
-            Button("Error.repeat") {
-                Task {
-                    await viewModel.loadData()
+            titleVisibility: .visible,
+            actions: { sortButtons }
+        )
+        .alert("Error.network", isPresented: $viewModel.isFailed) { errorButtons }
+    }
+}
+
+// MARK: - Private UI components
+private extension CatalogView {
+    
+    var content: some View {
+        ScrollView {
+            LazyVStack(alignment: .leading, spacing: 0) {
+                ForEach(viewModel.collections) { collection in
+                    NftCollectionRowView(collection: collection)
+                        .padding(.top, 20)
+                        .padding(.horizontal, 16)
                 }
             }
         }
     }
     
-    private func showDialog() {
-        presentingDialog = true
+    var toolbar: some ToolbarContent {
+        ToolbarItem(placement: .topBarTrailing) {
+            SortButton { presentingDialog = true }
+        }
+    }
+    
+    @ViewBuilder
+    var sortButtons: some View {
+        Button("Sort.byName") { viewModel.sortByName() }
+        Button("Sort.byNftCount") { viewModel.sortByNftCount() }
+        Button("Close", role: .cancel) {}
+    }
+    
+    @ViewBuilder
+    var errorButtons: some View {
+        Button("Cancel", role: .cancel) {}
+        Button("Error.repeat") {
+            Task { await viewModel.loadData() }
+        }
     }
 }
 
