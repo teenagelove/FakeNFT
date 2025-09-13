@@ -1,71 +1,70 @@
 import SwiftUI
-import ProgressHUD
 
 struct CatalogView: View {
-    @Environment(ServicesAssembly.self) var servicesAssembly
-    //    @State private var presentingNft = false
+    @State var viewModel: CatalogViewModel
     @State private var presentingDialog = false
-    @State private var viewModel = CatalogViewModel()
     
     var body: some View {
-        //        Button {
-        //            showNft()
-        //        } label: {
-        //            Text(Constants.openNftTitle)
-        //                .tint(.blue)
-        //        }
-        //        .backgroundStyle(.background)
-        //        .sheet(isPresented: $presentingNft) {
-        //            NftDetailBridgeView()
-        //        }
         NavigationStack {
-            List(viewModel.collections) { collection in
-                NftCollectionRowView(collection: collection)
-                    .listRowSeparator(.hidden)
-            }
-            .padding(.top, 20)
-            .listStyle(.plain)
-            .overlay {
-                if viewModel.isLoading {
-                    CustomProgressView()
-                }
-            }
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    SortButton {
-                        showDialog()
-                    }
-                }
-            }
+            content
+                .overlay(viewModel.isLoading ? CustomProgressView() : nil)
+                .toolbar { toolbar }
         }
-        
+        .task { await viewModel.loadData() }
         .confirmationDialog(
             "Sort.title",
             isPresented: $presentingDialog,
-            titleVisibility: .visible
-        ) {
-            Button("Sort.byName") { viewModel.sortByName() }
-            
-            Button("Sort.byNftCount") { viewModel.sortByNftCount() }
-            
-            Button("Close", role: .cancel) {}
+            titleVisibility: .visible,
+            actions: { sortButtons }
+        )
+        .alert("Error.network", isPresented: $viewModel.isFailed) { errorButtons }
+    }
+}
+
+// MARK: - Private UI components
+private extension CatalogView {
+    
+    var content: some View {
+        ScrollView {
+            LazyVStack(alignment: .leading, spacing: 0) {
+                ForEach(viewModel.collections) { collection in
+                    NftCollectionRowView(collection: collection)
+                        .padding(.top, 20)
+                        .padding(.horizontal, 16)
+                }
+            }
         }
     }
     
-    //    func showNft() {
-    //        presentingNft = true
-    //    }
-    private func showDialog() {
-        presentingDialog = true
+    var toolbar: some ToolbarContent {
+        ToolbarItem(placement: .topBarTrailing) {
+            SortButton { presentingDialog = true }
+        }
+    }
+    
+    @ViewBuilder
+    var sortButtons: some View {
+        Button("Sort.byName") { viewModel.sortByName() }
+        Button("Sort.byNftCount") { viewModel.sortByNftCount() }
+        Button("Close", role: .cancel) {}
+    }
+    
+    @ViewBuilder
+    var errorButtons: some View {
+        Button("Cancel", role: .cancel) {}
+        Button("Error.repeat") {
+            Task { await viewModel.loadData() }
+        }
     }
 }
 
-private enum Constants {
-    static let openNftTitle = NSLocalizedString("Catalog.openNft", comment: "")
-}
-
-
 #Preview {
-    CatalogView()
-        .environment(ServicesAssembly(networkClient: DefaultNetworkClient(), nftStorage: NftStorageImpl()))
+    let service = ServicesAssembly(
+        networkClient: DefaultNetworkClient(),
+        nftStorage: NftStorageImpl(),
+        nftCollectionsStorage: NftCollectionsStorageImpl()
+    )
+    
+    let vm = CatalogViewModel(service: service.nftCollectionsService)
+    CatalogView(viewModel: vm)
 }
