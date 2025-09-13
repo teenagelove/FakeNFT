@@ -26,7 +26,7 @@ struct NftCollectionRowView: View {
                 .clipped()
             
             HStack {
-                Text("\(collection.name) (\(collection.nftIds.count))")
+                Text("\(collection.name) (\(collection.nfts.count))")
                     .font(.bodyBold)
                 Spacer()
             }

@@ -23,13 +23,14 @@ final class CatalogViewModel {
     
     func loadData() async {
         isLoading = true
+        isFailed = false
+        
         defer { isLoading = false }
         
         do {
             collections = try await service.loadCollections()
             isFailed = false
         } catch {
-            collections = CatalogViewModel.mockData
             isFailed = true
         }
     }
@@ -39,7 +40,7 @@ final class CatalogViewModel {
     }
     
     func sortByNftCount() {
-        collections.sort { $0.nftIds.count > $1.nftIds.count }
+        collections.sort { $0.nfts.count > $1.nfts.count }
     }
 }
 
@@ -49,7 +50,7 @@ extension CatalogViewModel {
         NftCollection(
             name: "Peach",
             cover: URL(string: "https://picsum.photos/200/300?random=1")!,
-            nftIds: ["1", "2"],
+            nfts: ["1", "2"],
             description: "Коллекция розовых персонажей",
             author: "Alice",
             id: UUID().uuidString
@@ -57,7 +58,7 @@ extension CatalogViewModel {
         NftCollection(
             name: "Blue",
             cover: URL(string: "https://picsum.photos/200/300?random=2")!,
-            nftIds: ["21", "22", "23", "24"],
+            nfts: ["21", "22", "23", "24"],
             description: "Голубая коллекция NFT",
             author: "Bob",
             id: UUID().uuidString
@@ -65,7 +66,7 @@ extension CatalogViewModel {
         NftCollection(
             name: "Brown",
             cover: URL(string: "https://picsum.photos/200/300?random=3")!,
-            nftIds: ["31", "32", "33"],
+            nfts: ["31", "32", "33"],
             description: "Коричневая коллекция NFT",
             author: "Charlie",
             id: UUID().uuidString
@@ -73,7 +74,7 @@ extension CatalogViewModel {
         NftCollection(
             name: "Green",
             cover: URL(string: "https://picsum.photos/200/300?random=4")!,
-            nftIds: ["41", "42", "43", "44", "45"],
+            nfts: ["41", "42", "43", "44", "45"],
             description: "Зелёная коллекция NFT",
             author: "Diana",
             id: UUID().uuidString
@@ -81,7 +82,7 @@ extension CatalogViewModel {
         NftCollection(
             name: "Purple",
             cover: URL(string: "https://picsum.photos/200/300?random=5")!,
-            nftIds: ["51", "52", "53", "54"],
+            nfts: ["51", "52", "53", "54"],
             description: "Фиолетовая коллекция NFT",
             author: "Eve",
             id: UUID().uuidString
