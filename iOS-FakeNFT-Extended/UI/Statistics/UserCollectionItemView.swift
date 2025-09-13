@@ -1,8 +1,9 @@
 import SwiftUI
 
 @Observable
-final class UserCollectionCellViewModel {
+final class UserCollectionItemViewModel: Identifiable {
     init(
+        id: Int,
         image: UIImage,
         isFavorite: Bool,
         title: String,
@@ -10,6 +11,7 @@ final class UserCollectionCellViewModel {
         price: Double,
         isInCart: Bool
     ) {
+        self.id = id
         self.image = image
         self.isFavorite = isFavorite
         self.title = title
@@ -18,6 +20,7 @@ final class UserCollectionCellViewModel {
         self.isInCart = isInCart
     }
 
+    var id: Int
     var image: UIImage
     var isFavorite: Bool
     var title: String
@@ -35,15 +38,13 @@ final class UserCollectionCellViewModel {
     }
 }
 
-struct UserCollectionCell: View {
-    var viewModel: UserCollectionCellViewModel
+struct UserCollectionItemView: View {
+    var viewModel: UserCollectionItemViewModel
     var body: some View {
-        let size: CGFloat = 108
         VStack(alignment: .leading, spacing: 8) {
             Image(uiImage: viewModel.image)
                 .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: size, height: size)
+                .aspectRatio(1, contentMode: .fill)
                 .clipShape(RoundedRectangle(cornerRadius: 16))
             VStack(alignment: .leading, spacing: 4) {
                 RatingView(starCount: viewModel.rating)
@@ -63,7 +64,6 @@ struct UserCollectionCell: View {
                             : Image(uiImage: .addToCart)
                     }
                 }
-                .frame(width: size)
             }
         }
         .overlay(alignment: .topTrailing) {
@@ -79,8 +79,9 @@ struct UserCollectionCell: View {
 }
 
 #Preview {
-    UserCollectionCell(
+    UserCollectionItemView(
         viewModel: .init(
+            id: 0,
             image: .zeus,
             isFavorite: false,
             title: "Zeus",
@@ -89,4 +90,6 @@ struct UserCollectionCell: View {
             isInCart: false
         )
     )
+    .frame(width: 200)
+    .fixedSize()
 }
