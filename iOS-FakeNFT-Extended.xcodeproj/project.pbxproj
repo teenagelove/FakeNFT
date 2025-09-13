@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		402D9DFD2E7561200095FC15 /* UserInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D9DFC2E7561200095FC15 /* UserInformationView.swift */; };
 		408461A12E74889E002E3187 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408461A02E74889E002E3187 /* RatingView.swift */; };
 		408461A32E748F4B002E3187 /* UserCollectionItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408461A22E748F4B002E3187 /* UserCollectionItemView.swift */; };
 		40E814EC2E754653000C43CB /* UserCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E814EB2E754653000C43CB /* UserCollectionView.swift */; };
@@ -68,6 +69,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		402D9DFC2E7561200095FC15 /* UserInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationView.swift; sourceTree = "<group>"; };
 		408461A02E74889E002E3187 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		408461A22E748F4B002E3187 /* UserCollectionItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionItemView.swift; sourceTree = "<group>"; };
 		40E814EB2E754653000C43CB /* UserCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionView.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				408461A02E74889E002E3187 /* RatingView.swift */,
 				408461A22E748F4B002E3187 /* UserCollectionItemView.swift */,
 				40E814EB2E754653000C43CB /* UserCollectionView.swift */,
+				402D9DFC2E7561200095FC15 /* UserInformationView.swift */,
 			);
 			path = Statistics;
 			sourceTree = "<group>";
@@ -484,6 +487,7 @@
 				ABC5E1992C31F666002B4068 /* Fonts.swift in Sources */,
 				ABC5E1CF2C32041D002B4068 /* NftDetailViewController.swift in Sources */,
 				ABC5E1B72C31FC70002B4068 /* ServicesAssembly.swift in Sources */,
+				402D9DFD2E7561200095FC15 /* UserInformationView.swift in Sources */,
 				ABC5E19D2C31F6A6002B4068 /* NftStorage.swift in Sources */,
 				ABC5E1E82C320610002B4068 /* NftDetailBridgeView.swift in Sources */,
 				ABC5E1E62C320585002B4068 /* LinePageControl.swift in Sources */,

@@ -4,6 +4,9 @@
     " ETH" : {
 
     },
+    "(%lld)" : {
+
+    },
     "Catalog.openNft" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -173,6 +176,12 @@
           }
         }
       }
+    },
+    "Коллекция NFT" : {
+
+    },
+    "Перейти на сайт пользователя" : {
+
     }
   },
   "version" : "1.0"
