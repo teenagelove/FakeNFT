@@ -13,7 +13,6 @@ struct NftCollectionRowView: View {
     var body: some View {
         VStack(spacing: 4) {
             KFImage(collection.cover)
-                .forceRefresh()
                 .fade(duration: 0.3)
                 .placeholder {
                     PlaceholderView()
