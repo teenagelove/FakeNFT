@@ -147,6 +147,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4084619F2E7484BD002E3187 /* Statistics */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Statistics;
+			sourceTree = "<group>";
+		};
 		ABC5E15F2C31F5AF002B4068 = {
 			isa = PBXGroup;
 			children = (
@@ -276,6 +283,7 @@
 		ABC5E1B32C31FC03002B4068 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				4084619F2E7484BD002E3187 /* Statistics */,
 				ACA258BC2E6EBB980089C3A7 /* UI Components */,
 				ACA256F52E6EB4F00089C3A7 /* Catalog */,
 				ABC5E16D2C31F5AF002B4068 /* ContentView.swift */,
