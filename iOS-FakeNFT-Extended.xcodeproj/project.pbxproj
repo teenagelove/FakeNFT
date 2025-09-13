@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		402D9DFD2E7561200095FC15 /* UserInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D9DFC2E7561200095FC15 /* UserInformationView.swift */; };
+		402D9DFF2E7578A20095FC15 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D9DFE2E7578A20095FC15 /* StatisticsView.swift */; };
 		408461A12E74889E002E3187 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408461A02E74889E002E3187 /* RatingView.swift */; };
 		408461A32E748F4B002E3187 /* UserCollectionItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408461A22E748F4B002E3187 /* UserCollectionItemView.swift */; };
 		40E814EC2E754653000C43CB /* UserCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E814EB2E754653000C43CB /* UserCollectionView.swift */; };
@@ -70,6 +71,7 @@
 
 /* Begin PBXFileReference section */
 		402D9DFC2E7561200095FC15 /* UserInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationView.swift; sourceTree = "<group>"; };
+		402D9DFE2E7578A20095FC15 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
 		408461A02E74889E002E3187 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		408461A22E748F4B002E3187 /* UserCollectionItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionItemView.swift; sourceTree = "<group>"; };
 		40E814EB2E754653000C43CB /* UserCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionView.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				408461A22E748F4B002E3187 /* UserCollectionItemView.swift */,
 				40E814EB2E754653000C43CB /* UserCollectionView.swift */,
 				402D9DFC2E7561200095FC15 /* UserInformationView.swift */,
+				402D9DFE2E7578A20095FC15 /* StatisticsView.swift */,
 			);
 			path = Statistics;
 			sourceTree = "<group>";
@@ -497,6 +500,7 @@
 				ABC5E1A62C31F815002B4068 /* NetworkRequest.swift in Sources */,
 				ABC5E1D52C320446002B4068 /* NftDetailInput.swift in Sources */,
 				408461A12E74889E002E3187 /* RatingView.swift in Sources */,
+				402D9DFF2E7578A20095FC15 /* StatisticsView.swift in Sources */,
 				ABC5E16E2C31F5AF002B4068 /* ContentView.swift in Sources */,
 				40E814EC2E754653000C43CB /* UserCollectionView.swift in Sources */,
 				ABC5E1B92C31FD51002B4068 /* TestCatalogView.swift in Sources */,
