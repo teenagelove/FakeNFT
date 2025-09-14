@@ -177,10 +177,42 @@
         }
       }
     },
+    "Tab.statistics" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statistics"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Статистика"
+          }
+        }
+      }
+    },
+    "Закрыть" : {
+
+    },
     "Коллекция NFT" : {
 
     },
+    "Не удалось получить данные" : {
+
+    },
+    "Отмена" : {
+
+    },
     "Перейти на сайт пользователя" : {
+
+    },
+    "Повторить" : {
+
+    },
+    "Сортировка" : {
 
     }
   },

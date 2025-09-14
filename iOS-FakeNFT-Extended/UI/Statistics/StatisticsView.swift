@@ -25,20 +25,39 @@ final class UserViewModel: Identifiable {
 
 @Observable
 final class StatisticsViewModel {
-    init(allUsers: [UserViewModel]) {
-        self.allUsers = allUsers
-    }
     enum SortOrder: String, CaseIterable, Identifiable {
         var id: String { rawValue }
         case name = "По имени"
         case rating = "По рейтингу"
     }
-    var allUsers: [UserViewModel]
+    enum State: Equatable {
+        case `default`
+        case loading
+        case loaded
+        case error
+    }
+    var allUsers: [UserViewModel] = []
     var sortOrder: SortOrder = .rating
     var showSortMenu: Bool = false
+    var state: State = .default
 }
 
 extension StatisticsViewModel {
+    var hasError: Bool {
+        get { state == .error }
+        set { state = .default }
+    }
+    func load() async {
+        state = .loading
+        do {
+            try await Task.sleep(for: .seconds(1))
+            allUsers = mockUsers
+            state = .loaded
+        } catch {
+            state = .error
+            print(error.localizedDescription)
+        }
+    }
     var sortedUsers: [UserViewModel] {
         let sorted = allUsers.sorted { (user1, user2) -> Bool in
             switch sortOrder {
@@ -81,6 +100,19 @@ struct StatisticsView: View {
         }
         .listStyle(.plain)
         .listRowSpacing(-15)
+        .task { await viewModel.load() }
+        .overlay {
+            if viewModel.state == .loading {
+                ProgressView()
+            }
+        }
+        .alert(
+            "Не удалось получить данные",
+            isPresented: $viewModel.hasError
+        ) {
+            Button("Отмена") { viewModel.state = .loaded }
+            Button("Повторить") { Task { await viewModel.load() } }
+        }
         .confirmationDialog(
             "Сортировка",
             isPresented: $viewModel.showSortMenu,
@@ -96,69 +128,79 @@ struct StatisticsView: View {
     }
 }
 
-#Preview {
-    let viewModel = StatisticsViewModel(allUsers: [
-        .init(
-            id: 0,
-            position: 1,
-            image: .zeus,
-            name: "Alex",
-            itemCount: 112
-        ),
-        .init(
-            id: 1,
-            position: 2,
-            image: .zeus,
-            name: "Bill",
-            itemCount: 98
-        ),
-        .init(
-            id: 2,
-            position: 3,
-            image: .zeus,
-            name: "Alla",
-            itemCount: 72
-        ),
-        .init(
-            id: 3,
-            position: 4,
-            image: .zeus,
-            name: "Mads",
-            itemCount: 71
-        ),
-        .init(
-            id: 4,
-            position: 5,
-            image: .zeus,
-            name: "Timothée",
-            itemCount: 51
-        ),
-        .init(
-            id: 5,
-            position: 6,
-            image: .zeus,
-            name: "Lea",
-            itemCount: 23
-        ),
-        .init(
-            id: 6,
-            position: 7,
-            image: .zeus,
-            name: "Eric",
-            itemCount: 11
-        ),
-    ])
-    NavigationStack {
-        StatisticsView(viewModel: viewModel)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        viewModel.showSortMenu = true
-                    } label: {
-                        Image(uiImage: .sortIcon)
+struct StatisticsTabView: View {
+    let viewModel = StatisticsViewModel()
+    var body: some View {
+        NavigationStack {
+            StatisticsView(viewModel: viewModel)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            viewModel.showSortMenu = true
+                        } label: {
+                            Image(uiImage: .sortIcon)
+                        }
+                        .tint(.blackDay)
                     }
-                    .tint(.blackDay)
                 }
-            }
+        }
     }
 }
+
+#Preview {
+    StatisticsTabView()
+}
+
+#if DEBUG
+private let mockUsers: [UserViewModel] = [
+    .init(
+        id: 0,
+        position: 1,
+        image: .zeus,
+        name: "Alex",
+        itemCount: 112
+    ),
+    .init(
+        id: 1,
+        position: 2,
+        image: .zeus,
+        name: "Bill",
+        itemCount: 98
+    ),
+    .init(
+        id: 2,
+        position: 3,
+        image: .zeus,
+        name: "Alla",
+        itemCount: 72
+    ),
+    .init(
+        id: 3,
+        position: 4,
+        image: .zeus,
+        name: "Mads",
+        itemCount: 71
+    ),
+    .init(
+        id: 4,
+        position: 5,
+        image: .zeus,
+        name: "Timothée",
+        itemCount: 51
+    ),
+    .init(
+        id: 5,
+        position: 6,
+        image: .zeus,
+        name: "Lea",
+        itemCount: 23
+    ),
+    .init(
+        id: 6,
+        position: 7,
+        image: .zeus,
+        name: "Eric",
+        itemCount: 11
+    ),
+]
+#endif
