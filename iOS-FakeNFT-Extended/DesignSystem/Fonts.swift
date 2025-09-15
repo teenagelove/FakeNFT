@@ -14,6 +14,4 @@ extension Font {
     // Caption Fonts
     static var caption1: Font { .system(size: 15, weight: .regular) }
     static var caption2: Font { .system(size: 13, weight: .regular) }
-    
-    static var price: Font { .system(size: 10, weight: .medium) }
 }

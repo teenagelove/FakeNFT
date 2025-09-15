@@ -27,8 +27,6 @@
           }
         }
       }
-    " ETH" : {
-
     },
     "Catalog.openNft" : {
       "extractionState" : "manual",
