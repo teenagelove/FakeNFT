@@ -7,14 +7,7 @@
 
 import Foundation
 
-protocol NftCollectionsStorage: AnyObject {
-    func saveCollections(_ collections: [NftCollection]) async
-    func saveCollection(_ collection: NftCollection) async
-    func getCollections() async -> [NftCollection]?
-    func getCollection(with id: String) async -> NftCollection?
-}
-
-actor NftCollectionsStorageImpl: NftCollectionsStorage {
+actor NftCollectionsStorage: NftCollectionsStorageProtocol {
     private var collections: [String: NftCollection] = [:]
 
     func saveCollections(_ collections: [NftCollection]) async {

@@ -5,17 +5,12 @@
 //  Created by Danil Kazakov on 12.09.2025.
 //
 
-protocol NftCollectionsService {
-    func loadCollections() async throws -> [NftCollection]
-    func loadCollection(id: String) async throws -> NftCollection
-}
-
 @MainActor
-final class NftCollectionsServiceImpl: NftCollectionsService {
+final class NftCollectionsService: NftCollectionsServiceProtocol {
     private let networkClient: NetworkClient
-    private let storage: NftCollectionsStorage
+    private let storage: NftCollectionsStorageProtocol
 
-    init(networkClient: NetworkClient, storage: NftCollectionsStorage) {
+    init(networkClient: NetworkClient, storage: NftCollectionsStorageProtocol) {
         self.networkClient = networkClient
         self.storage = storage
     }

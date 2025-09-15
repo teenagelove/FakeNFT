@@ -1,51 +1,13 @@
 //
-//  CatalogViewModel.swift
+//  NftCollection+Mock.swift
 //  iOS-FakeNFT-Extended
 //
-//  Created by Danil Kazakov on 08.09.2025.
+//  Created by Danil Kazakov on 15.09.2025.
 //
 
 import Foundation
-import Observation
 
-@MainActor
-@Observable
-final class CatalogViewModel {
-    var isLoading = false
-    var isFailed = false
-    var collections: [NftCollection] = []
-    
-    private let service: NftCollectionsService
-    
-    init(service: NftCollectionsService) {
-        self.service = service
-    }
-    
-    func loadData() async {
-        isLoading = true
-        isFailed = false
-        
-        defer { isLoading = false }
-        
-        do {
-            collections = try await service.loadCollections()
-            isFailed = false
-        } catch {
-            isFailed = true
-        }
-    }
-    
-    func sortByName() {
-        collections.sort { $0.name < $1.name}
-    }
-    
-    func sortByNftCount() {
-        collections.sort { $0.nfts.count > $1.nfts.count }
-    }
-}
-
-
-extension CatalogViewModel {
+extension NftCollection {
     static let mockData: [NftCollection] = [
         NftCollection(
             name: "Peach",

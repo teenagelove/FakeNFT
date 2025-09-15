@@ -1,36 +1,37 @@
 import SwiftUI
 
-struct CatalogView: View {
-    @State var viewModel: CatalogViewModel
-    @State private var presentingDialog = false
+struct NftCatalogView: View {
+    @State var viewModel: NftCatalogViewModel
     
     var body: some View {
         NavigationStack {
             content
-                .overlay(viewModel.isLoading ? CustomProgressView() : nil)
+                .overlay(stateOverlay)
                 .toolbar { toolbar }
         }
         .task { await viewModel.loadData() }
         .confirmationDialog(
             "Sort.title",
-            isPresented: $presentingDialog,
+            isPresented: $viewModel.presentingDialog,
             titleVisibility: .visible,
             actions: { sortButtons }
         )
-        .alert("Error.network", isPresented: $viewModel.isFailed) { errorButtons }
+        .alert("Error.network", isPresented: .constant(viewModel.state.isFailed)) { errorButtons }
     }
 }
 
 // MARK: - Private UI components
-private extension CatalogView {
+private extension NftCatalogView {
     
     var content: some View {
         ScrollView {
             LazyVStack(alignment: .leading, spacing: 0) {
-                ForEach(viewModel.collections) { collection in
-                    NftCollectionRowView(collection: collection)
-                        .padding(.top, 20)
-                        .padding(.horizontal, 16)
+                if case let .success(collections) = viewModel.state {
+                    ForEach(collections) { collection in
+                        NftCatalogRowView(collection: collection)
+                            .padding(.top, 20)
+                            .padding(.horizontal, 16)
+                    }
                 }
             }
         }
@@ -38,7 +39,7 @@ private extension CatalogView {
     
     var toolbar: some ToolbarContent {
         ToolbarItem(placement: .topBarTrailing) {
-            SortButton { presentingDialog = true }
+            SortButton { viewModel.presentingDialog = true }
         }
     }
     
@@ -47,6 +48,13 @@ private extension CatalogView {
         Button("Sort.byName") { viewModel.sortByName() }
         Button("Sort.byNftCount") { viewModel.sortByNftCount() }
         Button("Close", role: .cancel) {}
+    }
+    
+    @ViewBuilder
+    private var stateOverlay: some View {
+        if case .loading = viewModel.state {
+            CustomProgressView()
+        }
     }
     
     @ViewBuilder
@@ -62,9 +70,9 @@ private extension CatalogView {
     let service = ServicesAssembly(
         networkClient: DefaultNetworkClient(),
         nftStorage: NftStorageImpl(),
-        nftCollectionsStorage: NftCollectionsStorageImpl()
+        nftCollectionsStorage: NftCollectionsStorage()
     )
     
-    let vm = CatalogViewModel(service: service.nftCollectionsService)
-    CatalogView(viewModel: vm)
+    let vm = NftCatalogViewModel(service: service.nftCollectionsService)
+    NftCatalogView(viewModel: vm)
 }

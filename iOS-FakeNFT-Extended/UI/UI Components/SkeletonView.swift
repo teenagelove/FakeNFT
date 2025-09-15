@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PlaceholderView: View {
+struct SkeletonView: View {
     @State private var move: CGFloat = -1
     
     var body: some View {
@@ -35,5 +35,5 @@ struct PlaceholderView: View {
 }
 
 #Preview {
-    PlaceholderView()
+    SkeletonView()
 }
