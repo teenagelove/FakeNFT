@@ -12,6 +12,7 @@ struct NftCollectionView: View {
     let nftCollection: NftCollection
     @State private var viewModel: NftCollectionViewModel
     @State private var selectedNft: Nft? = nil
+    @State private var webUrl: URL? = nil
     
     init(nftCollection: NftCollection, service: NftService) {
         self.nftCollection = nftCollection
@@ -84,14 +85,22 @@ private extension NftCollectionView {
             HStack(spacing: 4) {
                 Text("Collection.Author")
                     .font(.caption2)
-                Link(nftCollection.author, destination: URL(string: "https://google.com")!)
-                    .font(.caption1)
-                    .foregroundColor(.blue)
+                linkWebView
                 Spacer()
             }
             
             Text(nftCollection.description)
                 .font(.caption2)
+        }
+    }
+    
+    var linkWebView: some View {
+        NavigationLink {
+            WebView()
+        } label: {
+            Text(nftCollection.author)
+                .font(.caption1)
+                .foregroundColor(.blue)
         }
     }
     
