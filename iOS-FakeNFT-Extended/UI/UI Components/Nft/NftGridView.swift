@@ -9,6 +9,7 @@ import SwiftUI
 
 struct NftGridView: View {
     let nfts: [Nft]
+    let onSelect: (Nft) -> Void
     
     private let columns = [GridItem(.adaptive(minimum: 108), spacing: 9)]
     
@@ -17,6 +18,9 @@ struct NftGridView: View {
             LazyVGrid(columns: columns, spacing: 28) {
                 ForEach(Array(nfts.enumerated()), id: \.offset) { _, nft in
                     NftCardView(nft: nft)
+                        .onTapGesture {
+                            onSelect(nft)
+                        }
                 }
             }
         }
@@ -24,5 +28,5 @@ struct NftGridView: View {
 }
 
 #Preview {
-    NftGridView(nfts: Nft.mockNfts)
+    NftGridView(nfts: Nft.mockNfts) { _ in }
 }

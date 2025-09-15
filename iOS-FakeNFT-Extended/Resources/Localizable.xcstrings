@@ -82,9 +82,6 @@
         }
       }
     },
-    "Collection.Author:" : {
-
-    },
     "Error.network" : {
       "extractionState" : "manual",
       "localizations" : {

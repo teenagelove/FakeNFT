@@ -11,6 +11,7 @@ import Kingfisher
 struct NftCollectionView: View {
     let nftCollection: NftCollection
     @State private var viewModel: NftCollectionViewModel
+    @State private var selectedNft: Nft? = nil
     
     init(nftCollection: NftCollection, service: NftService) {
         self.nftCollection = nftCollection
@@ -29,6 +30,9 @@ struct NftCollectionView: View {
         .toolbar { toolbar }
         .task {
             await viewModel.loadNfts(for: nftCollection.nfts)
+        }
+        .sheet(item: $selectedNft) { nft in
+            NftDetailBridgeView(nftId: nft.id)
         }
     }
 }
@@ -78,7 +82,7 @@ private extension NftCollectionView {
     var authorAndDescription: some View {
         VStack(alignment: .leading, spacing: .zero) {
             HStack(spacing: 4) {
-                Text("Collection.Author:")
+                Text("Collection.Author")
                     .font(.caption2)
                 Link(nftCollection.author, destination: URL(string: "https://google.com")!)
                     .font(.caption1)
@@ -100,7 +104,10 @@ private extension NftCollectionView {
         ZStack {
             switch viewModel.state {
             case .loading: CustomProgressView()
-            case .success(let nfts): NftGridView(nfts: nfts)
+            case .success(let nfts):
+                NftGridView(nfts: nfts) { nft in
+                    selectedNft = nft
+                }
             case .error:
                 ErrorSideView {
                     Task { await viewModel.loadNfts(for: nftCollection.nfts) }
