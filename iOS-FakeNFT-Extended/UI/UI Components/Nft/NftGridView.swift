@@ -10,14 +10,12 @@ import SwiftUI
 struct NftGridView: View {
     let nfts: [Nft]
     
-    private let columns = [
-        GridItem(.adaptive(minimum: 108), spacing: 9)
-    ]
+    private let columns = [GridItem(.adaptive(minimum: 108), spacing: 9)]
     
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 28) {
-                ForEach(nfts) { nft in
+                ForEach(Array(nfts.enumerated()), id: \.offset) { _, nft in
                     NftCardView(nft: nft)
                 }
             }
