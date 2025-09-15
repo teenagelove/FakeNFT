@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct TabBarView: View {
+    @Environment(ServicesAssembly.self) var servicesAssembly
+    
     init() {
         let appearance = UITabBarAppearance()
         appearance.configureWithOpaqueBackground()
@@ -16,7 +18,7 @@ struct TabBarView: View {
     
     var body: some View {
         TabView {
-            TestCatalogView()
+            NftCatalogView(viewModel: NftCatalogViewModel(service: servicesAssembly.nftCollectionsService))
                 .tabItem {
                     Label(
                         NSLocalizedString("Tab.catalog", comment: ""),
