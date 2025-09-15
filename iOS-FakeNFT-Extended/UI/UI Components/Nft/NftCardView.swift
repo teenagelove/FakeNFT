@@ -59,6 +59,9 @@ private extension NftCardView {
             
             Text(nft.name)
                 .font(.bodyBold)
+                .lineLimit(2)
+                .multilineTextAlignment(.leading)
+                .frame(minHeight: 44, alignment: .topLeading)
             
             Text("\(nft.price.formatted()) ETH")
                 .font(.medium10)

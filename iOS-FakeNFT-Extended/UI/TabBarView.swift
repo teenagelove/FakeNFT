@@ -18,7 +18,7 @@ struct TabBarView: View {
     
     var body: some View {
         TabView {
-            NftCatalogView(viewModel: NftCatalogViewModel(service: servicesAssembly.nftCollectionsService))
+            NftCatalogView(service: servicesAssembly.nftCollectionsService)
                 .tabItem {
                     Label(
                         NSLocalizedString("Tab.catalog", comment: ""),

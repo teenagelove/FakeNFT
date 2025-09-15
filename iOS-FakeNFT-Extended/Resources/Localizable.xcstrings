@@ -11,20 +11,7 @@
         }
       }
     },
-    "%@ %@" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@ %2$@"
-          }
-        }
-      }
-    },
-    "%@:" : {
-
-    },
-    "Author Name" : {
+    "%@ ETH" : {
 
     },
     "Cancel" : {
@@ -94,6 +81,9 @@
           }
         }
       }
+    },
+    "Collection.Author:" : {
+
     },
     "Error.network" : {
       "extractionState" : "manual",
