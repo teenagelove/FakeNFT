@@ -13,7 +13,7 @@ extension NftCollection {
             name: "Peach",
             cover: URL(string: "https://picsum.photos/200/300?random=1")!,
             nfts: ["1", "2"],
-            description: "Коллекция розовых персонажей",
+            description: "Коллекция розовых персонажей Коллекция розовых персонажей Коллекция розовых персонажей Коллекция розовых персонажей Коллекция розовых персонажей Коллекция розовых персонажей ",
             author: "Alice",
             id: UUID().uuidString
         ),
