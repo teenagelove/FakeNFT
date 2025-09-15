@@ -7,4 +7,6 @@
 
 extension String {
     static let squareStack = "square.stack.3d.up.fill"
+    static let star = "star.fill"
+    static let heart = "heart.fill"
 }

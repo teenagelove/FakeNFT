@@ -11,6 +11,22 @@
         }
       }
     },
+    "%@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
+    "%@:" : {
+
+    },
+    "Author Name" : {
+
+    },
     "Cancel" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -143,6 +159,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Произошла неизвестная ошибка"
+          }
+        }
+      }
+    },
+    "ETH" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ETH"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ETH"
           }
         }
       }
