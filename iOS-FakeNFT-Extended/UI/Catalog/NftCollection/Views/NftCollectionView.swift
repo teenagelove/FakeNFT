@@ -12,7 +12,7 @@ struct NftCollectionView: View {
     let nftCollection: NftCollection
     @State private var viewModel: NftCollectionViewModel
     @State private var selectedNft: Nft? = nil
-    @State private var webUrl: URL? = nil
+    @State private var isWebViewPresented: Bool = false
     
     init(nftCollection: NftCollection, service: NftService) {
         self.nftCollection = nftCollection
@@ -26,6 +26,7 @@ struct NftCollectionView: View {
                 collectionInfo
             }
         }
+        .background(.appBackground)
         .ignoresSafeArea(edges: .top)
         .navigationBarBackButtonHidden(true)
         .toolbar { toolbar }
@@ -34,6 +35,9 @@ struct NftCollectionView: View {
         }
         .sheet(item: $selectedNft) { nft in
             NftDetailBridgeView(nftId: nft.id)
+        }
+        .fullScreenCover(isPresented: $isWebViewPresented) {
+            WebViewBridge()
         }
     }
 }
@@ -95,8 +99,8 @@ private extension NftCollectionView {
     }
     
     var linkWebView: some View {
-        NavigationLink {
-            WebView()
+        Button {
+            isWebViewPresented = true
         } label: {
             Text(nftCollection.author)
                 .font(.caption1)

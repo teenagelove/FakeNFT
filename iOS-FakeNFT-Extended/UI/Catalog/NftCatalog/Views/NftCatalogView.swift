@@ -13,6 +13,7 @@ struct NftCatalogView: View {
             content
                 .overlay(stateOverlay)
                 .toolbar { toolbar }
+                .background(.appBackground)
         }
         .task { await viewModel.loadData() }
         .confirmationDialog(
@@ -37,7 +38,7 @@ private extension NftCatalogView {
                             NftCollectionView(nftCollection: collection, service: servicesAssembly.nftService)
                         } label: {
                             NftCatalogRowView(collection: collection)
-                                .tint(.primary)
+                                .tint(.blackDay)
                                 .padding(.horizontal)
                                 .padding(.vertical, 8)
                         }

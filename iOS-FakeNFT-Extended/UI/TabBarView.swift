@@ -6,7 +6,7 @@ struct TabBarView: View {
     init() {
         let appearance = UITabBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = UIColor.systemBackground
+        appearance.backgroundColor = UIColor.appBackground
         
         // Настройка цветов для неактивных
         appearance.stackedLayoutAppearance.normal.iconColor = UIColor.segmentActive

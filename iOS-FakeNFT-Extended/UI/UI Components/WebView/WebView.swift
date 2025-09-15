@@ -9,9 +9,9 @@ import SwiftUI
 import WebKit
 
 struct WebView: UIViewRepresentable {
-
+    
     func makeUIView(context: Context) -> WKWebView {
-        guard let url = URL(string: "https://yandex.ru/legal/practicum_termsofuse/ru/") else { return WKWebView() }
+        guard let url = URL(string: Constants.url) else { return WKWebView() }
         let webView = WKWebView()
         let request = URLRequest(url: url)
         webView.load(request)
@@ -19,4 +19,8 @@ struct WebView: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: WKWebView, context: Context) {}
+}
+
+private enum Constants {
+    static let url = "https://yandex.ru/legal/practicum_termsofuse/ru/"
 }

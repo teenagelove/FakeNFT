@@ -15,7 +15,7 @@ struct BackButton: View {
             dismiss()
         } label: {
             Image(systemName: .chevronLeft)
-                .tint(.primary)
+                .tint(.blackDay)
                 .frame(width: 24, height: 24)
         }
     }
