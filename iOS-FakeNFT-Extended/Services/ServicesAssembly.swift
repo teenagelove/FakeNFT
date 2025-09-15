@@ -32,3 +32,14 @@ final class ServicesAssembly {
         )
     }
 }
+
+
+extension ServicesAssembly {
+    static var preview: ServicesAssembly {
+        ServicesAssembly(
+            networkClient: DefaultNetworkClient(),
+            nftStorage: NftStorageImpl(),
+            nftCollectionsStorage: NftCollectionsStorage()
+        )
+    }
+}
