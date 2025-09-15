@@ -39,7 +39,7 @@ private extension NftCardView {
             // Handle button action
         } label: {
             Image(systemName: .heart)
-                .foregroundColor(.redUniversal)
+                .foregroundColor(.white)
                 .frame(width: 40, height: 40)
         }
     }
