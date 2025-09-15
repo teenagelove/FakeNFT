@@ -576,7 +576,6 @@
 				ABC5E1A62C31F815002B4068 /* NetworkRequest.swift in Sources */,
 				AC14A9252E743090003B7FB1 /* NftCollectionsService.swift in Sources */,
 				ABC5E1D52C320446002B4068 /* NftDetailInput.swift in Sources */,
-				408461A12E74889E002E3187 /* RatingView.swift in Sources */,
 				ABC5E16E2C31F5AF002B4068 /* ContentView.swift in Sources */,
 				ACCD4AEB2E77BA0500503C69 /* NftCollectionsProtocol.swift in Sources */,
 				ABC5E1B92C31FD51002B4068 /* NftCatalogView.swift in Sources */,
