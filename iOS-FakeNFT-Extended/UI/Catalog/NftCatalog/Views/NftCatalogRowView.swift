@@ -28,9 +28,7 @@ struct NftCatalogRowView: View {
     private var coverImage: some View {
         KFImage(collection.cover)
             .fade(duration: 0.3)
-            .placeholder {
-                SkeletonView()
-            }
+            .placeholder { SkeletonView()}
             .resizable()
             .scaledToFill()
             .frame(maxWidth: .infinity, maxHeight: 140)
