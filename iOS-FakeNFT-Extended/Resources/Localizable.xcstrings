@@ -35,6 +35,51 @@
         }
       }
     },
+    "Delete" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить"
+          }
+        }
+      }
+    },
+    "DeleteItemPart1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you sure you want"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы уверены, что хотите"
+          }
+        }
+      }
+    },
+    "DeleteItemPart2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "to remove the item from the cart?"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "удалить объект из корзины?"
+          }
+        }
+      }
+    },
     "Error.network" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -106,10 +151,27 @@
     "For.payment" : {
       "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "for payment"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "К оплате"
+          }
+        }
+      }
+    },
+    "Return" : {
+      "extractionState" : "manual",
+      "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "К оплате"
+            "value" : "Вернуться"
           }
         }
       }

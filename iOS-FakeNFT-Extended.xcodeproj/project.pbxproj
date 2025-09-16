@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		336CA0A32E798AD50074DF35 /* BasketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336CA0A22E798AD50074DF35 /* BasketView.swift */; };
+		336CA2DA2E7A11DC0074DF35 /* DeleteItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336CA2D92E7A11DC0074DF35 /* DeleteItemView.swift */; };
 		ABC5E16C2C31F5AF002B4068 /* iOS_FakeNFT_ExtendedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC5E16B2C31F5AF002B4068 /* iOS_FakeNFT_ExtendedApp.swift */; };
 		ABC5E16E2C31F5AF002B4068 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC5E16D2C31F5AF002B4068 /* ContentView.swift */; };
 		ABC5E1702C31F5AF002B4068 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABC5E16F2C31F5AF002B4068 /* Assets.xcassets */; };
@@ -67,6 +68,7 @@
 
 /* Begin PBXFileReference section */
 		336CA0A22E798AD50074DF35 /* BasketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketView.swift; sourceTree = "<group>"; };
+		336CA2D92E7A11DC0074DF35 /* DeleteItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteItemView.swift; sourceTree = "<group>"; };
 		ABC5E16B2C31F5AF002B4068 /* iOS_FakeNFT_ExtendedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_FakeNFT_ExtendedApp.swift; sourceTree = "<group>"; };
 		ABC5E16D2C31F5AF002B4068 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		ABC5E16F2C31F5AF002B4068 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				336CA0A22E798AD50074DF35 /* BasketView.swift */,
+				336CA2D92E7A11DC0074DF35 /* DeleteItemView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -520,6 +523,7 @@
 				ABC5E1AB2C31FACD002B4068 /* NftService.swift in Sources */,
 				ABC5E1B22C31FBD4002B4068 /* ExampleRequest.swift in Sources */,
 				ABC5E1CD2C32040C002B4068 /* NftImageCollectionViewCell.swift in Sources */,
+				336CA2DA2E7A11DC0074DF35 /* DeleteItemView.swift in Sources */,
 				ABC5E1A82C31FA90002B4068 /* DateFormatters+Presets.swift in Sources */,
 				ABC5E1D12C32042C002B4068 /* NftDetailPresenter.swift in Sources */,
 				ABC5E1B02C31FB90002B4068 /* RequestConstants.swift in Sources */,
