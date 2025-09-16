@@ -4,6 +4,7 @@ struct TabBarView: View {
     init() {
         let appearance = UITabBarAppearance()
         appearance.configureWithOpaqueBackground()
+        appearance.shadowColor = .clear
         appearance.backgroundColor = UIColor.systemBackground
         
         // Настройка цветов для неактивных
@@ -23,6 +24,13 @@ struct TabBarView: View {
                         systemImage: .squareStack,
                     )
                 }
+            BasketView()
+                .tabItem {
+                    Image(.basketTab)
+                        .renderingMode(.template)
+                    Text(NSLocalizedString("Tab.basket", comment: ""))
+                }
         }
+        .tint(.blue)
     }
 }

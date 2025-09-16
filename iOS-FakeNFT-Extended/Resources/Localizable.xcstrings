@@ -103,6 +103,17 @@
         }
       }
     },
+    "For.payment" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "К оплате"
+          }
+        }
+      }
+    },
     "Sort.byName" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -154,6 +165,23 @@
         }
       }
     },
+    "Tab.basket" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Basket"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Корзина"
+          }
+        }
+      }
+    },
     "Tab.catalog" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -170,6 +198,9 @@
           }
         }
       }
+    },
+    "Цена" : {
+
     }
   },
   "version" : "1.0"
