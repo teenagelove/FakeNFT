@@ -10,6 +10,8 @@ import Kingfisher
 
 struct NftCardView: View {
     let nft: Nft
+    let toggleLike: (() -> Void)? = nil
+    let addToCart: (() -> Void)? = nil
     
     var body: some View {
         VStack(spacing: 8) {
@@ -35,9 +37,7 @@ private extension NftCardView {
     }
     
     var favoriteButton: some View {
-        Button {
-            // Handle button action
-        } label: {
+        Button { toggleLike?() } label: {
             Image(systemName: .heart)
                 .foregroundColor(.white)
                 .frame(width: 40, height: 40)
@@ -70,9 +70,7 @@ private extension NftCardView {
     }
     
     var addToCartButton: some View {
-        Button {
-            // Handle button action
-        } label: {
+        Button { addToCart?() } label: {
             Image(.addToCart)
                 .frame(width: 40, height: 40)
         }
