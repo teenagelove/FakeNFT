@@ -56,8 +56,8 @@ private extension NftCatalogView {
     
     @ViewBuilder
     var sortButtons: some View {
-        Button("Sort.byName") { viewModel.sortByName() }
-        Button("Sort.byNftCount") { viewModel.sortByNftCount() }
+        Button("Sort.byName") { viewModel.applySort(by: .byName) }
+        Button("Sort.byNftCount") { viewModel.applySort(by: .byNftCount) }
         Button("Close", role: .cancel) {}
     }
     
