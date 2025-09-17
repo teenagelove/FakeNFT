@@ -8,6 +8,10 @@
 import SwiftUI
 import WebKit
 
+private enum Constants {
+    static let url = "https://yandex.ru/legal/practicum_termsofuse/ru/"
+}
+
 struct WebView: UIViewRepresentable {
     
     func makeUIView(context: Context) -> WKWebView {
@@ -19,8 +23,4 @@ struct WebView: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: WKWebView, context: Context) {}
-}
-
-private enum Constants {
-    static let url = "https://yandex.ru/legal/practicum_termsofuse/ru/"
 }

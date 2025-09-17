@@ -8,8 +8,6 @@
 import Foundation
 
 extension Nft {
-    static let mockNft = mockNfts[0]
-    
     static let mockNfts = (1...20).map {nft in
         Nft(
             name: "Angel Alvarado" ,
@@ -19,4 +17,6 @@ extension Nft {
             images: [URL(string: "https://code.s3.yandex.net/Mobile/iOS/NFT/White/Lumpy/1.png")!]
         )
     }
+    
+    static let mockNft = mockNfts[0]
 }

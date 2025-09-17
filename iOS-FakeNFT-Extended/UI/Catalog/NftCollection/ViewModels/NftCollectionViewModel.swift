@@ -10,19 +10,31 @@ import Observation
 @MainActor
 @Observable
 final class NftCollectionViewModel {
+    // MARK: - State
     var state: NftCollectionState = .loading
     
+    // MARK: - Dependencies
     private let services: ServicesAssembly
+
+	// MARK: - Properties
     private var ordersSet: Set<String> = []
     private var likesSet: Set<String> = []
-    
+
+    // MARK: - Init
     init(services: ServicesAssembly) {
         self.services = services
     }
     
+    // MARK: - Public
     func loadNfts(for ids: [String]) async {
         state = .loading
-        
+        await fetchNfts(ids: ids)
+    }
+}
+
+// MARK: - Private Methods
+private extension NftCollectionViewModel {
+    func fetchNfts(ids: [String]) async {
         do {
             let nfts = try await services.nftService.loadNfts(ids: ids)
             let order = try await services.nftOrdersService.loadOrders()
