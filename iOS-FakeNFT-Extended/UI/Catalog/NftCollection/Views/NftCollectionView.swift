@@ -14,9 +14,9 @@ struct NftCollectionView: View {
     @State private var selectedNft: Nft? = nil
     @State private var isWebViewPresented: Bool = false
     
-    init(nftCollection: NftCollection, service: NftService) {
+    init(nftCollection: NftCollection, services: ServicesAssembly) {
         self.nftCollection = nftCollection
-        self._viewModel = State(initialValue: NftCollectionViewModel(service: service))
+        self._viewModel = State(initialValue: NftCollectionViewModel(services: services))
     }
     
     var body: some View {
@@ -118,9 +118,12 @@ private extension NftCollectionView {
             switch viewModel.state {
             case .loading: CustomProgressView()
             case .success(let nfts):
-                NftGridView(nfts: nfts) { nft in
-                    selectedNft = nft
-                }
+                NftGridView(
+                    nfts: nfts,
+                    onSelect: {selectedNft = $0 },
+                    onToggleLike: { viewModel.toggleLike(for: $0) },
+                    onToggleOrder: { viewModel.toggleOrder(for: $0) }
+                )
             case .error:
                 ErrorSideView {
                     Task { await viewModel.loadNfts(for: nftCollection.nfts) }
@@ -133,6 +136,6 @@ private extension NftCollectionView {
 }
 
 #Preview {
-    let service = ServicesAssembly.preview.nftService
-    NftCollectionView(nftCollection: NftCollection.mockData[0], service: service)
+    let services = ServicesAssembly.preview
+    NftCollectionView(nftCollection: NftCollection.mockData[0], services: services)
 }

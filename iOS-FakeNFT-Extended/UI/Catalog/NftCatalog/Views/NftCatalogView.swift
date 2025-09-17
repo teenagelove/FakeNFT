@@ -35,7 +35,7 @@ private extension NftCatalogView {
                 if case let .success(collections) = viewModel.state {
                     ForEach(collections) { collection in
                         NavigationLink {
-                            NftCollectionView(nftCollection: collection, service: servicesAssembly.nftService)
+                            NftCollectionView(nftCollection: collection, services: servicesAssembly)
                         } label: {
                             NftCatalogRowView(collection: collection)
                                 .tint(.blackDay)

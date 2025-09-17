@@ -31,6 +31,10 @@ final class ServicesAssembly {
             storage: nftCollectionsStorage
         )
     }
+    
+    var nftOrdersService: NftOrdersService {
+        NftOrdersService(networkClient: networkClient)
+    }
 }
 
 
