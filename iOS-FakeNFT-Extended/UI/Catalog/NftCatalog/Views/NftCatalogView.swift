@@ -79,4 +79,5 @@ private extension NftCatalogView {
 
 #Preview {
     NftCatalogView(service: ServicesAssembly.preview.nftCollectionsService)
+        .environment(ServicesAssembly.preview)
 }

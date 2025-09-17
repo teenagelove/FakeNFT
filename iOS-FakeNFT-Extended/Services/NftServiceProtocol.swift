@@ -1,12 +1,12 @@
 import Foundation
 
-protocol NftService {
+protocol NftServiceProtocol {
     func loadNft(id: String) async throws -> Nft
     func loadNfts(ids: [String]) async throws -> [Nft]
 }
 
 @MainActor
-final class NftServiceImpl: NftService {
+final class NftService: NftServiceProtocol {
 
     private let networkClient: NetworkClient
     private let storage: NftStorage
