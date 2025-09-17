@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		33609B7D2E7A9A5400B69721 /* SuccessPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33609B7C2E7A9A5400B69721 /* SuccessPaymentView.swift */; };
+		33609B7F2E7AA31C00B69721 /* CurrencyChooseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33609B7E2E7AA31C00B69721 /* CurrencyChooseView.swift */; };
 		336CA0A32E798AD50074DF35 /* BasketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336CA0A22E798AD50074DF35 /* BasketView.swift */; };
 		336CA2DA2E7A11DC0074DF35 /* DeleteItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336CA2D92E7A11DC0074DF35 /* DeleteItemView.swift */; };
 		ABC5E16C2C31F5AF002B4068 /* iOS_FakeNFT_ExtendedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC5E16B2C31F5AF002B4068 /* iOS_FakeNFT_ExtendedApp.swift */; };
@@ -69,6 +70,7 @@
 
 /* Begin PBXFileReference section */
 		33609B7C2E7A9A5400B69721 /* SuccessPaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessPaymentView.swift; sourceTree = "<group>"; };
+		33609B7E2E7AA31C00B69721 /* CurrencyChooseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyChooseView.swift; sourceTree = "<group>"; };
 		336CA0A22E798AD50074DF35 /* BasketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketView.swift; sourceTree = "<group>"; };
 		336CA2D92E7A11DC0074DF35 /* DeleteItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteItemView.swift; sourceTree = "<group>"; };
 		ABC5E16B2C31F5AF002B4068 /* iOS_FakeNFT_ExtendedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_FakeNFT_ExtendedApp.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				336CA0A22E798AD50074DF35 /* BasketView.swift */,
 				336CA2D92E7A11DC0074DF35 /* DeleteItemView.swift */,
 				33609B7C2E7A9A5400B69721 /* SuccessPaymentView.swift */,
+				33609B7E2E7AA31C00B69721 /* CurrencyChooseView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -503,6 +506,7 @@
 				ABC5E1B72C31FC70002B4068 /* ServicesAssembly.swift in Sources */,
 				ABC5E19D2C31F6A6002B4068 /* NftStorage.swift in Sources */,
 				ABC5E1E82C320610002B4068 /* NftDetailBridgeView.swift in Sources */,
+				33609B7F2E7AA31C00B69721 /* CurrencyChooseView.swift in Sources */,
 				ABC5E1E62C320585002B4068 /* LinePageControl.swift in Sources */,
 				ABC5E1DD2C3204DC002B4068 /* CellsReusingUtils.swift in Sources */,
 				ABC5E1B52C31FC57002B4068 /* TabBarView.swift in Sources */,

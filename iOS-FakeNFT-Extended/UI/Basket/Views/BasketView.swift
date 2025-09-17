@@ -31,50 +31,63 @@ struct BasketView: View {
     }
     
     var body: some View {
-        VStack(spacing: .zero) {
-            HStack(spacing: .zero) {
-                Spacer()
-                Button {} label: {
-                    Image(.sortIcon)
-                }
-                .frame(width: 42, height: 42)
-                .padding(.trailing, 9)
-                .padding(.top, 2)
-            }
-            .frame(maxWidth: .infinity)
-            .padding(.bottom, 20)
-            List(mockNft, id: \.self) { boughtNft in
-                BoughtNft(imageName: boughtNft.imageName, name: boughtNft.name, rating: boughtNft.rating, price: boughtNft.price)
-                    .listRowSeparator(.hidden)
-                    .listRowInsets(EdgeInsets())
-            }
-            .listStyle(.plain)
-            Spacer()
-            ZStack {
-                UnevenRoundedRectangle(topLeadingRadius: 12, topTrailingRadius: 12)
-                    .foregroundStyle(.lightGrey)
-                    .frame(maxWidth: .infinity, maxHeight: 76)
+        NavigationStack {
+            VStack(spacing: .zero) {
                 HStack(spacing: .zero) {
-                    VStack(alignment: .leading, spacing: .zero) {
-                        Text(String(mockNft.count) + " NFT")
-                            .font(.system(size: 15,weight: .regular))
-                        Text(String(basketSum) + " ETH")
-                            .foregroundStyle(.green)
-                            .font(.system(size: 17, weight: .bold))
+                    Spacer()
+                    Button {} label: {
+                        Image(.sortIcon)
                     }
-                    .padding(.leading, 16)
-                    Button("For.payment") {
-                    }
-                    .frame(maxWidth: .infinity, maxHeight: 44)
-                    .font(.system(size: 17, weight: .bold))
-                    .background(.black)
-                    .foregroundStyle(.white)
-                    .cornerRadius(16)
-                    .padding(.trailing, 16)
-                    .padding(.leading, 24)
+                    .frame(width: 42, height: 42)
+                    .padding(.trailing, 9)
+                    .padding(.top, 2)
                 }
-            }
-        }.frame(maxWidth: .infinity)
+                .frame(maxWidth: .infinity)
+                .padding(.bottom, 20)
+                List(mockNft, id: \.self) { boughtNft in
+                    BoughtNft(imageName: boughtNft.imageName, name: boughtNft.name, rating: boughtNft.rating, price: boughtNft.price)
+                        .listRowSeparator(.hidden)
+                        .listRowInsets(EdgeInsets())
+                }
+                .listStyle(.plain)
+                Spacer()
+                ZStack {
+                    UnevenRoundedRectangle(topLeadingRadius: 12, topTrailingRadius: 12)
+                        .foregroundStyle(.lightGrey)
+                        .frame(maxWidth: .infinity, maxHeight: 76)
+                    HStack(spacing: .zero) {
+                        VStack(alignment: .leading, spacing: .zero) {
+                            Text(String(mockNft.count) + " NFT")
+                                .font(.system(size: 15,weight: .regular))
+                            Text(String(basketSum) + " ETH")
+                                .foregroundStyle(.green)
+                                .font(.system(size: 17, weight: .bold))
+                        }
+                        .padding(.leading, 16)
+                        NavigationLink(NSLocalizedString("For.payment", comment: "")) {
+                            CurrencyChooseView()
+                                .toolbar(.hidden, for: .tabBar)
+                        }
+                        .frame(maxWidth: .infinity, maxHeight: 44)
+                        .font(.system(size: 17, weight: .bold))
+                        .background(.black)
+                        .foregroundStyle(.white)
+                        .cornerRadius(16)
+                        .padding(.trailing, 16)
+                        .padding(.leading, 24)
+                    }
+//                                        Button(NSLocalizedString("For.payment", comment: "")) {
+//                                        }
+//                                        .frame(maxWidth: .infinity, maxHeight: 44)
+//                                        .font(.system(size: 17, weight: .bold))
+//                                        .background(.black)
+//                                        .foregroundStyle(.white)
+//                                        .cornerRadius(16)
+//                                        .padding(.trailing, 16)
+//                                        .padding(.leading, 24)
+                }
+            }.frame(maxWidth: .infinity)
+        }.tint(.black)
     }
 }
 
