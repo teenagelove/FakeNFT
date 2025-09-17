@@ -1,13 +1,19 @@
 import SwiftUI
 
 struct NftCatalogView: View {
+    @Environment(ServicesAssembly.self) var servicesAssembly
     @State var viewModel: NftCatalogViewModel
+    
+    init(service: NftCollectionsServiceProtocol) {
+        self._viewModel = State(initialValue: NftCatalogViewModel(service: service))
+    }
     
     var body: some View {
         NavigationStack {
             content
                 .overlay(stateOverlay)
                 .toolbar { toolbar }
+                .background(.appBackground)
         }
         .task { await viewModel.loadData() }
         .confirmationDialog(
@@ -28,9 +34,14 @@ private extension NftCatalogView {
             LazyVStack(alignment: .leading, spacing: 0) {
                 if case let .success(collections) = viewModel.state {
                     ForEach(collections) { collection in
-                        NftCatalogRowView(collection: collection)
-                            .padding(.top, 20)
-                            .padding(.horizontal, 16)
+                        NavigationLink {
+                            NftCollectionView(nftCollection: collection, service: servicesAssembly.nftService)
+                        } label: {
+                            NftCatalogRowView(collection: collection)
+                                .tint(.blackDay)
+                                .padding(.horizontal)
+                                .padding(.vertical, 8)
+                        }
                     }
                 }
             }
@@ -67,12 +78,6 @@ private extension NftCatalogView {
 }
 
 #Preview {
-    let service = ServicesAssembly(
-        networkClient: DefaultNetworkClient(),
-        nftStorage: NftStorageImpl(),
-        nftCollectionsStorage: NftCollectionsStorage()
-    )
-    
-    let vm = NftCatalogViewModel(service: service.nftCollectionsService)
-    NftCatalogView(viewModel: vm)
+    NftCatalogView(service: ServicesAssembly.preview.nftCollectionsService)
+        .environment(ServicesAssembly.preview)
 }

@@ -11,6 +11,9 @@
         }
       }
     },
+    "%@ ETH" : {
+
+    },
     "Cancel" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -58,6 +61,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Закрыть"
+          }
+        }
+      }
+    },
+    "Collection.Author" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Collection author:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автор коллекции:"
           }
         }
       }
@@ -126,6 +146,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Произошла неизвестная ошибка"
+          }
+        }
+      }
+    },
+    "ETH" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ETH"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ETH"
           }
         }
       }

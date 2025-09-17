@@ -21,7 +21,7 @@ struct SortButton: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 42, height: 42)
-                    .foregroundColor(.primary)
+                    .foregroundColor(.blackDay)
             }
         }
     }

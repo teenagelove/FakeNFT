@@ -10,12 +10,12 @@ import Foundation
 extension NftCollection {
     static let mockData: [NftCollection] = [
         NftCollection(
-            name: "Peach",
-            cover: URL(string: "https://picsum.photos/200/300?random=1")!,
-            nfts: ["1", "2"],
-            description: "Коллекция розовых персонажей",
-            author: "Alice",
-            id: UUID().uuidString
+            name: "singulis epicuri",
+            cover: URL(string: "https://code.s3.yandex.net/Mobile/iOS/NFT/Обложки_коллекций/Brown.png")!,
+            nfts: ["c14cf3bc-7470-4eec-8a42-5eaa65f4053c", "d6a02bd1-1255-46cd-815b-656174c1d9c0", "f380f245-0264-4b42-8e7e-c4486e237504"],
+            description: "curabitur feugait a definitiones singulis movet eros aeque mucius evertitur assueverit et eam",
+            author: "Lourdes Harper",
+            id: "d4fea6b6-91f1-45ce-9745-55431e69ef5c"
         ),
         NftCollection(
             name: "Blue",
