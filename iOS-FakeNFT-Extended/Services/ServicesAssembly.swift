@@ -32,8 +32,12 @@ final class ServicesAssembly {
         )
     }
     
-    var nftOrdersService: NftOrdersService {
+    var nftOrdersService: NftOrdersServiceProtocol {
         NftOrdersService(networkClient: networkClient)
+    }
+    
+    var profileService: ProfileServiceProtocol {
+        ProfileService(networkClient: networkClient)
     }
 }
 

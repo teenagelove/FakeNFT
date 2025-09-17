@@ -34,7 +34,8 @@ final class NftCatalogViewModel {
         
         do {
             let collections = try await service.loadCollections()
-            state = .success(collections)
+            let filteredCollections = filterDuplicates(collections: collections)
+            state = .success(filteredCollections)
             applySort(by: sortType)
         } catch {
             state = .error(error)
@@ -53,6 +54,24 @@ final class NftCatalogViewModel {
             state = .success(collections.sorted { $0.name < $1.name })
         case .byNftCount:
             state = .success(collections.sorted { $0.nfts.count > $1.nfts.count })
+        }
+    }
+}
+
+
+// MARK: - Private Methods
+private extension NftCatalogViewModel {
+    func filterDuplicates(collections: [NftCollection]) -> [NftCollection] {
+        collections.map { collection in
+            let uniqueNfts = Array(Set(collection.nfts))
+            return NftCollection(
+                name: collection.name,
+                cover: collection.cover,
+                nfts: uniqueNfts,
+                description: collection.description,
+                author: collection.author,
+                id: collection.id
+            )
         }
     }
 }

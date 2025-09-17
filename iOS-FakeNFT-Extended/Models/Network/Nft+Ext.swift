@@ -24,7 +24,8 @@ private extension Nft {
             price: price,
             id: id,
             images: images,
-            isLiked: true
+            isLiked: true,
+            isOrdered: isOrdered
         )
     }
     
@@ -35,7 +36,8 @@ private extension Nft {
             price: price,
             id: id,
             images: images,
-            isLiked: false
+            isLiked: false,
+            isOrdered: isOrdered
         )
     }
     

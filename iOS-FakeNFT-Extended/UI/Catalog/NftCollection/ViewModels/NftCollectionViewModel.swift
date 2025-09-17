@@ -14,6 +14,7 @@ final class NftCollectionViewModel {
     
     private let services: ServicesAssembly
     private var ordersSet: Set<String> = []
+    private var likesSet: Set<String> = []
     
     init(services: ServicesAssembly) {
         self.services = services
@@ -25,11 +26,15 @@ final class NftCollectionViewModel {
         do {
             let nfts = try await services.nftService.loadNfts(ids: ids)
             let order = try await services.nftOrdersService.loadOrders()
+            let profile = try await services.profileService.loadProfile()
             
+            likesSet = Set(profile.likes)
             ordersSet = order.nfts
-            let result = nfts.map { ordersSet.contains($0.id) ? $0.toggledOrder() : $0 }
             
-            state = .success(result)
+            let result = nfts.map { ordersSet.contains($0.id) ? $0.toggledOrder() : $0 }
+            let finalResult = result.map { likesSet.contains($0.id) ? $0.toggledLike() : $0 }
+            
+            state = .success(finalResult)
         } catch {
             state = .error(error)
         }
@@ -39,8 +44,22 @@ final class NftCollectionViewModel {
         guard case .success(var nfts) = state,
               let index = nfts.firstIndex(where: { $0.id == nft.id }) else { return }
         
-        nfts[index] = nft.toggledLike()
-        state = .success(nfts)
+        if likesSet.contains(nft.id) {
+            likesSet.remove(nft.id)
+        } else {
+            likesSet.insert(nft.id)
+        }
+        
+        Task {
+            do {
+                let response = try await services.profileService.updateProfile(for: likesSet)
+                likesSet = Set(response.likes)
+                nfts[index] = nft.toggledLike()
+                state = .success(nfts)
+            } catch {
+                state = .error(error)
+            }
+        }
     }
     
     func toggleOrder(for nft: Nft) {
