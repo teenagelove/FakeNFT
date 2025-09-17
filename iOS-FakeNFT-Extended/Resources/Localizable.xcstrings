@@ -97,6 +97,23 @@
         }
       }
     },
+    "EmptyBasket" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Cart is empty"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Корзина пуста"
+          }
+        }
+      }
+    },
     "Error.network" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -189,6 +206,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Оплатить"
+          }
+        }
+      }
+    },
+    "Price" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цена"
           }
         }
       }
@@ -378,9 +406,6 @@
           }
         }
       }
-    },
-    "Цена" : {
-
     }
   },
   "version" : "1.0"
