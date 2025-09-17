@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		33609B7D2E7A9A5400B69721 /* SuccessPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33609B7C2E7A9A5400B69721 /* SuccessPaymentView.swift */; };
 		336CA0A32E798AD50074DF35 /* BasketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336CA0A22E798AD50074DF35 /* BasketView.swift */; };
 		336CA2DA2E7A11DC0074DF35 /* DeleteItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336CA2D92E7A11DC0074DF35 /* DeleteItemView.swift */; };
 		ABC5E16C2C31F5AF002B4068 /* iOS_FakeNFT_ExtendedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC5E16B2C31F5AF002B4068 /* iOS_FakeNFT_ExtendedApp.swift */; };
@@ -67,6 +68,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		33609B7C2E7A9A5400B69721 /* SuccessPaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessPaymentView.swift; sourceTree = "<group>"; };
 		336CA0A22E798AD50074DF35 /* BasketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketView.swift; sourceTree = "<group>"; };
 		336CA2D92E7A11DC0074DF35 /* DeleteItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteItemView.swift; sourceTree = "<group>"; };
 		ABC5E16B2C31F5AF002B4068 /* iOS_FakeNFT_ExtendedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_FakeNFT_ExtendedApp.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 			children = (
 				336CA0A22E798AD50074DF35 /* BasketView.swift */,
 				336CA2D92E7A11DC0074DF35 /* DeleteItemView.swift */,
+				33609B7C2E7A9A5400B69721 /* SuccessPaymentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -517,6 +520,7 @@
 				ACF6F10F2E73F02200376287 /* Images.swift in Sources */,
 				ABC5E1A12C31F6D7002B4068 /* Nft.swift in Sources */,
 				ABC5E1AE2C31FB7F002B4068 /* NftByIdRequest.swift in Sources */,
+				33609B7D2E7A9A5400B69721 /* SuccessPaymentView.swift in Sources */,
 				ABC5E1DB2C3204CE002B4068 /* UIView+Constraints.swift in Sources */,
 				ABC5E16C2C31F5AF002B4068 /* iOS_FakeNFT_ExtendedApp.swift in Sources */,
 				ABC5E1CB2C3203FC002B4068 /* NftDetailCellModel.swift in Sources */,

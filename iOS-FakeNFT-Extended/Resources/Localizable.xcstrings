@@ -176,6 +176,23 @@
         }
       }
     },
+    "ReturnToCart" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Return to cart"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Вернуться в корзину"
+          }
+        }
+      }
+    },
     "Sort.byName" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -223,6 +240,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сортировка"
+          }
+        }
+      }
+    },
+    "SuccessPaymentPart1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Success! Payment has been completed,"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Успех! Оплата прошла,"
+          }
+        }
+      }
+    },
+    "SuccessPaymentPart2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "congratulations on your purchase"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "поздравляем с покупкой!"
           }
         }
       }

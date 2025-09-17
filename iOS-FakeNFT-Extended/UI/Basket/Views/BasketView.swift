@@ -64,7 +64,6 @@ struct BasketView: View {
                     }
                     .padding(.leading, 16)
                     Button("For.payment") {
-                        
                     }
                     .frame(maxWidth: .infinity, maxHeight: 44)
                     .font(.system(size: 17, weight: .bold))
