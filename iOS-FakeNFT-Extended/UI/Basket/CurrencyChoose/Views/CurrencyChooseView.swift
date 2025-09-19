@@ -20,11 +20,11 @@ struct CurrencyChooseView: View {
             }
         }
         .padding(.top, 20)
-        .padding([.leading, .trailing], 16)
+        .padding([.horizontal], 16)
         .toolbarRole(.editor)
         .toolbar {
             ToolbarItem(placement: .principal) {
-                Text(NSLocalizedString("CurrencyChooseToPay", comment: "")).font(.bodyBold)
+                Text("CurrencyChooseToPay").font(.bodyBold)
             }
         }
         Spacer()
@@ -32,19 +32,19 @@ struct CurrencyChooseView: View {
             UnevenRoundedRectangle(topLeadingRadius: 12, topTrailingRadius: 12).foregroundStyle(.lightGrey)
             VStack(alignment: .leading, spacing: .zero) {
                 VStack(alignment: .leading, spacing: .zero) {
-                    Text(NSLocalizedString("UserAgreementPart1", comment: "")).font(.caption2)
-                    Text(NSLocalizedString("UserAgreementPart2", comment: ""))
+                    Text("UserAgreementPart1").font(.caption2)
+                    Text("UserAgreementPart2")
                         .font(.caption2)
                         .foregroundStyle(.blue)
                 }.padding([.top, .leading], 16)
                 Spacer()
-                Button(NSLocalizedString("Pay", comment: "")) {
+                Button("Pay") {
                 }
                 .frame(maxWidth: .infinity, maxHeight: 60)
                 .font(.bodyBold)
                 .background(.black)
                 .foregroundStyle(.white)
-                .cornerRadius(16)
+                .clipShape(RoundedRectangle(cornerRadius: 16))
                 .padding(EdgeInsets(top: 0, leading: 20, bottom: 50, trailing: 12))
             }
         }
@@ -53,6 +53,8 @@ struct CurrencyChooseView: View {
     }
 }
 
-
+#Preview {
+    CurrencyChooseView()
+}
 
 

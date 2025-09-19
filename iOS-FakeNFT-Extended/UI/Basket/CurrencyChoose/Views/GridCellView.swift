@@ -25,7 +25,7 @@ struct GridCellView: View {
                 }.padding(.leading, 4)
             }
             .padding(.leading, 14)
-            .padding([.top, .bottom], 5)
+            .padding([.vertical], 5)
         }
         .overlay(
             RoundedRectangle(cornerRadius: 12)
@@ -36,4 +36,8 @@ struct GridCellView: View {
         }
         .frame(width: .infinity, height: 46)
     }
+}
+
+#Preview {
+    GridCellView(currency: .mockData[0])
 }

@@ -12,19 +12,25 @@ struct SuccessPaymentView: View {
         VStack(spacing: .zero) {
             VStack(spacing: .zero) {
                 Image(.funnyImageSuccessPayment).padding(.bottom, 20)
-                Text(NSLocalizedString("SuccessPaymentPart1", comment: "")).font(.headline3)
-                Text(NSLocalizedString("SuccessPaymentPart2", comment: "")).font(.headline3)
+                Text("SuccessPayment")
+                    .font(.headline3)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .multilineTextAlignment(.center)
             }
             .ignoresSafeArea()
             .padding(.top, 196)
             Spacer()
-            Button(NSLocalizedString("ReturnToCart", comment: "")) {}
+            Button("ReturnToCart") {}
                 .frame(maxWidth: .infinity, maxHeight: 60)
                 .font(.bodyBold)
                 .background(.black)
                 .foregroundStyle(.white)
-                .cornerRadius(16)
-                .padding([.leading, .trailing, .bottom], 16)
+                .clipShape(RoundedRectangle(cornerRadius: 16))
+                .padding([.horizontal, .bottom], 16)
         }
     }
+}
+
+#Preview {
+    SuccessPaymentView()
 }

@@ -63,36 +63,19 @@
         }
       }
     },
-    "DeleteItemPart1" : {
+    "DeleteItem" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Are you sure you want"
+            "value" : "Are you sure you want\nto remove the item from the cart?"
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Вы уверены, что хотите"
-          }
-        }
-      }
-    },
-    "DeleteItemPart2" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "to remove the item from the cart?"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "удалить объект из корзины?"
+            "state" : "needs_review",
+            "value" : "Вы уверены, что хотите\nудалить объект из корзины?"
           }
         }
       }
@@ -188,7 +171,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "for payment"
+            "value" : "For payment"
           }
         },
         "ru" : {
@@ -300,36 +283,19 @@
         }
       }
     },
-    "SuccessPaymentPart1" : {
+    "SuccessPayment" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Success! Payment has been completed,"
+            "value" : "Success! Payment has been completed, congratulations on your purchase!"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Успех! Оплата прошла,"
-          }
-        }
-      }
-    },
-    "SuccessPaymentPart2" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "congratulations on your purchase"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "поздравляем с покупкой!"
+            "value" : "Успех! Оплата прошла,\nпоздравляем с покупкой!"
           }
         }
       }
@@ -388,9 +354,15 @@
     "UserAgreementPart2" : {
       "extractionState" : "manual",
       "localizations" : {
-        "ru" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "User Agreement"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Пользовательского соглашения"
           }
         }

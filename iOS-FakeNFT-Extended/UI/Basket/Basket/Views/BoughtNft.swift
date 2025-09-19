@@ -10,19 +10,11 @@ import SwiftUI
 struct BoughtNft: View {
     let imageName: String
     let name: String
-    let rating: String
+    let rating: Int
     let price: Double
     
     private var editedPrice: String {
-        var editedPrice = ""
-        for character in String(price) {
-            if character == "." {
-                editedPrice += ","
-            } else {
-                editedPrice += String(character)
-            }
-        }
-        return editedPrice
+        String(price).replacingOccurrences(of: ".", with: ",")
     }
     
     var body: some View {
@@ -34,14 +26,16 @@ struct BoughtNft: View {
                     Text(name)
                         .font(.bodyBold)
                         .padding(.bottom, 4)
-                    Image(rating).padding(.bottom, 12)
-                    Text(NSLocalizedString("Price", comment: ""))
+                    StarRatingView(rating: rating)
+                        .frame(maxWidth: 68, maxHeight: 12)
+                        .padding(.bottom, 12)
+                    Text("Price")
                         .font(.caption2)
                         .padding(.bottom, 2)
                     Text(editedPrice + " ETH").font(.bodyBold)
                 }
                 .padding(.leading, 20)
-                .padding([.top, .bottom], 8)
+                .padding([.vertical], 8)
                 Spacer()
                 Button {} label: {
                     Image(.deleteItem)
@@ -51,4 +45,13 @@ struct BoughtNft: View {
         .frame(maxWidth: .infinity)
         .padding(16)
     }
+}
+
+#Preview {
+    BoughtNft(
+        imageName: MockBoughtNft.mockData[0].imageName,
+        name: MockBoughtNft.mockData[0].name,
+        rating: MockBoughtNft.mockData[0].rating,
+        price: MockBoughtNft.mockData[0].price
+    )
 }

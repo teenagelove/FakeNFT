@@ -11,23 +11,24 @@ struct DeleteItemView: View {
     var body: some View {
         VStack(spacing: .zero) {
             Image(.funnyImageDeleteItem).padding(.bottom, 12)
-            Text(NSLocalizedString("DeleteItemPart1", comment: "")).font(.caption2)
-            Text(NSLocalizedString("DeleteItemPart2", comment: "")).font(.caption2)
+            Text("DeleteItem")
+                .font(.caption2)
+                .multilineTextAlignment(.center)
             HStack(spacing: .zero) {
-                Button(NSLocalizedString("Delete", comment: "")) {}
+                Button("Delete") {}
                     .frame(maxWidth: .infinity, maxHeight: 44)
                     .font(.bodyRegular)
                     .background(.black)
                     .foregroundStyle(.red)
-                    .cornerRadius(12)
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
                     .padding(.trailing, 8)
                     .padding(.leading, 56)
-                Button(NSLocalizedString("Return", comment: "")) {}
+                Button("Return") {}
                     .frame(maxWidth: .infinity, maxHeight: 44)
                     .font(.bodyRegular)
                     .background(.black)
                     .foregroundStyle(.white)
-                    .cornerRadius(12)
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
                     .padding(.trailing, 57)
             }
             .padding(.top, 20)

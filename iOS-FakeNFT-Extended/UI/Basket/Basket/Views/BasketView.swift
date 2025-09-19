@@ -8,28 +8,23 @@
 import SwiftUI
 
 struct BasketView: View {
+    @State var isHidden = false
+    
     private var basketSum: String {
         var basketSum: Double = 0
         MockBoughtNft.mockData.forEach { item in
             basketSum += item.price
         }
         
-        var stringBasketSum = ""
-        for character in String(basketSum) {
-            if character == "." {
-                stringBasketSum += ","
-            } else {
-                stringBasketSum += String(character)
-            }
-        }
-        return stringBasketSum
+        return String(basketSum).replacingOccurrences(of: ".", with: ",")
     }
     
     var body: some View {
         NavigationStack {
-            if MockBoughtNft.mockData.count == 0 {
-                Text(NSLocalizedString("EmptyBasket", comment: "")).font(.system(size: 17, weight: .bold))
-            } else {
+            ZStack {
+                Text("EmptyBasket")
+                    .font(.system(size: 17, weight: .bold))
+                    .opacity(isHidden ? 1 : 0)
                 VStack(spacing: .zero) {
                     HStack(spacing: .zero) {
                         Spacer()
@@ -59,19 +54,21 @@ struct BasketView: View {
                                     .foregroundStyle(.green)
                                     .font(.bodyBold)
                             }.padding(.leading, 16)
-                            NavigationLink(NSLocalizedString("For.payment", comment: "")) {
+                            NavigationLink("For.payment") {
                                 CurrencyChooseView().toolbar(.hidden, for: .tabBar)
                             }
                             .frame(maxWidth: .infinity, maxHeight: 44)
                             .font(.bodyBold)
                             .background(.black)
                             .foregroundStyle(.white)
-                            .cornerRadius(16)
+                            .clipShape(RoundedRectangle(cornerRadius: 16))
                             .padding(.trailing, 16)
                             .padding(.leading, 24)
                         }
                     }
-                }.frame(maxWidth: .infinity)
+                }
+                .frame(maxWidth: .infinity)
+                .opacity(isHidden ? 0 : 1)
             }
         }.tint(.black)
     }
