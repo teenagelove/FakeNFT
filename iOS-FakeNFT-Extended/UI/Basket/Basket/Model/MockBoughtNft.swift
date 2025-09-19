@@ -10,6 +10,6 @@ import Foundation
 struct MockBoughtNft: Hashable {
     let imageName: String
     let name: String
-    let rating: String
+    let rating: Int
     let price: Double
 }
