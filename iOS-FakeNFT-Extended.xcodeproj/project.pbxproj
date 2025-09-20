@@ -158,6 +158,13 @@
 			path = StatisticsFlow;
 			sourceTree = "<group>";
 		};
+		40A3F0062E7EC3D80017704C /* Statistics */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Statistics;
+			sourceTree = "<group>";
+		};
 		40C9583D2E7BCD4E00BD116C /* UserCollection */ = {
 			isa = PBXGroup;
 			children = (
@@ -275,6 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				ABC5E1A02C31F6D7002B4068 /* Nft.swift */,
+				40A3F0062E7EC3D80017704C /* Statistics */,
 			);
 			path = Network;
 			sourceTree = "<group>";
