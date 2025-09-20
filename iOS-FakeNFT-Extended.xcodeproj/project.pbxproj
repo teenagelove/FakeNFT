@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		408461A32E748F4B002E3187 /* UserCollectionItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408461A22E748F4B002E3187 /* UserCollectionItemView.swift */; };
+		40A3F0192E7EC79B0017704C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A3F0182E7EC7930017704C /* User.swift */; };
 		40C958412E7BCE6F00BD116C /* UserCollectionItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C958402E7BCE6F00BD116C /* UserCollectionItemViewModel.swift */; };
 		40C958542E7C73EA00BD116C /* StatisticsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C958532E7C73EA00BD116C /* StatisticsTabView.swift */; };
 		40E814EC2E754653000C43CB /* UserCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E814EB2E754653000C43CB /* UserCollectionView.swift */; };
@@ -70,6 +71,7 @@
 
 /* Begin PBXFileReference section */
 		408461A22E748F4B002E3187 /* UserCollectionItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionItemView.swift; sourceTree = "<group>"; };
+		40A3F0182E7EC7930017704C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		40C958402E7BCE6F00BD116C /* UserCollectionItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionItemViewModel.swift; sourceTree = "<group>"; };
 		40C958532E7C73EA00BD116C /* StatisticsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsTabView.swift; sourceTree = "<group>"; };
 		40E814EB2E754653000C43CB /* UserCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionView.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 		40A3F0062E7EC3D80017704C /* Statistics */ = {
 			isa = PBXGroup;
 			children = (
+				40A3F0182E7EC7930017704C /* User.swift */,
 			);
 			path = Statistics;
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 				ABC5E1B92C31FD51002B4068 /* TestCatalogView.swift in Sources */,
 				ABC5E1DF2C3204FB002B4068 /* LoadingView.swift in Sources */,
 				ABC5E1972C31F656002B4068 /* Colors.swift in Sources */,
+				40A3F0192E7EC79B0017704C /* User.swift in Sources */,
 				AC006C402E73EDFA00480194 /* SortButton.swift in Sources */,
 				AC006C412E73EDFA00480194 /* CustomProgressView.swift in Sources */,
 				408461A32E748F4B002E3187 /* UserCollectionItemView.swift in Sources */,
