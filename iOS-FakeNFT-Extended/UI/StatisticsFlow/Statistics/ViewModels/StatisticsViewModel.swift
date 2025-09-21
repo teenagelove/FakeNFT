@@ -13,7 +13,7 @@ final class StatisticsViewModel {
         case loaded
         case error
     }
-    var allUsers: [UserViewModel] = []
+    var users: [UserViewModel] = []
     var sortOrder: SortOrder = .rating
     var showSortMenu: Bool = false
     var state: State = .default
@@ -29,24 +29,13 @@ extension StatisticsViewModel {
         state = .loading
         Task {
             do {
-                allUsers = try await loadUsers()
+                users = try await loadUsers()
                 state = .loaded
             } catch {
                 state = .error
                 print(error)
             }
 
-        }
-    }
-    var sortedUsers: [UserViewModel] {
-        allUsers
-            .sorted { (user1, user2) -> Bool in
-            switch sortOrder {
-            case .name:
-                user1.name < user2.name
-            case .rating:
-                user1.rating > user2.rating
-            }
         }
     }
 }

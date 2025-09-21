@@ -9,7 +9,7 @@ private enum Constant {
 struct StatisticsView: View {
     @Bindable var viewModel: StatisticsViewModel
     var body: some View {
-        List(viewModel.sortedUsers) { UserView(user: $0) }
+        List(viewModel.users) { UserView(user: $0) }
             .listStyle(.plain)
             .onAppear { viewModel.load() }
             .overlay {
