@@ -12,10 +12,12 @@ extension StatisticsViewModel {
         viewModel.loadUsers = {
             let networkClient = DefaultNetworkClient()
             do {
-                let users: [Statistics.User] = try await networkClient.send(request: Statistics.GetUsers())
-                print(users.map {String(describing: $0) }.joined(separator: "\n"))
-                return users.map { user in
+                let users: [Statistics.User] = try await networkClient.send(
+                    request: Statistics.GetUsers(page: 0, size: 20, sortBy: "rating")
+                )
+                return users.enumerated().map { index, user in
                     UserViewModel(
+                        index: index,
                         avatar: user.avatar,
                         name: user.name,
                         nfts: user.nfts,
@@ -42,6 +44,7 @@ extension StatisticsViewModel {
     
     static let mockUsers: [UserViewModel] = [
         .init(
+            index: 0,
             avatar: .fake,
             name: "Alex",
             nfts: Array(repeating: "", count: 112),
@@ -49,6 +52,7 @@ extension StatisticsViewModel {
             website: .fake
         ),
         .init(
+            index: 1,
             avatar: .fake,
             name: "Bill",
             nfts: Array(repeating: "", count: 98),
@@ -56,6 +60,7 @@ extension StatisticsViewModel {
             website: .fake
         ),
         .init(
+            index: 2,
             avatar: .fake,
             name: "Alla",
             nfts: Array(repeating: "", count: 72),
@@ -63,6 +68,7 @@ extension StatisticsViewModel {
             website: .fake
         ),
         .init(
+            index: 3,
             avatar: .fake,
             name: "Mads",
             nfts: Array(repeating: "", count: 71),
@@ -70,6 +76,7 @@ extension StatisticsViewModel {
             website: .fake
         ),
         .init(
+            index: 4,
             avatar: .fake,
             name: "Timothée",
             nfts: Array(repeating: "", count: 51),
@@ -77,6 +84,7 @@ extension StatisticsViewModel {
             website: .fake
         ),
         .init(
+            index: 5,
             avatar: .fake,
             name: "Lea",
             nfts: Array(repeating: "", count: 23),
@@ -84,6 +92,7 @@ extension StatisticsViewModel {
             website: .fake
         ),
         .init(
+            index: 6,
             avatar: .fake,
             name: "Eric",
             nfts: Array(repeating: "", count: 11),

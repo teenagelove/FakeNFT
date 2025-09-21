@@ -9,33 +9,45 @@ private enum Constant {
 struct StatisticsView: View {
     @Bindable var viewModel: StatisticsViewModel
     var body: some View {
-        List(viewModel.users) { UserView(user: $0) }
-            .listStyle(.plain)
-            .onAppear { viewModel.load() }
-            .overlay {
-                if viewModel.state == .loading {
-                    ProgressView()
-                }
-            }
-            .alert(
-                "Не удалось получить данные",
-                isPresented: $viewModel.hasError
-            ) {
-                Button("Отмена") { viewModel.state = .loaded }
-                Button("Повторить") { Task { viewModel.load() } }
-            }
-            .confirmationDialog(
-                "Сортировка",
-                isPresented: $viewModel.showSortMenu,
-                titleVisibility: .visible
-            ) {
-                ForEach(StatisticsViewModel.SortOrder.allCases, id: \.self) { caseName in
-                    Button(caseName.rawValue) {
-                        viewModel.sortOrder = caseName
+        List(viewModel.users) { user in
+            UserView(user: user)
+                .onAppear {
+                    if user.index == viewModel.users.count - 1 {
+                        print("last user", user.name, "index", user.index)
                     }
                 }
-                Button("Закрыть", role: .cancel) {}
+                .background {
+                    NavigationLink("") {
+                        Text(user.name)
+                    }
+                }
+        }
+        .listStyle(.plain)
+        .onAppear { viewModel.load() }
+        .overlay {
+            if viewModel.state == .loading {
+                ProgressView()
             }
+        }
+        .alert(
+            "Не удалось получить данные",
+            isPresented: $viewModel.hasError
+        ) {
+            Button("Отмена") { viewModel.state = .loaded }
+            Button("Повторить") { Task { viewModel.load() } }
+        }
+        .confirmationDialog(
+            "Сортировка",
+            isPresented: $viewModel.showSortMenu,
+            titleVisibility: .visible
+        ) {
+            ForEach(StatisticsViewModel.SortOrder.allCases, id: \.self) { caseName in
+                Button(caseName.rawValue) {
+                    viewModel.sortOrder = caseName
+                }
+            }
+            Button("Закрыть", role: .cancel) {}
+        }
     }
 }
 
@@ -80,5 +92,7 @@ private struct UserView: View {
 }
 
 #Preview {
-    StatisticsView(viewModel: .simpleNetwork)
+    NavigationStack {
+        StatisticsView(viewModel: .simpleNetwork)
+    }
 }

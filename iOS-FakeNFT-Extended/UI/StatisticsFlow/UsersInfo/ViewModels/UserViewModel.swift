@@ -3,6 +3,7 @@ import SwiftUI
 @MainActor
 @Observable
 final class UserViewModel: Identifiable {
+    var index: Int
     var avatar: URL
     var description: String?
     var name: String
@@ -11,6 +12,7 @@ final class UserViewModel: Identifiable {
     var website: URL
 
     init(
+        index: Int,
         avatar: URL,
         description: String? = nil,
         name: String,
@@ -18,6 +20,7 @@ final class UserViewModel: Identifiable {
         rating: String,
         website: URL
     ) {
+        self.index = index
         self.avatar = avatar
         self.description = description
         self.name = name

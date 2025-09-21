@@ -1,7 +1,7 @@
 import Foundation
 
 protocol StatisticsService {
-    func loadUsers() async throws -> [Statistics.User]
+    func loadUsers(page: Int, size: Int, sortBy: String) async throws -> [Statistics.User]
 }
 
 @MainActor
@@ -15,7 +15,9 @@ final class StatisticsServiceImpl {
 }
 
 extension StatisticsServiceImpl: StatisticsService {
-    func loadUsers() async throws -> [Statistics.User] {
-        try await networkClient.send(request: Statistics.GetUsers())
+    func loadUsers(page: Int, size: Int, sortBy: String) async throws -> [Statistics.User] {
+        try await networkClient.send(
+            request: Statistics.GetUsers(page: page, size: size, sortBy: sortBy)
+        )
     }
 }
