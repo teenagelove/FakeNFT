@@ -3,8 +3,7 @@ import SwiftUI
 @MainActor
 @Observable
 final class StatisticsViewModel {
-    enum SortOrder: String, CaseIterable, Identifiable {
-        var id: String { rawValue }
+    enum SortOrder: String, CaseIterable {
         case name = "По имени"
         case rating = "По рейтингу"
     }

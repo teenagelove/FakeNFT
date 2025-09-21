@@ -51,7 +51,7 @@ struct StatisticsView: View {
             isPresented: $viewModel.showSortMenu,
             titleVisibility: .visible
         ) {
-            ForEach(StatisticsViewModel.SortOrder.allCases) { caseName in
+            ForEach(StatisticsViewModel.SortOrder.allCases, id: \.self) { caseName in
                 Button(caseName.rawValue) {
                     viewModel.sortOrder = caseName
                 }
