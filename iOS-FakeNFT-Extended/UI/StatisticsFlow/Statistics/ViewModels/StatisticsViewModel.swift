@@ -25,14 +25,17 @@ extension StatisticsViewModel {
         get { state == .error }
         set { state = .default }
     }
-    func load() async {
+    func load() {
         state = .loading
-        do {
-            allUsers = try await loadUsers()
-            state = .loaded
-        } catch {
-            state = .error
-            print(error.localizedDescription)
+        Task {
+            do {
+                allUsers = try await loadUsers()
+                state = .loaded
+            } catch {
+                state = .error
+                print(error)
+            }
+
         }
     }
     var sortedUsers: [UserViewModel] {

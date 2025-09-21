@@ -11,7 +11,7 @@ struct StatisticsView: View {
     var body: some View {
         List(viewModel.sortedUsers) { UserView(user: $0) }
             .listStyle(.plain)
-            .task { await viewModel.load() }
+            .onAppear { viewModel.load() }
             .overlay {
                 if viewModel.state == .loading {
                     ProgressView()
@@ -22,7 +22,7 @@ struct StatisticsView: View {
                 isPresented: $viewModel.hasError
             ) {
                 Button("Отмена") { viewModel.state = .loaded }
-                Button("Повторить") { Task { await viewModel.load() } }
+                Button("Повторить") { Task { viewModel.load() } }
             }
             .confirmationDialog(
                 "Сортировка",
