@@ -30,9 +30,9 @@ struct StatisticsView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 12))
             }
             .listRowSeparator(.hidden)
+            .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 8, trailing: 16))
         }
         .listStyle(.plain)
-        .listRowSpacing(-15)
         .task { await viewModel.load() }
         .overlay {
             if viewModel.state == .loading {
