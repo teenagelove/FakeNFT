@@ -1,5 +1,36 @@
 #if DEBUG
+
+import Foundation
+
+private extension URL {
+    static let fake = URL(string: "https://example.com")!
+}
+
 extension StatisticsViewModel {
+    static var simpleNetwork: Self {
+        let viewModel = Self()
+        viewModel.loadUsers = {
+            let networkClient = DefaultNetworkClient()
+            do {
+                let users: [Statistics.User] = try await networkClient.send(request: Statistics.GetUsers())
+                print(users.map {String(describing: $0) }.joined(separator: "\n"))
+                return users.map { user in
+                    UserViewModel(
+                        avatar: user.avatar,
+                        name: user.name,
+                        nfts: user.nfts,
+                        rating: user.rating,
+                        website: user.website
+                    )
+                }
+            } catch {
+                print(error)
+                throw error
+            }
+        }
+        return viewModel
+
+    }
     static var mock: Self {
         let viewModel = Self()
         viewModel.loadUsers = {
@@ -11,53 +42,53 @@ extension StatisticsViewModel {
     
     static let mockUsers: [UserViewModel] = [
         .init(
-            id: 0,
-            position: 1,
-            image: .zeus,
+            avatar: .fake,
             name: "Alex",
-            itemCount: 112
+            nfts: Array(repeating: "", count: 112),
+            rating: "1",
+            website: .fake
         ),
         .init(
-            id: 1,
-            position: 2,
-            image: .zeus,
+            avatar: .fake,
             name: "Bill",
-            itemCount: 98
+            nfts: Array(repeating: "", count: 98),
+            rating: "2",
+            website: .fake
         ),
         .init(
-            id: 2,
-            position: 3,
-            image: .zeus,
+            avatar: .fake,
             name: "Alla",
-            itemCount: 72
+            nfts: Array(repeating: "", count: 72),
+            rating: "3",
+            website: .fake
         ),
         .init(
-            id: 3,
-            position: 4,
-            image: .zeus,
+            avatar: .fake,
             name: "Mads",
-            itemCount: 71
+            nfts: Array(repeating: "", count: 71),
+            rating: "4",
+            website: .fake
         ),
         .init(
-            id: 4,
-            position: 5,
-            image: .zeus,
+            avatar: .fake,
             name: "Timothée",
-            itemCount: 51
+            nfts: Array(repeating: "", count: 51),
+            rating: "5",
+            website: .fake
         ),
         .init(
-            id: 5,
-            position: 6,
-            image: .zeus,
+            avatar: .fake,
             name: "Lea",
-            itemCount: 23
+            nfts: Array(repeating: "", count: 23),
+            rating: "6",
+            website: .fake
         ),
         .init(
-            id: 6,
-            position: 7,
-            image: .zeus,
+            avatar: .fake,
             name: "Eric",
-            itemCount: 11
+            nfts: Array(repeating: "", count: 11),
+            rating: "7",
+            website: .fake
         ),
     ]
 }

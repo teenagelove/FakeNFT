@@ -23,7 +23,7 @@ struct TabBarView: View {
                         systemImage: .squareStack,
                     )
                 }
-            StatisticsTabView()
+            StatisticsTabView(viewModel: .simpleNetwork)
                 .tabItem {
                     Label(
                         NSLocalizedString("Tab.statistics", comment: ""),

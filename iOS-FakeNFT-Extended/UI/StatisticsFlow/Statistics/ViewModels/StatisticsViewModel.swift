@@ -37,17 +37,14 @@ extension StatisticsViewModel {
         }
     }
     var sortedUsers: [UserViewModel] {
-        let sorted = allUsers.sorted { (user1, user2) -> Bool in
+        allUsers
+            .sorted { (user1, user2) -> Bool in
             switch sortOrder {
             case .name:
                 user1.name < user2.name
             case .rating:
-                user1.itemCount > user2.itemCount
+                user1.rating > user2.rating
             }
         }
-        for (index, user) in sorted.enumerated() {
-            user.position = index + 1
-        }
-        return Array(sorted)
     }
 }

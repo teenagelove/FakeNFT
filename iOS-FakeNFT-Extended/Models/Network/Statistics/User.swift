@@ -1,9 +1,8 @@
 import Foundation
 
 extension Statistics {
-    struct User: Codable, Identifiable {
+    struct User: Codable {
         var id: String
-        
         var avatar: URL
         var description: String?
         var name: String

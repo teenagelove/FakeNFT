@@ -5,16 +5,23 @@ struct StatisticsView: View {
     var body: some View {
         List(viewModel.sortedUsers) { user in
             HStack {
-                Text(user.position.formatted()).font(.caption1)
+                Text(user.rating).font(.caption1)
                 HStack {
-                    Image(uiImage: user.image)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 28, height: 28)
-                        .clipShape(Circle())
+                    AsyncImage(url: user.avatar) { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                    } placeholder: {
+                        Image(systemName: "person.crop.circle.fill")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .foregroundStyle(Color(UIColor(hexString: "#625C5C")))
+                    }
+                    .frame(width: 28, height: 28)
+                    .clipShape(Circle())
                     Text(user.name)
                     Spacer()
-                    Text(user.itemCount.formatted())
+                    Text(user.nfts.count.formatted())
                 }
                 .font(.headline3)
                 .padding()
@@ -55,5 +62,5 @@ struct StatisticsView: View {
 }
 
 #Preview {
-    StatisticsView(viewModel: .mock)
+    StatisticsView(viewModel: .simpleNetwork)
 }

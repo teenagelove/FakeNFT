@@ -3,23 +3,26 @@ import SwiftUI
 @MainActor
 @Observable
 final class UserViewModel: Identifiable {
-    var position: Int
-    let id: Int
-    let image: UIImage
-    let name: String
-    let itemCount: Int
+    var avatar: URL
+    var description: String?
+    var name: String
+    var nfts: [String]
+    var rating: String
+    var website: URL
 
     init(
-        id: Int,
-        position: Int,
-        image: UIImage,
+        avatar: URL,
+        description: String? = nil,
         name: String,
-        itemCount: Int
+        nfts: [String],
+        rating: String,
+        website: URL
     ) {
-        self.id = id
-        self.position = position
-        self.image = image
+        self.avatar = avatar
+        self.description = description
         self.name = name
-        self.itemCount = itemCount
+        self.nfts = nfts
+        self.rating = rating
+        self.website = website
     }
 }

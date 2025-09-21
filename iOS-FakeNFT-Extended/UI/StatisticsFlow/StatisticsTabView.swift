@@ -20,5 +20,5 @@ struct StatisticsTabView: View {
 }
 
 #Preview {
-    StatisticsTabView(viewModel: .mock)
+    StatisticsTabView(viewModel: .simpleNetwork)
 }
