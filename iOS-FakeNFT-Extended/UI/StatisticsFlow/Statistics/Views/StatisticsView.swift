@@ -1,3 +1,4 @@
+import Kingfisher
 import SwiftUI
 
 private enum Constant {
@@ -7,6 +8,7 @@ private enum Constant {
 }
 
 struct StatisticsView: View {
+    @Environment(ServicesAssembly.self) var servicesAssembly
     @Bindable var viewModel: StatisticsViewModel
     var body: some View {
         List(viewModel.users) { user in
@@ -23,7 +25,7 @@ struct StatisticsView: View {
                 }
         }
         .listStyle(.plain)
-        .onAppear { viewModel.load() }
+        .onAppear { viewModel.load(assembly: servicesAssembly) }
         .overlay {
             if viewModel.state == .loading {
                 ProgressView()
@@ -34,7 +36,7 @@ struct StatisticsView: View {
             isPresented: $viewModel.hasError
         ) {
             Button("Отмена") { viewModel.state = .loaded }
-            Button("Повторить") { Task { viewModel.load() } }
+            Button("Повторить") { Task { viewModel.load(assembly: servicesAssembly) } }
         }
         .confirmationDialog(
             "Сортировка",
@@ -42,8 +44,9 @@ struct StatisticsView: View {
             titleVisibility: .visible
         ) {
             ForEach(StatisticsViewModel.SortOrder.allCases, id: \.self) { caseName in
-                Button(caseName.rawValue) {
+                Button(caseName.title) {
                     viewModel.sortOrder = caseName
+                    viewModel.load(assembly: servicesAssembly)
                 }
             }
             Button("Закрыть", role: .cancel) {}
@@ -57,18 +60,16 @@ private struct UserView: View {
         HStack {
             Text(user.rating).font(.caption1)
             HStack {
-                AsyncImage(url: user.avatar) { image in
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                } placeholder: {
-                    Image(systemName: "person.crop.circle.fill")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .foregroundStyle(Constant.grayUniversal)
-                }
-                .frame(width: Constant.avatarSize, height: Constant.avatarSize)
-                .clipShape(Circle())
+                KFImage
+                    .url(user.avatar)
+                    .placeholder {
+                        Image(systemName: "person.crop.circle.fill")
+                    }
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .foregroundStyle(Constant.grayUniversal)
+                    .frame(width: Constant.avatarSize, height: Constant.avatarSize)
+                    .clipShape(Circle())
                 Text(user.name)
                 Spacer()
                 Text(user.nfts.count.formatted())
@@ -93,6 +94,7 @@ private struct UserView: View {
 
 #Preview {
     NavigationStack {
-        StatisticsView(viewModel: .simpleNetwork)
+        StatisticsView(viewModel: StatisticsViewModel())
+            .environment(ServicesAssembly())
     }
 }
