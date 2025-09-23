@@ -20,7 +20,7 @@ struct CurrencyChooseView: View {
             }
         }
         .padding(.top, 20)
-        .padding([.horizontal], 16)
+        .padding(.horizontal, 16)
         .toolbarRole(.editor)
         .toolbar {
             ToolbarItem(placement: .principal) {

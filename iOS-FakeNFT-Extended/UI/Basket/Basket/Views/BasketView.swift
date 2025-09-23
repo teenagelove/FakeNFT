@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BasketView: View {
-    @State var isHidden = false
+    @State private var isHidden = false
     
     private var basketSum: String {
         var basketSum: Double = 0

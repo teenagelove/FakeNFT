@@ -16,7 +16,7 @@ struct StarRatingView: View {
                 Image(systemName: .star)
                     .resizable()
                     .scaledToFit()
-                    .foregroundColor(index < rating ? .yellowUniversal : .lightGrey)
+                    .foregroundStyle(index < rating ? .yellowUniversal : .lightGrey)
             }
         }
     }

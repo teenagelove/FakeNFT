@@ -35,7 +35,7 @@ struct BoughtNft: View {
                     Text(editedPrice + " ETH").font(.bodyBold)
                 }
                 .padding(.leading, 20)
-                .padding([.vertical], 8)
+                .padding(.vertical, 8)
                 Spacer()
                 Button {} label: {
                     Image(.deleteItem)

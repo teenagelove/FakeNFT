@@ -25,7 +25,7 @@ struct GridCellView: View {
                 }.padding(.leading, 4)
             }
             .padding(.leading, 14)
-            .padding([.vertical], 5)
+            .padding(.vertical, 5)
         }
         .overlay(
             RoundedRectangle(cornerRadius: 12)
