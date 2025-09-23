@@ -15,17 +15,20 @@ struct StatisticsView: View {
             UserView(user: user)
                 .onAppear {
                     if user.index == viewModel.users.count - 1 {
-                        print("last user", user.name, "index", user.index)
+                        viewModel.loadMore(assembly: servicesAssembly)
                     }
                 }
                 .background {
                     NavigationLink("") {
-                        Text(user.name)
+                        HStack {
+                            Text(user.index.formatted())
+                            Text(user.name)
+                        }
                     }
                 }
         }
         .listStyle(.plain)
-        .onAppear { viewModel.load(assembly: servicesAssembly) }
+        .onAppear { viewModel.loadFirstPage(assembly: servicesAssembly) }
         .overlay {
             if viewModel.state == .loading {
                 ProgressView()
@@ -36,17 +39,19 @@ struct StatisticsView: View {
             isPresented: $viewModel.hasError
         ) {
             Button("Отмена") { viewModel.state = .loaded }
-            Button("Повторить") { Task { viewModel.load(assembly: servicesAssembly) } }
+            Button("Повторить") { Task { viewModel.loadFirstPage(assembly: servicesAssembly) } }
         }
         .confirmationDialog(
             "Сортировка",
             isPresented: $viewModel.showSortMenu,
             titleVisibility: .visible
         ) {
-            ForEach(StatisticsViewModel.SortOrder.allCases, id: \.self) { caseName in
-                Button(caseName.title) {
-                    viewModel.sortOrder = caseName
-                    viewModel.load(assembly: servicesAssembly)
+            ForEach(StatisticsViewModel.SortOrder.allCases, id: \.self) { sortOrder in
+                Button(sortOrder.title) {
+                    if viewModel.sortOrder != sortOrder {
+                        viewModel.sortOrder = sortOrder
+                        viewModel.loadFirstPage(assembly: servicesAssembly)
+                    }
                 }
             }
             Button("Закрыть", role: .cancel) {}

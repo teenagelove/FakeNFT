@@ -19,10 +19,15 @@ final class StatisticsViewModel {
         case loaded
         case error
     }
+    enum Constant {
+        static let pageSize: Int = 90
+    }
     var users: [UserViewModel] = []
     var sortOrder: SortOrder = .rating
     var showSortMenu: Bool = false
     var state: State = .default
+    var currentPage: Int = 0
+    var hasGotAllUsers: Bool = false
 }
 
 extension StatisticsViewModel {
@@ -30,29 +35,52 @@ extension StatisticsViewModel {
         get { state == .error }
         set { state = .default }
     }
+    func loadFirstPage(assembly: ServicesAssembly) {
+        currentPage = 0
+        hasGotAllUsers = false
+        users = []
+        load(assembly: assembly)
+    }
+    func loadMore(assembly: ServicesAssembly) {
+        guard !hasGotAllUsers else { return }
+        load(assembly: assembly)
+    }
     func load(assembly: ServicesAssembly) {
         state = .loading
         Task {
             do {
                 let usersDTO = try await assembly.statisticsService.loadUsers(
-                    page: 0,
-                    size: 10000,
+                    page: currentPage,
+                    size: Constant.pageSize,
                     sortBy: sortOrder.rawValue
                 )
-                users = map(dto: usersDTO)
+                if usersDTO.isEmpty {
+                    hasGotAllUsers = true
+                } else {
+                    users += map(dto: usersDTO)
+                    currentPage += 1
+                    print(
+                        "loading:",
+                        "got users:", usersDTO.count,
+                        "have users:", users.count,
+                        "currentPage:", currentPage,
+                    )
+                }
                 state = .loaded
             } catch {
                 state = .error
                 print(error)
             }
-
         }
+
     }
+
     func map(dto: [Statistics.User]) -> [UserViewModel] {
-        dto.enumerated()
+        let firstIndex = users.count
+        return dto.enumerated()
             .map { index, user in
                 UserViewModel(
-                    index: index,
+                    index: index + firstIndex,
                     avatar: user.avatar,
                     name: user.name,
                     nfts: user.nfts,
