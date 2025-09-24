@@ -85,6 +85,7 @@ extension StatisticsViewModel {
                 UserViewModel(
                     index: index + firstIndex,
                     avatar: user.avatar,
+                    info: user.description,
                     name: user.name,
                     nfts: user.nfts,
                     rating: user.rating,

@@ -4,8 +4,8 @@ import SwiftUI
 @Observable
 final class UserViewModel: Identifiable {
     var index: Int
-    var avatar: URL
-    var description: String?
+    var avatar: URL?
+    var info: String?
     var name: String
     var nfts: [String]
     var rating: String
@@ -13,8 +13,8 @@ final class UserViewModel: Identifiable {
 
     init(
         index: Int,
-        avatar: URL,
-        description: String? = nil,
+        avatar: URL?,
+        info: String?,
         name: String,
         nfts: [String],
         rating: String,
@@ -22,7 +22,7 @@ final class UserViewModel: Identifiable {
     ) {
         self.index = index
         self.avatar = avatar
-        self.description = description
+        self.info = info
         self.name = name
         self.nfts = nfts
         self.rating = rating

@@ -1,46 +1,45 @@
 import SwiftUI
+import Kingfisher
 
 struct UserInformationView: View {
     var viewModel: UserInformationViewModel
+    
+    @Environment(\.openURL) private var openURL
     var body: some View {
         ScrollView {
-            VStack(spacing: 0) {
-                UserView(image: viewModel.image, name: viewModel.name)
+            VStack(alignment: .leading, spacing: 0) {
+                userView
                 Spacer().frame(height: 20)
                 Text(viewModel.info).font(.caption2)
                 Spacer().frame(height: 28)
-                UserSiteButton(url: viewModel.url)
+                userSiteButton
                 Spacer().frame(height: 41)
-                UserCollectionButton(count: viewModel.itemsCount)
+                userCollectionButton
             }
             .padding(.horizontal)
         }
     }
-}
-
-private struct UserView: View {
-    var image: UIImage
-    var name: String
-    var body: some View {
+    var userView: some View {
         HStack {
-            Image(uiImage: image)
+            KFImage
+                .url(viewModel.image)
+                .placeholder {
+                    Image(systemName: "person.crop.circle.fill")
+                        .resizable()
+                }
                 .resizable()
-                .aspectRatio(1, contentMode: .fill)
+                .aspectRatio(contentMode: .fill)
+                .foregroundStyle(Color(uiColor: .grayUniversal))
                 .frame(width: 70, height: 70)
                 .clipShape(Circle())
-            Text(name)
+            Text(viewModel.name)
                 .font(.headline3)
             Spacer()
         }
     }
-}
-
-private struct UserSiteButton: View {
-    var url: URL
-    @Environment(\.openURL) private var openURL
-    var body: some View {
+    var userSiteButton: some View {
         Button {
-            openURL(url)
+            openURL(viewModel.website)
         } label: {
             Capsule()
                 .stroke()
@@ -50,34 +49,32 @@ private struct UserSiteButton: View {
                 }
         }
         .tint(.blackDay)
-    }
-}
 
-private struct UserCollectionButton: View {
-    var count: Int
-    var body: some View {
+    }
+    var userCollectionButton: some View {
         Button {
             print("Перейти на коллекцию")
         } label: {
             HStack(spacing: 8) {
                 Text("Коллекция NFT").font(.bodyBold)
-                Text("(\(count))").font(.bodyBold)
+                Text("(\(viewModel.itemsCount))").font(.bodyBold)
                 Spacer()
                 Image(systemName: "chevron.right")
             }
         }
         .tint(.blackDay)
+
     }
 }
 
 #Preview {
     UserInformationView(
         viewModel: .init(
-            image: .zeus,
+            avatar: nil,
             name: "Joaquin Phoenix",
             info:
                 "Дизайнер из Казани, люблю цифровое искусство и бейглы. В моей коллекции уже 100+ NFT, и еще больше — на моём сайте. Открыт к коллаборациям.",
-            url: URL(string: "https://ya.ru")!,
+                                            website: URL(string: "https://ya.ru")!,
             itemsCount: 112
         )
     )

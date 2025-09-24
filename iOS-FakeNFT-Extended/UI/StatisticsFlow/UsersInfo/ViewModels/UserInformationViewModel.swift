@@ -3,23 +3,23 @@ import SwiftUI
 @MainActor
 @Observable
 final class UserInformationViewModel {
-    var image: UIImage
+    var image: URL?
     var name: String
     var info: String
-    var url: URL
+    var website: URL
     var itemsCount: Int
 
     init(
-        image: UIImage,
+        avatar: URL?,
         name: String,
         info: String,
-        url: URL,
+        website: URL,
         itemsCount: Int
     ) {
-        self.image = image
+        self.image = avatar
         self.name = name
         self.info = info
-        self.url = url
+        self.website = website
         self.itemsCount = itemsCount
     }
 }
