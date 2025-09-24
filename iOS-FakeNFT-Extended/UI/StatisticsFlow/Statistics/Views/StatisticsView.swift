@@ -18,17 +18,7 @@ struct StatisticsView: View {
                     }
                 }
                 .background {
-                    NavigationLink("") {
-                        UserInformationView(
-                            viewModel: .init(
-                                avatar: user.avatar,
-                                name: user.name,
-                                info: user.info ?? "",
-                                website: user.website,
-                                itemsCount: user.nfts.count
-                            )
-                        )
-                    }
+                    NavigationLink("") { UserInformationView(viewModel: user) }
                 }
         }
         .listStyle(.plain)

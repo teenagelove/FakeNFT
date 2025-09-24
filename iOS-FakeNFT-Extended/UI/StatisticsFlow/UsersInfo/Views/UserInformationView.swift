@@ -2,7 +2,7 @@ import SwiftUI
 import Kingfisher
 
 struct UserInformationView: View {
-    var viewModel: UserInformationViewModel
+    var viewModel: UserViewModel
     
     @Environment(\.openURL) private var openURL
     var body: some View {
@@ -10,7 +10,7 @@ struct UserInformationView: View {
             VStack(alignment: .leading, spacing: 0) {
                 userView
                 Spacer().frame(height: 20)
-                Text(viewModel.info).font(.caption2)
+                Text(viewModel.info ?? "").font(.caption2)
                 Spacer().frame(height: 28)
                 userSiteButton
                 Spacer().frame(height: 41)
@@ -22,7 +22,7 @@ struct UserInformationView: View {
     var userView: some View {
         HStack {
             KFImage
-                .url(viewModel.image)
+                .url(viewModel.avatar)
                 .placeholder {
                     Image(systemName: "person.crop.circle.fill")
                         .resizable()
@@ -57,7 +57,7 @@ struct UserInformationView: View {
         } label: {
             HStack(spacing: 8) {
                 Text("Коллекция NFT").font(.bodyBold)
-                Text("(\(viewModel.itemsCount))").font(.bodyBold)
+                Text("(\(viewModel.nfts.count))").font(.bodyBold)
                 Spacer()
                 Image(systemName: "chevron.right")
             }
@@ -70,12 +70,13 @@ struct UserInformationView: View {
 #Preview {
     UserInformationView(
         viewModel: .init(
+            index: 0,
             avatar: nil,
+            info: "Дизайнер из Казани, люблю цифровое искусство и бейглы. В моей коллекции уже 100+ NFT, и еще больше — на моём сайте. Открыт к коллаборациям.",
             name: "Joaquin Phoenix",
-            info:
-                "Дизайнер из Казани, люблю цифровое искусство и бейглы. В моей коллекции уже 100+ NFT, и еще больше — на моём сайте. Открыт к коллаборациям.",
-                                            website: URL(string: "https://ya.ru")!,
-            itemsCount: 112
+            nfts: Array(repeating: "", count: 112),
+            rating: "5",
+            website: URL(string: "https://ya.ru")!
         )
     )
     .environment(
