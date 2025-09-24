@@ -23,11 +23,14 @@ final class StatisticsViewModel {
         static let pageSize: Int = 90
     }
     var users: [UserViewModel] = []
-    var sortOrder: SortOrder = .rating
     var showSortMenu: Bool = false
     var state: State = .default
     var currentPage: Int = 0
     var hasGotAllUsers: Bool = false
+    
+    @ObservationIgnored
+    @AppStorage("StatisticsViewModel.sortOrder")
+    var sortOrder: SortOrder = .rating
 }
 
 extension StatisticsViewModel {
