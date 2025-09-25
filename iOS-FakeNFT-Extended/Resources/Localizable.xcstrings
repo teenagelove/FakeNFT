@@ -367,17 +367,6 @@
           }
         }
       }
-    },
-    "Выберите способ оплаты" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Выберите способ оплаты"
-          }
-        }
-      }
     }
   },
   "version" : "1.0"

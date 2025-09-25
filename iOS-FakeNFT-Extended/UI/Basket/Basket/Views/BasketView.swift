@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct BasketView: View {
-    @State private var isHidden = false
+    @StateObject var mockData = MockBoughtNft()
+    @StateObject private var viewModel = BasketViewModel()
     
     private var basketSum: String {
         var basketSum: Double = 0
-        MockBoughtNft.mockData.forEach { item in
+        mockData.nfts.forEach { item in
             basketSum += item.price
         }
         
@@ -24,7 +25,7 @@ struct BasketView: View {
             ZStack {
                 Text("EmptyBasket")
                     .font(.system(size: 17, weight: .bold))
-                    .opacity(isHidden ? 1 : 0)
+                    .opacity(mockData.nfts.isEmpty ? 1 : 0)
                 VStack(spacing: .zero) {
                     HStack(spacing: .zero) {
                         Spacer()
@@ -37,10 +38,13 @@ struct BasketView: View {
                     }
                     .frame(maxWidth: .infinity)
                     .padding(.bottom, 20)
-                    List(MockBoughtNft.mockData, id: \.self) { boughtNft in
-                        BoughtNft(imageName: boughtNft.imageName, name: boughtNft.name, rating: boughtNft.rating, price: boughtNft.price)
-                            .listRowSeparator(.hidden)
-                            .listRowInsets(EdgeInsets())
+                    List(mockData.nfts, id: \.id) { boughtNft in
+                        BoughtNft(
+                            viewModel: viewModel,
+                            boughtNftModel: boughtNft
+                        )
+                        .listRowSeparator(.hidden)
+                        .listRowInsets(EdgeInsets())
                     }.listStyle(.plain)
                     Spacer()
                     ZStack {
@@ -49,7 +53,7 @@ struct BasketView: View {
                             .frame(maxWidth: .infinity, maxHeight: 76)
                         HStack(spacing: .zero) {
                             VStack(alignment: .leading, spacing: .zero) {
-                                Text(String(MockBoughtNft.mockData.count) + " NFT").font(.caption1)
+                                Text(String(mockData.nfts.count) + " NFT").font(.caption1)
                                 Text(String(basketSum) + " ETH")
                                     .foregroundStyle(.green)
                                     .font(.bodyBold)
@@ -68,12 +72,20 @@ struct BasketView: View {
                     }
                 }
                 .frame(maxWidth: .infinity)
-                .opacity(isHidden ? 0 : 1)
+                .opacity(mockData.nfts.isEmpty ? 0 : 1)
             }
-        }.tint(.black)
+        }
+        .tint(.black)
+        .fullScreenCover(isPresented: $viewModel.isDeleteItemViewShown) {
+            DeleteItemView(
+                viewModel: viewModel
+            )
+        }
+        .environmentObject(mockData)
     }
 }
 
 #Preview {
     BasketView()
 }
+
