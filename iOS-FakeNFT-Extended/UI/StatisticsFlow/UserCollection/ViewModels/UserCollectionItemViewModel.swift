@@ -3,33 +3,23 @@ import UIKit
 @MainActor
 @Observable
 final class UserCollectionItemViewModel: Identifiable {
-    init(
-        id: Int,
-        image: UIImage,
-        isFavorite: Bool,
-        title: String,
-        rating: Int,
-        price: Double,
-        isInCart: Bool
-    ) {
-        self.id = id
-        self.image = image
-        self.isFavorite = isFavorite
-        self.title = title
-        self.rating = rating
-        self.price = price
-        self.isInCart = isInCart
+    init(token_id: String) {
+        self.token_id = token_id
     }
 
-    let id: Int
-    let image: UIImage
-    let title: String
-    let rating: Int
-    let price: Double
-    
-    var isFavorite: Bool
-    var isInCart: Bool
+    let token_id: String
+    var image: URL?
+    var title: String = ""
+    var rating: Int = 0
+    var price: Double = 0
 
+    // TODO: connect to services
+    var isFavorite: Bool = false
+    var isInCart: Bool = false
+
+}
+
+extension UserCollectionItemViewModel {
     func toggleFavorite() {
         print(#function)
         isFavorite.toggle()
@@ -37,5 +27,20 @@ final class UserCollectionItemViewModel: Identifiable {
     func toggleInCart() {
         print(#function)
         isInCart.toggle()
+    }
+    func loadTokenInfo(servicesAssembly: ServicesAssembly) {
+        Task {
+            do {
+                let tokenDTO = try await servicesAssembly.statisticsService.loadToken(
+                    id: self.token_id
+                )
+                image = tokenDTO.images.compactMap { $0 }.first
+                title = tokenDTO.name
+                rating = tokenDTO.rating
+                price = tokenDTO.price
+            } catch {
+                print(error)
+            }
+        }
     }
 }

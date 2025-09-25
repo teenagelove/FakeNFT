@@ -28,6 +28,15 @@
             let upperBound = min(size * (page + 1), users.count)
             return Array(users[lowerBound..<upperBound])
         }
+        func loadToken(id: String) async throws -> Statistics.Token {
+            .init(
+                id: "",
+                name: "Test",
+                images: [],
+                rating: 3,
+                price: 22.22
+            )
+        }
     }
 
     extension StatisticsServiceMock {

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4006ADF32E85B10C00D245A8 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4006ADF22E85B10C00D245A8 /* Token.swift */; };
+		4006ADF72E85CC2900D245A8 /* UserCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4006ADF62E85CC2900D245A8 /* UserCollectionViewModel.swift */; };
 		408461A32E748F4B002E3187 /* UserCollectionItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408461A22E748F4B002E3187 /* UserCollectionItemView.swift */; };
 		40A3F0192E7EC79B0017704C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A3F0182E7EC7930017704C /* User.swift */; };
 		40A3F01C2E7ECBE30017704C /* StatisticsRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A3F01B2E7ECBDB0017704C /* StatisticsRequests.swift */; };
@@ -72,6 +74,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4006ADF22E85B10C00D245A8 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		4006ADF62E85CC2900D245A8 /* UserCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionViewModel.swift; sourceTree = "<group>"; };
 		408461A22E748F4B002E3187 /* UserCollectionItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionItemView.swift; sourceTree = "<group>"; };
 		40A3F0182E7EC7930017704C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		40A3F01B2E7ECBDB0017704C /* StatisticsRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsRequests.swift; sourceTree = "<group>"; };
@@ -168,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				40A3F0182E7EC7930017704C /* User.swift */,
+				4006ADF22E85B10C00D245A8 /* Token.swift */,
 			);
 			path = Statistics;
 			sourceTree = "<group>";
@@ -203,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				40C958402E7BCE6F00BD116C /* UserCollectionItemViewModel.swift */,
+				4006ADF62E85CC2900D245A8 /* UserCollectionViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -554,6 +560,7 @@
 				ABC5E1DD2C3204DC002B4068 /* CellsReusingUtils.swift in Sources */,
 				ABC5E1B52C31FC57002B4068 /* TabBarView.swift in Sources */,
 				ABC5E1E42C32055B002B4068 /* ErrorView.swift in Sources */,
+				4006ADF32E85B10C00D245A8 /* Token.swift in Sources */,
 				ABC5E1A62C31F815002B4068 /* NetworkRequest.swift in Sources */,
 				ABC5E1D52C320446002B4068 /* NftDetailInput.swift in Sources */,
 				ABC5E16E2C31F5AF002B4068 /* ContentView.swift in Sources */,
@@ -578,6 +585,7 @@
 				ABC5E1AB2C31FACD002B4068 /* NftService.swift in Sources */,
 				40C958412E7BCE6F00BD116C /* UserCollectionItemViewModel.swift in Sources */,
 				ABC5E1B22C31FBD4002B4068 /* ExampleRequest.swift in Sources */,
+				4006ADF72E85CC2900D245A8 /* UserCollectionViewModel.swift in Sources */,
 				ABC5E1CD2C32040C002B4068 /* NftImageCollectionViewCell.swift in Sources */,
 				ABC5E1A82C31FA90002B4068 /* DateFormatters+Presets.swift in Sources */,
 				ABC5E1D12C32042C002B4068 /* NftDetailPresenter.swift in Sources */,

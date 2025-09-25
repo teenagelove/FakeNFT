@@ -7,11 +7,11 @@ struct UserCollectionView: View {
         GridItem(.flexible()),
     ]
 
-    var items: [UserCollectionItemViewModel]
+    @Bindable var viewModel: UserCollectionViewModel
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 28) {
-                ForEach(items) { item in
+                ForEach($viewModel.items) { item in
                     UserCollectionItemView(viewModel: item)
                 }
             }
@@ -22,52 +22,16 @@ struct UserCollectionView: View {
 
 #Preview {
     UserCollectionView(
-        items: [
+        viewModel:
             .init(
-                id: 0,
-                image: .zeus,
-                isFavorite: false,
-                title: "Zeus 1",
-                rating: 2,
-                price: 1.78,
-                isInCart: false
-            ),
-            .init(
-                id: 1,
-                image: .zeus,
-                isFavorite: true,
-                title: "Zeus 2",
-                rating: 2,
-                price: 1.78,
-                isInCart: true
-            ),
-            .init(
-                id: 2,
-                image: .zeus,
-                isFavorite: false,
-                title: "Zeus 3",
-                rating: 2,
-                price: 1.78,
-                isInCart: false
-            ),
-            .init(
-                id: 3,
-                image: .zeus,
-                isFavorite: true,
-                title: "Zeus 4",
-                rating: 2,
-                price: 1.78,
-                isInCart: false
-            ),
-            .init(
-                id: 4,
-                image: .zeus,
-                isFavorite: false,
-                title: "Zeus 5",
-                rating: 2,
-                price: 1.78,
-                isInCart: true
-            ),
-        ]
+                items: [
+                    "1fda6f0c-a615-4a1a-aa9c-a1cbd7cc76ae",
+                    "77c9aa30-f07a-4bed-886b-dd41051fade2",
+                    "b3907b86-37c4-4e15-95bc-7f8147a9a660",
+                    "a06d0075-d1a7-40dc-b710-db6808c28cca",
+                    "f380f245-0264-4b42-8e7e-c4486e237504",
+                ].map(UserCollectionItemViewModel.init)
+            )
     )
+    .environment(ServicesAssembly())
 }

@@ -20,7 +20,7 @@ final class StatisticsViewModel {
         case error
     }
     enum Constant {
-        static let pageSize: Int = 90
+        static let pageSize: Int = 25
     }
     var users: [UserViewModel] = []
     var showSortMenu: Bool = false
