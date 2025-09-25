@@ -1,32 +1,34 @@
+import Kingfisher
 import SwiftUI
 
+private enum Constant {
+    static let avatarSize: CGFloat = 28
+    static let grayUniversal: Color = .init(UIColor(hexString: "#625C5C"))
+    static let margin: CGFloat = 16
+}
+
 struct StatisticsView: View {
+    @Environment(ServicesAssembly.self) var servicesAssembly
     @Bindable var viewModel: StatisticsViewModel
     var body: some View {
-        List(viewModel.sortedUsers) { user in
-            HStack {
-                Text(user.position.formatted()).font(.caption1)
-                HStack {
-                    Image(uiImage: user.image)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 28, height: 28)
-                        .clipShape(Circle())
-                    Text(user.name)
-                    Spacer()
-                    Text(user.itemCount.formatted())
+        List(viewModel.users) { user in
+            UserView(user: user)
+                .onAppear {
+                    if user.index == viewModel.users.count - 1 {
+                        viewModel.loadMore(assembly: servicesAssembly)
+                    }
                 }
-                .font(.headline3)
-                .padding()
-                .frame(height: 80)
-                .background(Color(uiColor: .segmentInactive))
-                .clipShape(RoundedRectangle(cornerRadius: 12))
-            }
-            .listRowSeparator(.hidden)
+                .background {
+                    NavigationLink("") {
+                        HStack {
+                            Text(user.index.formatted())
+                            Text(user.name)
+                        }
+                    }
+                }
         }
         .listStyle(.plain)
-        .listRowSpacing(-15)
-        .task { await viewModel.load() }
+        .onAppear { viewModel.loadFirstPage(assembly: servicesAssembly) }
         .overlay {
             if viewModel.state == .loading {
                 ProgressView()
@@ -37,16 +39,19 @@ struct StatisticsView: View {
             isPresented: $viewModel.hasError
         ) {
             Button("Отмена") { viewModel.state = .loaded }
-            Button("Повторить") { Task { await viewModel.load() } }
+            Button("Повторить") { Task { viewModel.loadFirstPage(assembly: servicesAssembly) } }
         }
         .confirmationDialog(
             "Сортировка",
             isPresented: $viewModel.showSortMenu,
             titleVisibility: .visible
         ) {
-            ForEach(StatisticsViewModel.SortOrder.allCases) { caseName in
-                Button(caseName.rawValue) {
-                    viewModel.sortOrder = caseName
+            ForEach(StatisticsViewModel.SortOrder.allCases, id: \.self) { sortOrder in
+                Button(sortOrder.title) {
+                    if viewModel.sortOrder != sortOrder {
+                        viewModel.sortOrder = sortOrder
+                        viewModel.loadFirstPage(assembly: servicesAssembly)
+                    }
                 }
             }
             Button("Закрыть", role: .cancel) {}
@@ -54,6 +59,47 @@ struct StatisticsView: View {
     }
 }
 
+private struct UserView: View {
+    var user: UserViewModel
+    var body: some View {
+        HStack {
+            Text(user.rating).font(.caption1)
+            HStack {
+                KFImage
+                    .url(user.avatar)
+                    .placeholder {
+                        Image(systemName: "person.crop.circle.fill")
+                    }
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .foregroundStyle(Constant.grayUniversal)
+                    .frame(width: Constant.avatarSize, height: Constant.avatarSize)
+                    .clipShape(Circle())
+                Text(user.name)
+                Spacer()
+                Text(user.nfts.count.formatted())
+            }
+            .font(.headline3)
+            .padding()
+            .frame(height: 80)
+            .background(Color(uiColor: .segmentInactive))
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+        }
+        .listRowSeparator(.hidden)
+        .listRowInsets(
+            EdgeInsets(
+                top: 0,
+                leading: Constant.margin,
+                bottom: 8,
+                trailing: Constant.margin
+            )
+        )
+    }
+}
+
 #Preview {
-    StatisticsView(viewModel: .mock)
+    NavigationStack {
+        StatisticsView(viewModel: StatisticsViewModel())
+            .environment(ServicesAssembly())
+    }
 }

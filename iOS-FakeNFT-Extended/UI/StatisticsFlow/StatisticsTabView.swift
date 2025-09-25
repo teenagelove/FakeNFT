@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct StatisticsTabView: View {
-    var viewModel = StatisticsViewModel()
+    @State var viewModel = StatisticsViewModel()
     var body: some View {
         NavigationStack {
             StatisticsView(viewModel: viewModel)
@@ -20,5 +20,6 @@ struct StatisticsTabView: View {
 }
 
 #Preview {
-    StatisticsTabView(viewModel: .mock)
+    StatisticsTabView()
+        .environment(ServicesAssembly())
 }
