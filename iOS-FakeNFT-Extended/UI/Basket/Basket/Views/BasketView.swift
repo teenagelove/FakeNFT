@@ -73,14 +73,18 @@ struct BasketView: View {
                 }
                 .frame(maxWidth: .infinity)
                 .opacity(mockData.nfts.isEmpty ? 0 : 1)
+                .blur(radius: viewModel.isDeleteItemViewShown ? 40 : 0)
+                .disabled(viewModel.isDeleteItemViewShown)
+                
+                if viewModel.isDeleteItemViewShown {
+                    DeleteItemView(viewModel: viewModel)
+                        .transition(.asymmetric(insertion: .move(edge: .bottom), removal: .move(edge: .trailing)))
+                        .animation(.spring(response: 0.1))
+                }
             }
+            .toolbar(viewModel.isDeleteItemViewShown ? .hidden : .visible, for: .tabBar)
         }
         .tint(.black)
-        .fullScreenCover(isPresented: $viewModel.isDeleteItemViewShown) {
-            DeleteItemView(
-                viewModel: viewModel
-            )
-        }
         .environmentObject(mockData)
     }
 }

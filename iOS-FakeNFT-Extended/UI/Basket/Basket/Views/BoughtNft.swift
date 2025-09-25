@@ -37,7 +37,7 @@ struct BoughtNft: View {
                 .padding(.vertical, 8)
                 Spacer()
                 Button {
-                    viewModel.id = boughtNftModel.id
+                    viewModel.idOfBoughtNftToDelete = boughtNftModel.id
                     viewModel.isDeleteItemViewShown = true
                 } label: {
                     Image(.deleteItem)

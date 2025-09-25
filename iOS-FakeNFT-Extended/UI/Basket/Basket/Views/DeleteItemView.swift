@@ -19,7 +19,7 @@ struct DeleteItemView: View {
                 .multilineTextAlignment(.center)
             HStack(spacing: .zero) {
                 Button("Delete") {
-                    mockData.nfts.removeAll(where: { $0.id == viewModel.id })
+                    mockData.nfts.removeAll(where: { $0.id == viewModel.idOfBoughtNftToDelete })
                     viewModel.isDeleteItemViewShown = false
                 }
                 .frame(maxWidth: .infinity, maxHeight: 44)

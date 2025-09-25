@@ -9,5 +9,5 @@ import SwiftUI
 
 final class BasketViewModel: ObservableObject {
     @Published var isDeleteItemViewShown: Bool = false
-    var id: UUID = UUID()
+    var idOfBoughtNftToDelete: UUID = UUID()
 }
