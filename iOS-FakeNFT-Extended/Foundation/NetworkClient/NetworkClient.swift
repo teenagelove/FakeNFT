@@ -61,6 +61,10 @@ actor DefaultNetworkClient: NetworkClient {
             urlRequest.httpBody = dtoEncoded
         }
         urlRequest.addValue(RequestConstants.token, forHTTPHeaderField: "X-Practicum-Mobile-Token")
+        
+        if request.httpMethod == .put {
+            urlRequest.setValue(RequestConstants.putHeader, forHTTPHeaderField: "Content-Type")
+        }
 
         return urlRequest
     }

@@ -10,6 +10,8 @@ import Kingfisher
 
 struct NftCardView: View {
     let nft: Nft
+    var toggleLike: (() -> Void)? = nil
+    var toggleOrder: (() -> Void)? = nil
     
     var body: some View {
         VStack(spacing: 8) {
@@ -35,11 +37,9 @@ private extension NftCardView {
     }
     
     var favoriteButton: some View {
-        Button {
-            // Handle button action
-        } label: {
+        Button { toggleLike?() } label: {
             Image(systemName: .heart)
-                .foregroundColor(.white)
+                .foregroundColor(nft.isLiked ? .redUniversal : .white)
                 .frame(width: 40, height: 40)
         }
     }
@@ -61,7 +61,7 @@ private extension NftCardView {
                 .font(.bodyBold)
                 .lineLimit(2)
                 .multilineTextAlignment(.leading)
-                .frame(minHeight: 44, alignment: .topLeading)
+                .frame(minHeight: 44, alignment: .center)
             
             Text("\(nft.price.formatted()) ETH")
                 .font(.medium10)
@@ -70,10 +70,8 @@ private extension NftCardView {
     }
     
     var addToCartButton: some View {
-        Button {
-            // Handle button action
-        } label: {
-            Image(.addToCart)
+        Button { toggleOrder?() } label: {
+            Image(nft.isOrdered ? .deleteFromCart : .addToCart)
                 .frame(width: 40, height: 40)
         }
     }

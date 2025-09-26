@@ -35,7 +35,7 @@ private extension NftCatalogView {
                 if case let .success(collections) = viewModel.state {
                     ForEach(collections) { collection in
                         NavigationLink {
-                            NftCollectionView(nftCollection: collection, service: servicesAssembly.nftService)
+                            NftCollectionView(nftCollection: collection, services: servicesAssembly)
                         } label: {
                             NftCatalogRowView(collection: collection)
                                 .tint(.blackDay)
@@ -56,8 +56,8 @@ private extension NftCatalogView {
     
     @ViewBuilder
     var sortButtons: some View {
-        Button("Sort.byName") { viewModel.sortByName() }
-        Button("Sort.byNftCount") { viewModel.sortByNftCount() }
+        Button("Sort.byName") { viewModel.applySort(by: .byName) }
+        Button("Sort.byNftCount") { viewModel.applySort(by: .byNftCount) }
         Button("Close", role: .cancel) {}
     }
     

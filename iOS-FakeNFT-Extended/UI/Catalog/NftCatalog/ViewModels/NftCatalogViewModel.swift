@@ -7,6 +7,7 @@
 
 import Foundation
 import Observation
+import SwiftUI
 
 @MainActor
 @Observable
@@ -14,7 +15,15 @@ final class NftCatalogViewModel {
     var state: NftCatalogState = .loading
     var presentingDialog = false
     
+    @ObservationIgnored
+    @AppStorage("nftCollectionsSortType") private var sortTypeRaw = NftCollectionsSortType.byNftCount.rawValue
+    
     private let service: NftCollectionsServiceProtocol
+    
+    private var sortType: NftCollectionsSortType {
+        get { NftCollectionsSortType(rawValue: sortTypeRaw) ?? .byNftCount}
+        set { sortTypeRaw = newValue.rawValue }
+    }
     
     init(service: NftCollectionsServiceProtocol) {
         self.service = service
@@ -25,21 +34,44 @@ final class NftCatalogViewModel {
         
         do {
             let collections = try await service.loadCollections()
-            state = .success(collections)
+            let filteredCollections = filterDuplicates(collections: collections)
+            state = .success(filteredCollections)
+            applySort(by: sortType)
         } catch {
             state = .error(error)
         }
     }
     
-    func sortByName() {
-        guard case var .success(collections) = state else { return }
-        collections.sort { $0.name < $1.name}
-        state = .success(collections)
+    func applySort(by sortType: NftCollectionsSortType) {
+        guard case let .success(collections) = state else { return }
+        
+        if self.sortType != sortType {
+            self.sortType = sortType
+        }
+        
+        switch sortType {
+        case .byName:
+            state = .success(collections.sorted { $0.name < $1.name })
+        case .byNftCount:
+            state = .success(collections.sorted { $0.nfts.count > $1.nfts.count })
+        }
     }
-    
-    func sortByNftCount() {
-        guard case var .success(collections) = state else { return }
-        collections.sort { $0.nfts.count > $1.nfts.count }
-        state = .success(collections)
+}
+
+
+// MARK: - Private Methods
+private extension NftCatalogViewModel {
+    func filterDuplicates(collections: [NftCollection]) -> [NftCollection] {
+        collections.map { collection in
+            let uniqueNfts = Array(Set(collection.nfts))
+            return NftCollection(
+                name: collection.name,
+                cover: collection.cover,
+                nfts: uniqueNfts,
+                description: collection.description,
+                author: collection.author,
+                id: collection.id
+            )
+        }
     }
 }
