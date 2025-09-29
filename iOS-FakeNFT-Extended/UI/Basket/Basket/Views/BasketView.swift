@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BasketView: View {
-    @StateObject var mockData = MockBoughtNft()
+    @StateObject private var mockData = MockBoughtNft()
     @StateObject private var viewModel = BasketViewModel()
     
     private var basketSum: String {
@@ -77,12 +77,10 @@ struct BasketView: View {
                 .disabled(viewModel.isDeleteItemViewShown)
                 
                 if viewModel.isDeleteItemViewShown {
-                    DeleteItemView(viewModel: viewModel)
-                        .transition(.asymmetric(insertion: .move(edge: .bottom), removal: .move(edge: .trailing)))
-                        .animation(.spring(response: 0.1))
+                    DeleteItemView(viewModel: viewModel).toolbar(viewModel.isDeleteItemViewShown ? .hidden : .visible, for: .tabBar)
                 }
             }
-            .toolbar(viewModel.isDeleteItemViewShown ? .hidden : .visible, for: .tabBar)
+            .animation(.spring(response: 0.4), value: viewModel.isDeleteItemViewShown)
         }
         .tint(.black)
         .environmentObject(mockData)

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CurrencyChooseView: View {
     @StateObject private var currencyChooseViewModel = CurrencyChooseViewModel()
-    @StateObject var gridCellViewModel = GridCellViewModel()
+    @StateObject private var gridCellViewModel = GridCellViewModel()
     
     let columns = [
         GridItem(.flexible()),
