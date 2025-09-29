@@ -7,9 +7,10 @@
 
 import Foundation
 
-struct MockBoughtNft: Hashable {
+struct MockBoughtNftModel {
+    let id: UUID = UUID()
     let imageName: String
     let name: String
     let rating: Int
-    let price: Double
+    let price: Double 
 }

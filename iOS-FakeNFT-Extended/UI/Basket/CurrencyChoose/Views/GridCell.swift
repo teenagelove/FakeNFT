@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct GridCellView: View {
-    @State private var isCellSelected = false
+struct GridCell: View {
+    @ObservedObject var viewModel: GridCellViewModel
     
-    var currency: MockCurrency
+    let currency: MockCurrency
     
     var body: some View {
         ZStack(alignment: .leading) {
@@ -28,16 +28,15 @@ struct GridCellView: View {
             .padding(.vertical, 5)
         }
         .overlay(
-            RoundedRectangle(cornerRadius: 12)
-                .stroke(.black, lineWidth: isCellSelected ? 1 : 0)
+            RoundedRectangle(cornerRadius: 12).stroke(.black, lineWidth: currency.isSelected ? 1 : 0)
         )
         .onTapGesture {
-            isCellSelected = true
+            viewModel.toggleSelection(for: currency)
         }
         .frame(width: .infinity, height: 46)
     }
 }
 
 #Preview {
-    GridCellView(currency: .mockData[0])
+    GridCell(viewModel: GridCellViewModel(), currency: .mockData[0])
 }

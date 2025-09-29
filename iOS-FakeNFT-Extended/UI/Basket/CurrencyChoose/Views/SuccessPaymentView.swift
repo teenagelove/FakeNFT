@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SuccessPaymentView: View {
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
         VStack(spacing: .zero) {
             VStack(spacing: .zero) {
@@ -20,13 +22,15 @@ struct SuccessPaymentView: View {
             .ignoresSafeArea()
             .padding(.top, 196)
             Spacer()
-            Button("ReturnToCart") {}
-                .frame(maxWidth: .infinity, maxHeight: 60)
-                .font(.bodyBold)
-                .background(.black)
-                .foregroundStyle(.white)
-                .clipShape(RoundedRectangle(cornerRadius: 16))
-                .padding([.horizontal, .bottom], 16)
+            Button("ReturnToCart") {
+                dismiss()
+            }
+            .frame(maxWidth: .infinity, maxHeight: 60)
+            .font(.bodyBold)
+            .background(.black)
+            .foregroundStyle(.white)
+            .clipShape(RoundedRectangle(cornerRadius: 16))
+            .padding([.horizontal, .bottom], 16)
         }
     }
 }

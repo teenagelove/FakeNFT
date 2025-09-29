@@ -9,9 +9,9 @@ import Foundation
 
 extension MockCurrency {
     static let mockData: [MockCurrency] = [
-        MockCurrency(imageName: "mockCurrency1", name: "Bitcoin", shortName: "BTC"),
-        MockCurrency(imageName: "mockCurrency2", name: "Dogecoin", shortName: "DOGE"),
-        MockCurrency(imageName: "mockCurrency3", name: "Tether", shortName: "USDT"),
-        MockCurrency(imageName: "mockCurrency4", name: "Apecoin", shortName: "APE")
+        MockCurrency(imageName: "mockCurrency1", name: "Bitcoin", shortName: "BTC", isSelected: false),
+        MockCurrency(imageName: "mockCurrency2", name: "Dogecoin", shortName: "DOGE", isSelected: false),
+        MockCurrency(imageName: "mockCurrency3", name: "Tether", shortName: "USDT", isSelected: false),
+        MockCurrency(imageName: "mockCurrency4", name: "Apecoin", shortName: "APE", isSelected: false)
     ]
 }

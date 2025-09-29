@@ -8,7 +8,9 @@
 import Foundation
 
 struct MockCurrency: Hashable {
+    let id: UUID = UUID()
     let imageName: String
     let name: String
     let shortName: String
+    var isSelected: Bool
 }

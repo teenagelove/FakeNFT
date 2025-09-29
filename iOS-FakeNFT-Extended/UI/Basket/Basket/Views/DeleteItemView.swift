@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct DeleteItemView: View {
+    @EnvironmentObject var mockData: MockBoughtNft
+    @ObservedObject var viewModel: BasketViewModel
+    
     var body: some View {
         VStack(spacing: .zero) {
             Image(.funnyImageDeleteItem).padding(.bottom, 12)
@@ -15,21 +18,26 @@ struct DeleteItemView: View {
                 .font(.caption2)
                 .multilineTextAlignment(.center)
             HStack(spacing: .zero) {
-                Button("Delete") {}
-                    .frame(maxWidth: .infinity, maxHeight: 44)
-                    .font(.bodyRegular)
-                    .background(.black)
-                    .foregroundStyle(.red)
-                    .clipShape(RoundedRectangle(cornerRadius: 16))
-                    .padding(.trailing, 8)
-                    .padding(.leading, 56)
-                Button("Return") {}
-                    .frame(maxWidth: .infinity, maxHeight: 44)
-                    .font(.bodyRegular)
-                    .background(.black)
-                    .foregroundStyle(.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 16))
-                    .padding(.trailing, 57)
+                Button("Delete") {
+                    mockData.nfts.removeAll(where: { $0.id == viewModel.idOfBoughtNftToDelete })
+                    viewModel.isDeleteItemViewShown = false
+                }
+                .frame(maxWidth: .infinity, maxHeight: 44)
+                .font(.bodyRegular)
+                .background(.black)
+                .foregroundStyle(.red)
+                .clipShape(RoundedRectangle(cornerRadius: 16))
+                .padding(.trailing, 8)
+                .padding(.leading, 56)
+                Button("Return") {
+                    viewModel.isDeleteItemViewShown = false
+                }
+                .frame(maxWidth: .infinity, maxHeight: 44)
+                .font(.bodyRegular)
+                .background(.black)
+                .foregroundStyle(.white)
+                .clipShape(RoundedRectangle(cornerRadius: 16))
+                .padding(.trailing, 57)
             }
             .padding(.top, 20)
         }
@@ -37,5 +45,5 @@ struct DeleteItemView: View {
 }
 
 #Preview {
-    DeleteItemView()
+    DeleteItemView(viewModel: BasketViewModel())
 }
