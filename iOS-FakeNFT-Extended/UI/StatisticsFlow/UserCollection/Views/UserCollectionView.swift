@@ -1,17 +1,18 @@
 import SwiftUI
 
 struct UserCollectionView: View {
-    private let columns = [
-        GridItem(.flexible()),
-        GridItem(.flexible()),
-        GridItem(.flexible()),
-    ]
-
-    @Bindable var viewModel: UserCollectionViewModel
+    var viewModel: UserCollectionViewModel
     var body: some View {
         ScrollView {
-            LazyVGrid(columns: columns, spacing: 28) {
-                ForEach($viewModel.items) { item in
+            LazyVGrid(
+                columns: [
+                    GridItem(.flexible()),
+                    GridItem(.flexible()),
+                    GridItem(.flexible()),
+                ],
+                spacing: 28
+            ) {
+                ForEach(viewModel.items) { item in
                     UserCollectionItemView(viewModel: item)
                 }
             }

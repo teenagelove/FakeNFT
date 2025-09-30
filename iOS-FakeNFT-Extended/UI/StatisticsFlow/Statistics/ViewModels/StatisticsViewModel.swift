@@ -27,7 +27,7 @@ final class StatisticsViewModel {
     var state: State = .default
     var currentPage: Int = 0
     var hasGotAllUsers: Bool = false
-    
+
     @ObservationIgnored
     @AppStorage("StatisticsViewModel.sortOrder")
     var sortOrder: SortOrder = .rating
@@ -87,7 +87,9 @@ extension StatisticsViewModel {
                     avatar: user.avatar,
                     info: user.description,
                     name: user.name,
-                    nfts: user.nfts,
+                    userCollectionViewModel: .init(
+                        items: user.nfts.map(UserCollectionItemViewModel.init)
+                    ),
                     rating: user.rating,
                     website: user.website
                 )

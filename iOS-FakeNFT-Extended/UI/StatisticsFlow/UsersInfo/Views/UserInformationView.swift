@@ -53,11 +53,11 @@ struct UserInformationView: View {
     }
     var userCollectionButton: some View {
         NavigationLink {
-            UserCollectionView(viewModel: .init(items: viewModel.nfts))
+            UserCollectionView(viewModel: viewModel.userCollectionViewModel)
         } label: {
             HStack(spacing: 8) {
                 Text("Коллекция NFT").font(.bodyBold)
-                Text("(\(viewModel.nfts.count))").font(.bodyBold)
+                Text("(\(viewModel.userCollectionViewModel.items.count))").font(.bodyBold)
                 Spacer()
                 Image(systemName: "chevron.right")
             }
@@ -76,14 +76,16 @@ struct UserInformationView: View {
                 info:
                     "Дизайнер из Казани, люблю цифровое искусство и бейглы. В моей коллекции уже 100+ NFT, и еще больше — на моём сайте. Открыт к коллаборациям.",
                 name: "Joaquin Phoenix",
-                nfts: [
-                    "d6a02bd1-1255-46cd-815b-656174c1d9c0",
-                    "de7c0518-6379-443b-a4be-81f5a7655f48",
-                    "7773e33c-ec15-4230-a102-92426a3a6d5a",
-                    "eb959204-76cc-46ef-ba07-aefa036ca1a5",
-                    "1464520d-1659-4055-8a79-4593b9569e48",
-                    "82570704-14ac-4679-9436-050f4a32a8a0",
-                ],
+                userCollectionViewModel: .init(
+                    items: [
+                        "d6a02bd1-1255-46cd-815b-656174c1d9c0",
+                        "de7c0518-6379-443b-a4be-81f5a7655f48",
+                        "7773e33c-ec15-4230-a102-92426a3a6d5a",
+                        "eb959204-76cc-46ef-ba07-aefa036ca1a5",
+                        "1464520d-1659-4055-8a79-4593b9569e48",
+                        "82570704-14ac-4679-9436-050f4a32a8a0",
+                    ].map(UserCollectionItemViewModel.init)
+                ),
                 rating: "5",
                 website: URL(string: "https://ya.ru")!
             )

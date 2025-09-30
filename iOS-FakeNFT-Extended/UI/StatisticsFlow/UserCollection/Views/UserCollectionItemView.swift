@@ -2,7 +2,7 @@ import Kingfisher
 import SwiftUI
 
 struct UserCollectionItemView: View {
-    @Binding var viewModel: UserCollectionItemViewModel
+    var viewModel: UserCollectionItemViewModel
 
     @Environment(ServicesAssembly.self) var servicesAssembly
     var body: some View {
@@ -82,7 +82,7 @@ private struct RatingView: View {
 
 #Preview {
     UserCollectionItemView(
-        viewModel: .constant(.init(token_id: "1fda6f0c-a615-4a1a-aa9c-a1cbd7cc76ae"))
+        viewModel: .init(token_id: "1fda6f0c-a615-4a1a-aa9c-a1cbd7cc76ae")
     )
     .frame(width: 200)
     .fixedSize()

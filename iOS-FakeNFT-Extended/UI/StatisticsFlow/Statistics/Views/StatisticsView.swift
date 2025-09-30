@@ -72,7 +72,7 @@ private struct UserView: View {
                     .clipShape(Circle())
                 Text(user.name)
                 Spacer()
-                Text(user.nfts.count.formatted())
+                Text(user.userCollectionViewModel.items.count.formatted())
             }
             .font(.headline3)
             .padding()

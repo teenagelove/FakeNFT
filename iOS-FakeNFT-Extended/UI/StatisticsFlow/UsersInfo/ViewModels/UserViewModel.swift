@@ -7,7 +7,7 @@ final class UserViewModel: Identifiable {
     var avatar: URL?
     var info: String?
     var name: String
-    var nfts: [UserCollectionItemViewModel]
+    var userCollectionViewModel: UserCollectionViewModel
     var rating: String
     var website: URL
 
@@ -16,7 +16,7 @@ final class UserViewModel: Identifiable {
         avatar: URL?,
         info: String?,
         name: String,
-        nfts: [String],
+        userCollectionViewModel: UserCollectionViewModel,
         rating: String,
         website: URL
     ) {
@@ -24,11 +24,8 @@ final class UserViewModel: Identifiable {
         self.avatar = avatar
         self.info = info
         self.name = name
-        self.nfts = nfts.map(UserCollectionItemViewModel.init)
+        self.userCollectionViewModel = userCollectionViewModel
         self.rating = rating
         self.website = website
-        if nfts.count != Set(nfts).count {
-            print(name, "has duplicate NFTs")
-        }
     }
 }
