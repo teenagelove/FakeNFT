@@ -82,7 +82,7 @@ private struct RatingView: View {
 
 #Preview {
     UserCollectionItemView(
-        viewModel: .init(token_id: "1fda6f0c-a615-4a1a-aa9c-a1cbd7cc76ae")
+        viewModel: .init(tokenId: "1fda6f0c-a615-4a1a-aa9c-a1cbd7cc76ae")
     )
     .frame(width: 200)
     .fixedSize()

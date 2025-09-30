@@ -1,13 +1,14 @@
-import UIKit
+import Foundation
+import Observation
 
 @MainActor
 @Observable
 final class UserCollectionItemViewModel: Identifiable {
-    init(token_id: String) {
-        self.token_id = token_id
+    init(tokenId: String) {
+        self.tokenId = tokenId
     }
 
-    let token_id: String
+    let tokenId: String
     var image: URL?
     var title: String = ""
     var rating: Int = 0
@@ -32,7 +33,7 @@ extension UserCollectionItemViewModel {
         Task {
             do {
                 let tokenDTO = try await servicesAssembly.statisticsService.loadToken(
-                    id: self.token_id
+                    id: self.tokenId
                 )
                 image = tokenDTO.images.compactMap { $0 }.first
                 title = tokenDTO.name
