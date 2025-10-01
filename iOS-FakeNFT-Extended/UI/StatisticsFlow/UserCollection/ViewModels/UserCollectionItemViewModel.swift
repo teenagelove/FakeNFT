@@ -14,21 +14,15 @@ final class UserCollectionItemViewModel: Identifiable {
     var rating: Int = 0
     var price: Double = 0
 
-    // TODO: connect to services
     var isFavorite: Bool = false
     var isInCart: Bool = false
 
+    var toggleFavorite: (ServicesAssembly) -> Void = { _ in }
+    var toggleInCart: (ServicesAssembly) -> Void = { _ in }
+    
 }
 
 extension UserCollectionItemViewModel {
-    func toggleFavorite() {
-        print(#function)
-        isFavorite.toggle()
-    }
-    func toggleInCart() {
-        print(#function)
-        isInCart.toggle()
-    }
     func loadTokenInfo(servicesAssembly: ServicesAssembly) {
         Task {
             do {

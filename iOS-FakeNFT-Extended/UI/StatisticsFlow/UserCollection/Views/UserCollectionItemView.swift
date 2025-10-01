@@ -44,7 +44,7 @@ struct UserCollectionItemView: View {
     }
     var cartButton: some View {
         Button {
-            viewModel.toggleInCart()
+            viewModel.toggleInCart(servicesAssembly)
         } label: {
             Image(uiImage: viewModel.isInCart
                   ? .deleteFromCart
@@ -55,7 +55,7 @@ struct UserCollectionItemView: View {
     }
     var favoriteButton: some View {
         Button {
-            viewModel.toggleFavorite()
+            viewModel.toggleFavorite(servicesAssembly)
         } label: {
             viewModel.isFavorite
                 ? Image(uiImage: .favouriteActive)

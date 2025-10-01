@@ -1,7 +1,10 @@
 import SwiftUI
+import ProgressHUD
 
 struct UserCollectionView: View {
     var viewModel: UserCollectionViewModel
+    
+    @Environment(ServicesAssembly.self) var servicesAssembly
     var body: some View {
         ScrollView {
             LazyVGrid(
@@ -18,6 +21,7 @@ struct UserCollectionView: View {
             }
         }
         .padding(.horizontal)
+        .onAppear { viewModel.update(serviceAssembly: servicesAssembly) }
     }
 }
 
