@@ -21,6 +21,10 @@ struct UserCollectionView: View {
             }
         }
         .padding(.horizontal)
+        .navigationBarBackButtonHidden(true)
+        .navigationTitle("Коллекция NFT")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar { ToolbarItem(placement: .topBarLeading) { BackButton() } }
         .onAppear { viewModel.update(serviceAssembly: servicesAssembly) }
     }
 }
