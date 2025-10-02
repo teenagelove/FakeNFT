@@ -39,6 +39,10 @@ final class ServicesAssembly {
     var profileService: ProfileServiceProtocol {
         ProfileService(networkClient: networkClient)
     }
+    
+    var statisticsService: StatisticsService {
+        StatisticsServiceImpl(networkClient: networkClient)
+    }
 }
 
 

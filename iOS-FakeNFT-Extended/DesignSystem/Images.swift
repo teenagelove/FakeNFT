@@ -12,4 +12,5 @@ extension String {
     static let chevronLeft = "chevron.left"
     static let triangle = "exclamationmark.triangle.fill"
     static let clockwise = "arrow.clockwise"
+    static let crossedFlags = "flag.2.crossed.fill"
 }
