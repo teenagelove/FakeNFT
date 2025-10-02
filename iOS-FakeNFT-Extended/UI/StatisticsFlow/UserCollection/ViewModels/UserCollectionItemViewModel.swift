@@ -1,41 +1,41 @@
-import UIKit
+import Foundation
+import Observation
 
 @MainActor
 @Observable
 final class UserCollectionItemViewModel: Identifiable {
-    init(
-        id: Int,
-        image: UIImage,
-        isFavorite: Bool,
-        title: String,
-        rating: Int,
-        price: Double,
-        isInCart: Bool
-    ) {
-        self.id = id
-        self.image = image
-        self.isFavorite = isFavorite
-        self.title = title
-        self.rating = rating
-        self.price = price
-        self.isInCart = isInCart
+    init(tokenId: String) {
+        self.tokenId = tokenId
     }
 
-    let id: Int
-    let image: UIImage
-    let title: String
-    let rating: Int
-    let price: Double
+    let tokenId: String
+    var image: URL?
+    var title: String = ""
+    var rating: Int = 0
+    var price: Double = 0
+
+    var isFavorite: Bool = false
+    var isInCart: Bool = false
+
+    var toggleFavorite: (ServicesAssembly) -> Void = { _ in }
+    var toggleInCart: (ServicesAssembly) -> Void = { _ in }
     
-    var isFavorite: Bool
-    var isInCart: Bool
+}
 
-    func toggleFavorite() {
-        print(#function)
-        isFavorite.toggle()
-    }
-    func toggleInCart() {
-        print(#function)
-        isInCart.toggle()
+extension UserCollectionItemViewModel {
+    func loadTokenInfo(servicesAssembly: ServicesAssembly) {
+        Task {
+            do {
+                let tokenDTO = try await servicesAssembly.statisticsService.loadToken(
+                    id: self.tokenId
+                )
+                image = tokenDTO.images.compactMap { $0 }.first
+                title = tokenDTO.name
+                rating = tokenDTO.rating
+                price = tokenDTO.price
+            } catch {
+                print(error)
+            }
+        }
     }
 }

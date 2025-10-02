@@ -20,14 +20,14 @@ final class StatisticsViewModel {
         case error
     }
     enum Constant {
-        static let pageSize: Int = 90
+        static let pageSize: Int = 25
     }
     var users: [UserViewModel] = []
     var showSortMenu: Bool = false
     var state: State = .default
     var currentPage: Int = 0
     var hasGotAllUsers: Bool = false
-    
+
     @ObservationIgnored
     @AppStorage("StatisticsViewModel.sortOrder")
     var sortOrder: SortOrder = .rating
@@ -85,8 +85,11 @@ extension StatisticsViewModel {
                 UserViewModel(
                     index: index + firstIndex,
                     avatar: user.avatar,
+                    info: user.description,
                     name: user.name,
-                    nfts: user.nfts,
+                    userCollectionViewModel: .init(
+                        items: user.nfts.map(UserCollectionItemViewModel.init)
+                    ),
                     rating: user.rating,
                     website: user.website
                 )

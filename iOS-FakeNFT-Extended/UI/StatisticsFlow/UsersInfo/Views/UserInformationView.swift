@@ -1,46 +1,45 @@
+import Kingfisher
 import SwiftUI
 
 struct UserInformationView: View {
-    var viewModel: UserInformationViewModel
+    var viewModel: UserViewModel
+
+    @Environment(\.openURL) private var openURL
     var body: some View {
         ScrollView {
-            VStack(spacing: 0) {
-                UserView(image: viewModel.image, name: viewModel.name)
+            VStack(alignment: .leading, spacing: 0) {
+                userView
                 Spacer().frame(height: 20)
-                Text(viewModel.info).font(.caption2)
+                Text(viewModel.info ?? "").font(.caption2)
                 Spacer().frame(height: 28)
-                UserSiteButton(url: viewModel.url)
+                userSiteButton
                 Spacer().frame(height: 41)
-                UserCollectionButton(count: viewModel.itemsCount)
+                userCollectionButton
             }
             .padding(.horizontal)
         }
     }
-}
-
-private struct UserView: View {
-    var image: UIImage
-    var name: String
-    var body: some View {
+    var userView: some View {
         HStack {
-            Image(uiImage: image)
+            KFImage
+                .url(viewModel.avatar)
+                .placeholder {
+                    Image(systemName: "person.crop.circle.fill")
+                        .resizable()
+                }
                 .resizable()
-                .aspectRatio(1, contentMode: .fill)
+                .aspectRatio(contentMode: .fill)
+                .foregroundStyle(Color(uiColor: .grayUniversal))
                 .frame(width: 70, height: 70)
                 .clipShape(Circle())
-            Text(name)
+            Text(viewModel.name)
                 .font(.headline3)
             Spacer()
         }
     }
-}
-
-private struct UserSiteButton: View {
-    var url: URL
-    @Environment(\.openURL) private var openURL
-    var body: some View {
+    var userSiteButton: some View {
         Button {
-            openURL(url)
+            openURL(viewModel.website)
         } label: {
             Capsule()
                 .stroke()
@@ -50,37 +49,48 @@ private struct UserSiteButton: View {
                 }
         }
         .tint(.blackDay)
-    }
-}
 
-private struct UserCollectionButton: View {
-    var count: Int
-    var body: some View {
-        Button {
-            print("Перейти на коллекцию")
+    }
+    var userCollectionButton: some View {
+        NavigationLink {
+            UserCollectionView(viewModel: viewModel.userCollectionViewModel)
         } label: {
             HStack(spacing: 8) {
                 Text("Коллекция NFT").font(.bodyBold)
-                Text("(\(count))").font(.bodyBold)
+                Text("(\(viewModel.userCollectionViewModel.items.count))").font(.bodyBold)
                 Spacer()
                 Image(systemName: "chevron.right")
             }
         }
         .tint(.blackDay)
+
     }
 }
 
 #Preview {
-    UserInformationView(
-        viewModel: .init(
-            image: .zeus,
-            name: "Joaquin Phoenix",
-            info:
-                "Дизайнер из Казани, люблю цифровое искусство и бейглы. В моей коллекции уже 100+ NFT, и еще больше — на моём сайте. Открыт к коллаборациям.",
-            url: URL(string: "https://ya.ru")!,
-            itemsCount: 112
+    NavigationStack {
+        UserInformationView(
+            viewModel: .init(
+                index: 0,
+                avatar: nil,
+                info:
+                    "Дизайнер из Казани, люблю цифровое искусство и бейглы. В моей коллекции уже 100+ NFT, и еще больше — на моём сайте. Открыт к коллаборациям.",
+                name: "Joaquin Phoenix",
+                userCollectionViewModel: .init(
+                    items: [
+                        "d6a02bd1-1255-46cd-815b-656174c1d9c0",
+                        "de7c0518-6379-443b-a4be-81f5a7655f48",
+                        "7773e33c-ec15-4230-a102-92426a3a6d5a",
+                        "eb959204-76cc-46ef-ba07-aefa036ca1a5",
+                        "1464520d-1659-4055-8a79-4593b9569e48",
+                        "82570704-14ac-4679-9436-050f4a32a8a0",
+                    ].map(UserCollectionItemViewModel.init)
+                ),
+                rating: "5",
+                website: URL(string: "https://ya.ru")!
+            )
         )
-    )
+    }
     .environment(
         \.openURL,
         .init {
@@ -88,4 +98,5 @@ private struct UserCollectionButton: View {
             return .discarded
         }
     )
+    .environment(ServicesAssembly())
 }

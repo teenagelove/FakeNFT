@@ -25,4 +25,13 @@ final class ServicesAssembly {
     var statisticsService: StatisticsService {
         StatisticsServiceImpl(networkClient: networkClient)
     }
+    
+    var nftOrdersService: NftOrdersServiceProtocol {
+        NftOrdersService(networkClient: networkClient)
+    }
+    
+    var profileService: ProfileServiceProtocol {
+        ProfileService(networkClient: networkClient)
+    }
+
 }

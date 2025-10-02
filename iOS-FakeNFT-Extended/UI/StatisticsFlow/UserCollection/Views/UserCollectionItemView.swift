@@ -1,21 +1,33 @@
+import Kingfisher
 import SwiftUI
 
 struct UserCollectionItemView: View {
     var viewModel: UserCollectionItemViewModel
+
+    @Environment(ServicesAssembly.self) var servicesAssembly
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            nftImage
+            tokenImage
             VStack(alignment: .leading, spacing: 4) {
                 RatingView(starCount: viewModel.rating)
                 details
             }
         }
         .overlay(alignment: .topTrailing) { favoriteButton }
+        .onAppear { viewModel.loadTokenInfo(servicesAssembly: servicesAssembly) }
+
     }
-    var nftImage: some View {
-        Image(uiImage: viewModel.image)
+    var tokenImage: some View {
+        KFImage
+            .url(viewModel.image)
+            .placeholder {
+                Image(systemName: "photo.badge.exclamationmark")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .foregroundStyle(Color(uiColor: .grayUniversal))
+            }
             .resizable()
-            .aspectRatio(1, contentMode: .fill)
+            .aspectRatio(1, contentMode: .fit)
             .clipShape(RoundedRectangle(cornerRadius: 16))
     }
     var details: some View {
@@ -24,7 +36,7 @@ struct UserCollectionItemView: View {
                 Text(viewModel.title).font(.bodyBold)
                 (Text(viewModel.price.formatted()) + Text(" ETH")).font(.price)
             }
-            .lineLimit(1)
+            .lineLimit(2)
             .foregroundStyle(.blackDay)
             Spacer()
             cartButton
@@ -32,16 +44,18 @@ struct UserCollectionItemView: View {
     }
     var cartButton: some View {
         Button {
-            viewModel.toggleInCart()
+            viewModel.toggleInCart(servicesAssembly)
         } label: {
-            viewModel.isInCart
-                ? Image(uiImage: .deleteFromCart)
-                : Image(uiImage: .addToCart)
+            Image(uiImage: viewModel.isInCart
+                  ? .deleteFromCart
+                  : .addToCart
+            )
+            .foregroundStyle(Color(uiColor: .blackDay))
         }
     }
     var favoriteButton: some View {
         Button {
-            viewModel.toggleFavorite()
+            viewModel.toggleFavorite(servicesAssembly)
         } label: {
             viewModel.isFavorite
                 ? Image(uiImage: .favouriteActive)
@@ -55,32 +69,27 @@ private struct RatingView: View {
     var body: some View {
         HStack(spacing: 2) {
             ForEach(0..<5) { index in
-                index < self.starCount
-                ? Image(uiImage: .starYellow)
-                : Image(uiImage: .starGray)
+                let uiColor: UIColor =
+                    index < self.starCount
+                ? .init(hexString: "#FEEF0D")
+                : .lightGray
+                Image(uiImage: .star)
+                    .foregroundStyle(Color(uiColor: uiColor))
             }
         }
     }
 }
 
-#Preview("RatingView") {
-    RatingView(starCount: 3)
-        .border(.red)
-}
-
-
 #Preview {
     UserCollectionItemView(
-        viewModel: .init(
-            id: 0,
-            image: .zeus,
-            isFavorite: false,
-            title: "Zeus",
-            rating: 2,
-            price: 1.78,
-            isInCart: false
-        )
+        viewModel: .init(tokenId: "1fda6f0c-a615-4a1a-aa9c-a1cbd7cc76ae")
     )
     .frame(width: 200)
     .fixedSize()
+    .environment(ServicesAssembly())
+}
+
+#Preview("RatingView") {
+    RatingView(starCount: 3)
+        .border(.red)
 }

@@ -3,7 +3,6 @@ import SwiftUI
 
 private enum Constant {
     static let avatarSize: CGFloat = 28
-    static let grayUniversal: Color = .init(UIColor(hexString: "#625C5C"))
     static let margin: CGFloat = 16
 }
 
@@ -19,12 +18,7 @@ struct StatisticsView: View {
                     }
                 }
                 .background {
-                    NavigationLink("") {
-                        HStack {
-                            Text(user.index.formatted())
-                            Text(user.name)
-                        }
-                    }
+                    NavigationLink("") { UserInformationView(viewModel: user) }
                 }
         }
         .listStyle(.plain)
@@ -69,15 +63,16 @@ private struct UserView: View {
                     .url(user.avatar)
                     .placeholder {
                         Image(systemName: "person.crop.circle.fill")
+                            .resizable()
                     }
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .foregroundStyle(Constant.grayUniversal)
+                    .foregroundStyle(Color(uiColor: .grayUniversal))
                     .frame(width: Constant.avatarSize, height: Constant.avatarSize)
                     .clipShape(Circle())
                 Text(user.name)
                 Spacer()
-                Text(user.nfts.count.formatted())
+                Text(user.userCollectionViewModel.items.count.formatted())
             }
             .font(.headline3)
             .padding()
