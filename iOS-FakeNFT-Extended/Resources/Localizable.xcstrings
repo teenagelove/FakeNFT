@@ -245,7 +245,20 @@
       }
     },
     "Tab.statistics" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statistics"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Статистика"
+          }
+        }
+      }
     },
     "Закрыть" : {
 
