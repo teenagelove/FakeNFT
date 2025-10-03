@@ -17,12 +17,14 @@ struct StatisticsView: View {
                         viewModel.loadMore(assembly: servicesAssembly)
                     }
                 }
+                .listRowBackground(Color.appBackground)
                 .background {
                     NavigationLink("") { UserInformationView(viewModel: user) }
                 }
         }
         .listStyle(.plain)
         .onAppear { viewModel.loadFirstPage(assembly: servicesAssembly) }
+        .background(.appBackground)
         .overlay {
             if viewModel.state == .loading {
                 ProgressView()

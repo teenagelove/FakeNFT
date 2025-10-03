@@ -20,6 +20,7 @@ struct UserInformationView: View {
         }
         .navigationBarBackButtonHidden(true)
         .toolbar { ToolbarItem(placement: .topBarLeading) { BackButton() } }
+        .background(.appBackground)
     }
     var userView: some View {
         HStack {

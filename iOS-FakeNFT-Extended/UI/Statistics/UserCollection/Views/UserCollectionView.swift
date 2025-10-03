@@ -26,6 +26,7 @@ struct UserCollectionView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar { ToolbarItem(placement: .topBarLeading) { BackButton() } }
         .onAppear { viewModel.update(serviceAssembly: servicesAssembly) }
+        .background(.appBackground)
     }
 }
 
