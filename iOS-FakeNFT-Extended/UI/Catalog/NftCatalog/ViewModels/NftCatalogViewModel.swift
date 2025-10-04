@@ -1,10 +1,3 @@
-//
-//  CatalogViewModel.swift
-//  iOS-FakeNFT-Extended
-//
-//  Created by Danil Kazakov on 08.09.2025.
-//
-
 import Foundation
 import Observation
 import SwiftUI
@@ -37,6 +30,8 @@ final class NftCatalogViewModel {
             let filteredCollections = filterDuplicates(collections: collections)
             state = .success(filteredCollections)
             applySort(by: sortType)
+        } catch where Task.isCancelled {
+            state = .loading
         } catch {
             state = .error(error)
         }
@@ -75,3 +70,4 @@ private extension NftCatalogViewModel {
         }
     }
 }
+
