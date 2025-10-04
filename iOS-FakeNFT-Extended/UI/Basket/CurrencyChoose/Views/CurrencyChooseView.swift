@@ -10,46 +10,17 @@ import SwiftUI
 struct CurrencyChooseView: View {
     @Environment(\.dismiss) var dismiss
     @State private var currencyChooseViewModel: CurrencyChooseViewModel
+    @State private var isWebViewPresented: Bool = false
     @Bindable var basketViewModel: BasketViewModel
     
-    let columns = [
+    private let columns = [
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
     
-    @ViewBuilder
-    private var stateOverlayCurrencyOption: some View {
-        if case .loading = currencyChooseViewModel.stateCurrencyOption {
-            CustomProgressView()
-        }
-    }
-    
-    @ViewBuilder
-    private var stateOverlayOrderPayment: some View {
-        if case .loading = currencyChooseViewModel.stateOrderPayment {
-            CustomProgressView()
-        }
-    }
-    
-    var currencyId: String {
+    private var currencyId: String {
         let selectedItem = currencyChooseViewModel.savedCurrencies.filter { $0.isSelected == true }
         return selectedItem.isEmpty ? "" : selectedItem[0].id
-    }
-    
-    @ViewBuilder
-    var errorButtonsCurrencyOption: some View {
-        Button("Cancel", role: .cancel) {}
-        Button("Error.repeat") {
-            Task { await currencyChooseViewModel.loadData() }
-        }
-    }
-    
-    @ViewBuilder
-    var errorButtonsOrderPayment: some View {
-        Button("Cancel", role: .cancel) {}
-        Button("Error.repeat") {
-            Task { await currencyChooseViewModel.payOrder(currencyId: currencyId) }
-        }
     }
     
     init(services: ServicesAssembly, basketViewModel: BasketViewModel) {
@@ -80,6 +51,9 @@ struct CurrencyChooseView: View {
                             Text("UserAgreementPart2")
                                 .font(.caption2)
                                 .foregroundStyle(.blue)
+                                .onTapGesture {
+                                    isWebViewPresented = true
+                                }
                         }.padding([.top, .leading], 16)
                         Spacer()
                         Button("Pay") {
@@ -104,22 +78,67 @@ struct CurrencyChooseView: View {
                 Text("CurrencyChooseToPay").font(.bodyBold)
             }
         }
+        .task { await currencyChooseViewModel.loadData() }
+        .overlay(stateOverlayCurrencyOption)
+        .overlay(stateOverlayOrderPayment)
+        .alert("Error.network", isPresented: .constant(currencyChooseViewModel.stateCurrencyOption.isFailed)) { errorButtonsCurrencyOption }
+        .alert("Error.orderPayment", isPresented: .constant(currencyChooseViewModel.stateOrderPayment.isFailed)) { errorButtonsOrderPayment }
         .fullScreenCover(isPresented: $currencyChooseViewModel.isSuccessPaymentViewShown) {
             SuccessPaymentView(
                 currencyChooseViewModel: currencyChooseViewModel,
                 basketViewModel: basketViewModel
             ) { dismiss() }
         }
-        .overlay(stateOverlayCurrencyOption)
-        .overlay(stateOverlayOrderPayment)
-        .task { await currencyChooseViewModel.loadData() }
-        .alert("Error.network", isPresented: .constant(currencyChooseViewModel.stateCurrencyOption.isFailed)) { errorButtonsCurrencyOption }
-        .alert("Error.orderPayment", isPresented: .constant(currencyChooseViewModel.stateOrderPayment.isFailed)) { errorButtonsOrderPayment }
+        .fullScreenCover(isPresented: $isWebViewPresented) {
+            WebViewBridge()
+        }
     }
 }
 
-//#Preview {
-//    CurrencyChooseView()
-//}
+private extension CurrencyChooseView {
+    @ViewBuilder
+    private var stateOverlayCurrencyOption: some View {
+        if case .loading = currencyChooseViewModel.stateCurrencyOption {
+            CustomProgressView()
+        }
+    }
+    
+    @ViewBuilder
+    private var stateOverlayOrderPayment: some View {
+        if case .loading = currencyChooseViewModel.stateOrderPayment {
+            CustomProgressView()
+        }
+    }
+    
+    
+    @ViewBuilder
+    private var errorButtonsCurrencyOption: some View {
+        Button("Cancel", role: .cancel) {}
+        Button("Error.repeat") {
+            Task { await currencyChooseViewModel.loadData() }
+        }
+    }
+    
+    @ViewBuilder
+    private var errorButtonsOrderPayment: some View {
+        Button("Cancel", role: .cancel) {}
+        Button("Error.repeat") {
+            Task { await currencyChooseViewModel.payOrder(currencyId: currencyId) }
+        }
+    }
+}
+
+#Preview {
+    CurrencyChooseView(
+        services: ServicesAssembly(
+            networkClient: DefaultNetworkClient(),
+            nftStorage: NftStorageImpl()
+        ),
+        basketViewModel: BasketViewModel(services: ServicesAssembly(
+            networkClient: DefaultNetworkClient(),
+            nftStorage: NftStorageImpl()
+        ))
+    )
+}
 
 

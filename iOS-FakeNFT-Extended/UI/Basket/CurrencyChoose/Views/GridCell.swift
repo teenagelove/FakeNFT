@@ -41,6 +41,15 @@ struct GridCell: View {
     }
 }
 
-//#Preview {
-//    GridCell(viewModel: GridCellViewModel(), currency: .mockData[0])
-//}
+#Preview {
+    GridCell(viewModel: CurrencyChooseViewModel(services: ServicesAssembly(
+        networkClient: DefaultNetworkClient(),
+        nftStorage: NftStorageImpl()
+    )),
+             currency: Currency(
+                title: "Dogo",
+                name: "Dogi",
+                image: URL(string: "https://code.s3.yandex.net/Mobile/iOS/Currencies/Shiba_Inu_(SHIB).png")!,
+                id: "1"
+             ))
+}

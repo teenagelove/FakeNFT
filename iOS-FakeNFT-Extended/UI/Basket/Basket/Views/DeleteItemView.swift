@@ -20,7 +20,6 @@ struct DeleteItemView: View {
                 Button("Delete") {
                     viewModel.orderedNfts.removeAll(where: { $0.id == viewModel.idOfBoughtNftToDelete })
                     Task { await viewModel.updateOrders(nfts: viewModel.orderedNfts) }
-//                    viewModel.isDeleteItemViewShown = false
                 }
                 .frame(maxWidth: .infinity, maxHeight: 44)
                 .font(.bodyRegular)
@@ -44,6 +43,9 @@ struct DeleteItemView: View {
     }
 }
 
-//#Preview {
-//    DeleteItemView(viewModel: BasketViewModel())
-//}
+#Preview {
+    DeleteItemView(viewModel: BasketViewModel(services: ServicesAssembly(
+            networkClient: DefaultNetworkClient(),
+            nftStorage: NftStorageImpl()
+        )))
+}

@@ -11,10 +11,6 @@ struct BasketView: View {
     @Environment(ServicesAssembly.self) var servicesAssembly
     @State private var viewModel: BasketViewModel
     
-    init(services: ServicesAssembly) {
-        self._viewModel = State(initialValue: BasketViewModel(services: services))
-    }
-    
     private var basketSum: String {
         var basketSum: Double = 0
         viewModel.orderedNfts.forEach { item in
@@ -22,6 +18,10 @@ struct BasketView: View {
         }
         
         return String(basketSum).replacingOccurrences(of: ".", with: ",")
+    }
+    
+    init(services: ServicesAssembly) {
+        self._viewModel = State(initialValue: BasketViewModel(services: services))
     }
     
     var body: some View {
@@ -40,10 +40,7 @@ struct BasketView: View {
                             .listRowInsets(EdgeInsets())
                         }.listStyle(.plain)
                         Spacer()
-                        ZStack {
-                            background
-                            lowerBasketWindow
-                        }
+                        lowerBasketPart
                     }
                     .frame(maxWidth: .infinity)
                     .opacity(viewModel.orderedNfts.isEmpty ? 0 : 1)
@@ -70,14 +67,20 @@ struct BasketView: View {
 }
 
 private extension BasketView {
+    private var lowerBasketPart: some View {
+        ZStack {
+            background
+            lowerBasketWindow
+        }
+    }
     
-    var emptyBasketBack: some View {
+    private var emptyBasketBack: some View {
         Text("EmptyBasket")
             .font(.system(size: 17, weight: .bold))
             .opacity(viewModel.orderedNfts.isEmpty ? 1 : 0)
     }
     
-    var filterButton: some View {
+    private var filterButton: some View {
         HStack(spacing: .zero) {
             Spacer()
             Button { viewModel.presentingDialog = true } label: {
@@ -91,7 +94,7 @@ private extension BasketView {
         .padding(.bottom, 20)
     }
     
-    var listOfBoughtNfts: some View {
+    private var listOfBoughtNfts: some View {
         List(viewModel.orderedNfts, id: \.id) { boughtNft in
             BoughtNft(
                 viewModel: viewModel,
@@ -102,13 +105,13 @@ private extension BasketView {
         }.listStyle(.plain)
     }
     
-    var background: some View {
+    private var background: some View {
         UnevenRoundedRectangle(topLeadingRadius: 12, topTrailingRadius: 12)
             .foregroundStyle(.lightGrey)
             .frame(maxWidth: .infinity, maxHeight: 76)
     }
     
-    var lowerBasketWindow: some View {
+    private var lowerBasketWindow: some View {
         HStack(spacing: .zero) {
             VStack(alignment: .leading, spacing: .zero) {
                 Text(String(viewModel.orderedNfts.count) + " NFT").font(.caption1)
@@ -132,7 +135,7 @@ private extension BasketView {
         }
     }
     
-    var buttonToPay: some View {
+    private var buttonToPay: some View {
         NavigationLink("For.payment") {
             CurrencyChooseView(
                 services: servicesAssembly,
@@ -156,7 +159,7 @@ private extension BasketView {
     }
     
     @ViewBuilder
-    var errorButtons: some View {
+    private var errorButtons: some View {
         Button("Cancel", role: .cancel) {}
         Button("Error.repeat") {
             Task { await viewModel.loadData() }
@@ -164,7 +167,7 @@ private extension BasketView {
     }
     
     @ViewBuilder
-    var sortButtons: some View {
+    private var sortButtons: some View {
         Button("Sort.byPrice") { viewModel.applySort(by: .byPrice) }
         Button("Sort.byRating") { viewModel.applySort(by: .byRating) }
         Button("Sort.byName") { viewModel.applySort(by: .byName) }
@@ -172,7 +175,10 @@ private extension BasketView {
     }
 }
 
-//#Preview {
-//    BasketView()
-//}
+#Preview {
+    BasketView(
+        services: ServicesAssembly(networkClient: DefaultNetworkClient(),
+        nftStorage: NftStorageImpl())
+    )
+}
 

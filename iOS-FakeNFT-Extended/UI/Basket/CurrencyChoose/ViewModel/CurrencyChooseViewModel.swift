@@ -14,7 +14,8 @@ final class CurrencyChooseViewModel {
     var stateCurrencyOption: CurrencyChooseState = .loading
     var stateOrderPayment: OrderPaymentState = .normal
     var savedCurrencies: [Currency] = []
-    var isOrderSuccessfullyPaid = false
+    
+    private var isOrderSuccessfullyPaid = false
     private let services: ServicesAssembly
     
     init(services: ServicesAssembly) {

@@ -41,6 +41,16 @@ struct SuccessPaymentView: View {
     }
 }
 
-//#Preview {
-//    SuccessPaymentView()
-//}
+#Preview {
+    SuccessPaymentView(
+        currencyChooseViewModel: CurrencyChooseViewModel(services: ServicesAssembly(
+            networkClient: DefaultNetworkClient(),
+            nftStorage: NftStorageImpl()
+        )),
+        basketViewModel: BasketViewModel(services: ServicesAssembly(
+            networkClient: DefaultNetworkClient(),
+            nftStorage: NftStorageImpl()
+        )),
+        returnToCart: {}
+    )
+}

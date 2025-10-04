@@ -14,11 +14,12 @@ final class BasketViewModel {
     var idOfBoughtNftToDelete: String = ""
     var state: BasketOrderState = .loading
     var orderedNfts: [Nft] = []
-    var idOfOrder: String = ""
     var presentingDialog = false
     
     @ObservationIgnored
     @AppStorage("BasketNftsSortType") private var sortTypeRaw = BasketNftSortType.byPrice.rawValue
+    
+    private var idOfOrder: String = ""
     
     private var sortType: BasketNftSortType {
         get { BasketNftSortType(rawValue: sortTypeRaw) ?? .byPrice}
@@ -48,7 +49,7 @@ final class BasketViewModel {
     
     func updateOrders(nfts: [Nft]) async {
         state = .loading
-         
+        
         var idsOfNft: [String] = []
         
         nfts.forEach { nft in

@@ -210,7 +210,14 @@
       }
     },
     "Pay" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оплатить"
+          }
+        }
+      }
     },
     "Price" : {
       "extractionState" : "manual",

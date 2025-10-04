@@ -11,7 +11,6 @@ import Kingfisher
 struct BoughtNft: View {
     @Bindable var viewModel: BasketViewModel
     
-//    let boughtNftModel: MockBoughtNftModel
     let boughtNftModel: Nft
     
     private var editedPrice: String {
@@ -24,7 +23,7 @@ struct BoughtNft: View {
                 .resizable()
                 .scaledToFill()
                 .frame(width: 108, height: 108)
-//            Image(boughtNftModel.imageName).frame(width: 108, height: 108)
+                .clipShape(RoundedRectangle(cornerRadius: 12))
             Spacer()
             HStack(spacing: .zero) {
                 VStack(alignment: .leading, spacing: .zero) {
@@ -55,14 +54,19 @@ struct BoughtNft: View {
     }
 }
 
-//#Preview {
-//    BoughtNft(
-//        viewModel: BasketViewModel(),
-//        boughtNftModel: MockBoughtNftModel(
-//            imageName: "mockBoughtImagesNft1",
-//            name: "April",
-//            rating: 1,
-//            price: 1.78
-//        )
-//    )
-//}
+#Preview {
+    BoughtNft(
+        viewModel: BasketViewModel(
+            services: ServicesAssembly(networkClient: DefaultNetworkClient(),
+                                       nftStorage: NftStorageImpl()
+                                      )
+        ),
+        boughtNftModel: Nft(
+            name: "Terry",
+            rating: 3,
+            price: 30,
+            id: "1",
+            images: [URL(string: "https://code.s3.yandex.net/Mobile/iOS/NFT/Blue/Bonnie/1.png")!]
+        )
+    )
+}
