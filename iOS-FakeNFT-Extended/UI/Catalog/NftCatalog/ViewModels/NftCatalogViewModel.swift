@@ -1,3 +1,10 @@
+//
+//  NftCatalogViewModel.swift
+//  iOS-FakeNFT-Extended
+//
+//  Created by Danil Kazakov on 08.09.2025.
+//
+
 import Foundation
 import Observation
 import SwiftUI
