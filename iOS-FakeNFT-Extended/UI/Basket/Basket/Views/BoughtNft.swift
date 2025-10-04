@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct BoughtNft: View {
-    @ObservedObject var viewModel: BasketViewModel
+    @Bindable var viewModel: BasketViewModel
     
-    let boughtNftModel: MockBoughtNftModel
+//    let boughtNftModel: MockBoughtNftModel
+    let boughtNftModel: Nft
     
     private var editedPrice: String {
         String(boughtNftModel.price).replacingOccurrences(of: ".", with: ",")
@@ -18,7 +20,11 @@ struct BoughtNft: View {
     
     var body: some View {
         HStack(spacing: .zero) {
-            Image(boughtNftModel.imageName).frame(width: 108, height: 108)
+            KFImage(boughtNftModel.images.first)
+                .resizable()
+                .scaledToFill()
+                .frame(width: 108, height: 108)
+//            Image(boughtNftModel.imageName).frame(width: 108, height: 108)
             Spacer()
             HStack(spacing: .zero) {
                 VStack(alignment: .leading, spacing: .zero) {
@@ -49,14 +55,14 @@ struct BoughtNft: View {
     }
 }
 
-#Preview {
-    BoughtNft(
-        viewModel: BasketViewModel(),
-        boughtNftModel: MockBoughtNftModel(
-            imageName: "mockBoughtImagesNft1",
-            name: "April",
-            rating: 1,
-            price: 1.78
-        )
-    )
-}
+//#Preview {
+//    BoughtNft(
+//        viewModel: BasketViewModel(),
+//        boughtNftModel: MockBoughtNftModel(
+//            imageName: "mockBoughtImagesNft1",
+//            name: "April",
+//            rating: 1,
+//            price: 1.78
+//        )
+//    )
+//}

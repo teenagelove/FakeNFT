@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct TabBarView: View {
+    @Environment(ServicesAssembly.self) var servicesAssembly
+    
     init() {
         let appearance = UITabBarAppearance()
         appearance.configureWithOpaqueBackground()
@@ -24,7 +26,7 @@ struct TabBarView: View {
                         systemImage: .squareStack,
                     )
                 }
-            BasketView()
+            BasketView(services: servicesAssembly)
                 .tabItem {
                     Image(.basketTab)
                         .renderingMode(.template)
