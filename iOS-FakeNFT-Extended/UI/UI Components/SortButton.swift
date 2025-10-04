@@ -12,17 +12,14 @@ struct SortButton: View {
     let action: () -> Void
     
     var body: some View {
-        HStack {
-            Spacer()
-            Button {
-                action()
-            } label: {
-                Image(.sortIcon)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 42, height: 42)
-                    .foregroundColor(.blackDay)
-            }
+        Button {
+            action()
+        } label: {
+            Image(.sortIcon)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 42, height: 42)
+                .foregroundColor(.blackDay)
         }
     }
 }
@@ -30,3 +27,4 @@ struct SortButton: View {
 #Preview {
     SortButton {}
 }
+
