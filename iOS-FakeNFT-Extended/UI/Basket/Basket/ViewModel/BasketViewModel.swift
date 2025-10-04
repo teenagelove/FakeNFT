@@ -15,6 +15,15 @@ final class BasketViewModel {
     var state: BasketOrderState = .loading
     var orderedNfts: [Nft] = []
     var idOfOrder: String = ""
+    var presentingDialog = false
+    
+    @ObservationIgnored
+    @AppStorage("BasketNftsSortType") private var sortTypeRaw = BasketNftSortType.byPrice.rawValue
+    
+    private var sortType: BasketNftSortType {
+        get { BasketNftSortType(rawValue: sortTypeRaw) ?? .byPrice}
+        set { sortTypeRaw = newValue.rawValue }
+    }
     
     private let services: ServicesAssembly
     
@@ -53,6 +62,23 @@ final class BasketViewModel {
             isDeleteItemViewShown = false
         } catch {
             state = .error(error)
+        }
+    }
+    
+    func applySort(by sortType: BasketNftSortType) {
+        guard case let .success(nfts) = state else { return }
+        
+        if self.sortType != sortType {
+            self.sortType = sortType
+        }
+        
+        switch sortType {
+        case .byName:
+            state = .success(nfts.sorted { $0.name < $1.name } )
+        case .byPrice:
+            state = .success(nfts.sorted { $0.price < $1.price } )
+        case .byRating:
+            state = .success(nfts.sorted { $0.rating < $1.rating } )
         }
     }
 }

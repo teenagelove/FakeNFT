@@ -27,11 +27,11 @@ struct BasketView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                if case .success = viewModel.state {
+                if case .success(let nfts) = viewModel.state {
                     emptyBasketBack
                     VStack(spacing: .zero) {
                         filterButton
-                        List(viewModel.orderedNfts, id: \.id) { boughtNft in
+                        List(nfts, id: \.id) { boughtNft in
                             BoughtNft(
                                 viewModel: viewModel,
                                 boughtNftModel: boughtNft
@@ -59,6 +59,12 @@ struct BasketView: View {
         }
         .tint(.black)
         .task { await viewModel.loadData() }
+        .confirmationDialog(
+            "Sort.title",
+            isPresented: $viewModel.presentingDialog,
+            titleVisibility: .visible,
+            actions: { sortButtons }
+        )
         .alert("Error.network", isPresented: .constant(viewModel.state.isFailed)) { errorButtons }
     }
 }
@@ -74,7 +80,7 @@ private extension BasketView {
     var filterButton: some View {
         HStack(spacing: .zero) {
             Spacer()
-            Button {} label: {
+            Button { viewModel.presentingDialog = true } label: {
                 Image(.sortIcon)
             }
             .frame(width: 42, height: 42)
@@ -155,6 +161,14 @@ private extension BasketView {
         Button("Error.repeat") {
             Task { await viewModel.loadData() }
         }
+    }
+    
+    @ViewBuilder
+    var sortButtons: some View {
+        Button("Sort.byPrice") { viewModel.applySort(by: .byPrice) }
+        Button("Sort.byRating") { viewModel.applySort(by: .byRating) }
+        Button("Sort.byName") { viewModel.applySort(by: .byName) }
+        Button("Close", role: .cancel) {}
     }
 }
 
