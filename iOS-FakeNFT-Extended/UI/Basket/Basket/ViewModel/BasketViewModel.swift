@@ -36,4 +36,23 @@ final class BasketViewModel {
             state = .error(error)
         }
     }
+    
+    func updateOrders(nfts: [Nft]) async {
+        state = .loading
+         
+        var idsOfNft: [String] = []
+        
+        nfts.forEach { nft in
+            idsOfNft.append(nft.id)
+        }
+        
+        do {
+            let updateOrder = try await services.nftOrdersService.updateOrders(for: Set(idsOfNft))
+            let nfts = try await services.nftService.loadNfts(ids: Array(updateOrder.nfts))
+            state = .success(nfts)
+            isDeleteItemViewShown = false
+        } catch {
+            state = .error(error)
+        }
+    }
 }

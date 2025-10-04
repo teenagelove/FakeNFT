@@ -6,20 +6,24 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct GridCell: View {
-    @ObservedObject var viewModel: GridCellViewModel
+    @Bindable var viewModel: CurrencyChooseViewModel
     
-    let currency: MockCurrency
+    let currency: Currency
     
     var body: some View {
         ZStack(alignment: .leading) {
             RoundedRectangle(cornerRadius: 12).foregroundStyle(.lightGrey)
             HStack(spacing: .zero) {
-                Image(currency.imageName)
+                KFImage(currency.image)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 36, height: 36)
                 VStack(alignment: .leading, spacing: .zero) {
-                    Text(currency.name).font(.system(size: 13, weight: .regular))
-                    Text(currency.shortName)
+                    Text(currency.title).font(.system(size: 13, weight: .regular))
+                    Text(currency.name)
                         .font(.system(size: 13, weight: .regular))
                         .foregroundStyle(.green)
                 }.padding(.leading, 4)
@@ -37,6 +41,6 @@ struct GridCell: View {
     }
 }
 
-#Preview {
-    GridCell(viewModel: GridCellViewModel(), currency: .mockData[0])
-}
+//#Preview {
+//    GridCell(viewModel: GridCellViewModel(), currency: .mockData[0])
+//}

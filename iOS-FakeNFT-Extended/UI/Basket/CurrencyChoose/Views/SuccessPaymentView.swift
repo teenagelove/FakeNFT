@@ -9,6 +9,10 @@ import SwiftUI
 
 struct SuccessPaymentView: View {
     @Environment(\.dismiss) var dismiss
+    @Bindable var currencyChooseViewModel: CurrencyChooseViewModel
+    @Bindable var basketViewModel: BasketViewModel
+    
+    let returnToCart: () -> Void
     
     var body: some View {
         VStack(spacing: .zero) {
@@ -23,6 +27,8 @@ struct SuccessPaymentView: View {
             .padding(.top, 196)
             Spacer()
             Button("ReturnToCart") {
+                basketViewModel.orderedNfts = []
+                returnToCart()
                 dismiss()
             }
             .frame(maxWidth: .infinity, maxHeight: 60)
@@ -35,6 +41,6 @@ struct SuccessPaymentView: View {
     }
 }
 
-#Preview {
-    SuccessPaymentView()
-}
+//#Preview {
+//    SuccessPaymentView()
+//}

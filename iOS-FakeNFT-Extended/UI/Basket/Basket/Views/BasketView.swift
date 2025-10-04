@@ -9,7 +9,6 @@ import SwiftUI
 
 struct BasketView: View {
     @Environment(ServicesAssembly.self) var servicesAssembly
-    //    @StateObject private var mockData = MockBoughtNft()
     @State private var viewModel: BasketViewModel
     
     init(services: ServicesAssembly) {
@@ -60,6 +59,7 @@ struct BasketView: View {
         }
         .tint(.black)
         .task { await viewModel.loadData() }
+        .alert("Error.network", isPresented: .constant(viewModel.state.isFailed)) { errorButtons }
     }
 }
 
@@ -111,7 +111,10 @@ private extension BasketView {
                     .font(.bodyBold)
             }.padding(.leading, 16)
             NavigationLink("For.payment") {
-                CurrencyChooseView().toolbar(.hidden, for: .tabBar)
+                CurrencyChooseView(
+                    services: servicesAssembly,
+                    basketViewModel: viewModel
+                ).toolbar(.hidden, for: .tabBar)
             }
             .frame(maxWidth: .infinity, maxHeight: 44)
             .font(.bodyBold)
@@ -125,7 +128,10 @@ private extension BasketView {
     
     var buttonToPay: some View {
         NavigationLink("For.payment") {
-            CurrencyChooseView().toolbar(.hidden, for: .tabBar)
+            CurrencyChooseView(
+                services: servicesAssembly,
+                basketViewModel: viewModel
+            ).toolbar(.hidden, for: .tabBar)
         }
         .frame(maxWidth: .infinity, maxHeight: 44)
         .font(.bodyBold)
@@ -140,6 +146,14 @@ private extension BasketView {
     private var stateOverlay: some View {
         if case .loading = viewModel.state {
             CustomProgressView()
+        }
+    }
+    
+    @ViewBuilder
+    var errorButtons: some View {
+        Button("Cancel", role: .cancel) {}
+        Button("Error.repeat") {
+            Task { await viewModel.loadData() }
         }
     }
 }

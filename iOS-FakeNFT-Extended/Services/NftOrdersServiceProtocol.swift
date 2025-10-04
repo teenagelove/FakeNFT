@@ -8,4 +8,5 @@
 protocol NftOrdersServiceProtocol {
     func loadOrders() async throws -> Order
     func updateOrders(for nfts: Set<String>) async throws -> Order
+    func orderPayment(currencyId: String) async throws
 }

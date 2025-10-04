@@ -1,6 +1,16 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Cancel" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отменить"
+          }
+        }
+      }
+    },
     "Catalog.openNft" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -110,6 +120,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Произошла ошибка сети"
+          }
+        }
+      }
+    },
+    "Error.orderPayment" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Payment failed"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Не удалось произвести оплату"
           }
         }
       }

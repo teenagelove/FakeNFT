@@ -6,5 +6,10 @@
 //
 
 enum BasketOrderState {
+    var isFailed: Bool {
+        if case .error = self { return true }
+        return false
+    }
+    
     case loading, error(Error), success([Nft])
 }

@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct DeleteItemView: View {
-//    @EnvironmentObject var mockData: MockBoughtNft
     @Bindable var viewModel: BasketViewModel
     
     var body: some View {
@@ -20,8 +19,8 @@ struct DeleteItemView: View {
             HStack(spacing: .zero) {
                 Button("Delete") {
                     viewModel.orderedNfts.removeAll(where: { $0.id == viewModel.idOfBoughtNftToDelete })
-//                    mockData.nfts.removeAll(where: { $0.id == viewModel.idOfBoughtNftToDelete })
-                    viewModel.isDeleteItemViewShown = false
+                    Task { await viewModel.updateOrders(nfts: viewModel.orderedNfts) }
+//                    viewModel.isDeleteItemViewShown = false
                 }
                 .frame(maxWidth: .infinity, maxHeight: 44)
                 .font(.bodyRegular)
