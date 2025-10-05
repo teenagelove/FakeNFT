@@ -64,4 +64,6 @@ extension UIColor {
         ? .yaBlackDark
         : .yaBlackLight
     }
+    
+    static let grayUniversal = UIColor(hexString: "#625C5C")
 }

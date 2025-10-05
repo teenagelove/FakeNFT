@@ -25,6 +25,13 @@ struct TabBarView: View {
                         systemImage: .squareStack,
                     )
                 }
+            StatisticsTabView()
+                .tabItem {
+                    Label(
+                        NSLocalizedString("Tab.statistics", comment: ""),
+                        systemImage: .crossedFlags,
+                    )
+                }
         }
     }
 }

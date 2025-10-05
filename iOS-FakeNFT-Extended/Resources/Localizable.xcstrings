@@ -1,6 +1,15 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
+    " ETH" : {
+
+    },
+    "(%lld)" : {
+
+    },
     "%@ (%lld)" : {
       "localizations" : {
         "en" : {
@@ -234,6 +243,43 @@
           }
         }
       }
+    },
+    "Tab.statistics" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statistics"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Статистика"
+          }
+        }
+      }
+    },
+    "Закрыть" : {
+
+    },
+    "Коллекция NFT" : {
+
+    },
+    "Не удалось получить данные" : {
+
+    },
+    "Отмена" : {
+
+    },
+    "Перейти на сайт пользователя" : {
+
+    },
+    "Повторить" : {
+
+    },
+    "Сортировка" : {
+
     }
   },
   "version" : "1.0"

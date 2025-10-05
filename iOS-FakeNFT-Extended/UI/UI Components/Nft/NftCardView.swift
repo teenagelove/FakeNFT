@@ -72,6 +72,7 @@ private extension NftCardView {
     var addToCartButton: some View {
         Button { toggleOrder?() } label: {
             Image(nft.isOrdered ? .deleteFromCart : .addToCart)
+                .foregroundStyle(Color(uiColor: .blackDay))
                 .frame(width: 40, height: 40)
         }
     }
