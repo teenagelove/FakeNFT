@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct DeleteItemView: View {
-    @EnvironmentObject var mockData: MockBoughtNft
-    @ObservedObject var viewModel: BasketViewModel
+    @Bindable var viewModel: BasketViewModel
     
     var body: some View {
         VStack(spacing: .zero) {
@@ -19,12 +18,12 @@ struct DeleteItemView: View {
                 .multilineTextAlignment(.center)
             HStack(spacing: .zero) {
                 Button("Delete") {
-                    mockData.nfts.removeAll(where: { $0.id == viewModel.idOfBoughtNftToDelete })
-                    viewModel.isDeleteItemViewShown = false
+                    viewModel.orderedNfts.removeAll(where: { $0.id == viewModel.idOfBoughtNftToDelete })
+                    Task { await viewModel.updateOrders(nfts: viewModel.orderedNfts) }
                 }
                 .frame(maxWidth: .infinity, maxHeight: 44)
                 .font(.bodyRegular)
-                .background(.black)
+                .background(.blackDay)
                 .foregroundStyle(.red)
                 .clipShape(RoundedRectangle(cornerRadius: 16))
                 .padding(.trailing, 8)
@@ -34,8 +33,8 @@ struct DeleteItemView: View {
                 }
                 .frame(maxWidth: .infinity, maxHeight: 44)
                 .font(.bodyRegular)
-                .background(.black)
-                .foregroundStyle(.white)
+                .background(.blackDay)
+                .foregroundStyle(.whiteDay)
                 .clipShape(RoundedRectangle(cornerRadius: 16))
                 .padding(.trailing, 57)
             }
@@ -45,5 +44,8 @@ struct DeleteItemView: View {
 }
 
 #Preview {
-    DeleteItemView(viewModel: BasketViewModel())
+    DeleteItemView(viewModel: BasketViewModel(services: ServicesAssembly(
+            networkClient: DefaultNetworkClient(),
+            nftStorage: NftStorageImpl()
+        )))
 }

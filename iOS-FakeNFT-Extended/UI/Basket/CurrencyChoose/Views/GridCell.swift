@@ -8,18 +8,25 @@
 import SwiftUI
 
 struct GridCell: View {
-    @ObservedObject var viewModel: GridCellViewModel
+    @Bindable var viewModel: CurrencyChooseViewModel
     
-    let currency: MockCurrency
+    let currency: Currency
     
     var body: some View {
         ZStack(alignment: .leading) {
             RoundedRectangle(cornerRadius: 12).foregroundStyle(.lightGrey)
             HStack(spacing: .zero) {
-                Image(currency.imageName)
+                AsyncImage(url: currency.image) { image in
+                    image
+                        .resizable()
+                        .scaledToFill()
+                } placeholder: {
+                    ProgressView()
+                }
+                    .frame(width: 36, height: 36)
                 VStack(alignment: .leading, spacing: .zero) {
-                    Text(currency.name).font(.system(size: 13, weight: .regular))
-                    Text(currency.shortName)
+                    Text(currency.title).font(.system(size: 13, weight: .regular))
+                    Text(currency.name)
                         .font(.system(size: 13, weight: .regular))
                         .foregroundStyle(.green)
                 }.padding(.leading, 4)
@@ -28,7 +35,7 @@ struct GridCell: View {
             .padding(.vertical, 5)
         }
         .overlay(
-            RoundedRectangle(cornerRadius: 12).stroke(.black, lineWidth: currency.isSelected ? 1 : 0)
+            RoundedRectangle(cornerRadius: 12).stroke(.blackDay, lineWidth: currency.isSelected ? 1 : 0)
         )
         .onTapGesture {
             viewModel.toggleSelection(for: currency)
@@ -38,5 +45,14 @@ struct GridCell: View {
 }
 
 #Preview {
-    GridCell(viewModel: GridCellViewModel(), currency: .mockData[0])
+    GridCell(viewModel: CurrencyChooseViewModel(services: ServicesAssembly(
+        networkClient: DefaultNetworkClient(),
+        nftStorage: NftStorageImpl()
+    )),
+             currency: Currency(
+                title: "Dogo",
+                name: "Dogi",
+                image: URL(string: "https://code.s3.yandex.net/Mobile/iOS/Currencies/Shiba_Inu_(SHIB).png")!,
+                id: "1"
+             ))
 }

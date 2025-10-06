@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct BoughtNft: View {
-    @ObservedObject var viewModel: BasketViewModel
+    @Bindable var viewModel: BasketViewModel
     
-    let boughtNftModel: MockBoughtNftModel
+    let boughtNftModel: Nft
     
     private var editedPrice: String {
         String(boughtNftModel.price).replacingOccurrences(of: ".", with: ",")
@@ -18,7 +18,15 @@ struct BoughtNft: View {
     
     var body: some View {
         HStack(spacing: .zero) {
-            Image(boughtNftModel.imageName).frame(width: 108, height: 108)
+            AsyncImage(url: boughtNftModel.images.first) { image in
+                image
+                    .resizable()
+                    .scaledToFill()
+            } placeholder: {
+                ProgressView()
+            }
+                .frame(width: 108, height: 108)
+                .clipShape(RoundedRectangle(cornerRadius: 12))
             Spacer()
             HStack(spacing: .zero) {
                 VStack(alignment: .leading, spacing: .zero) {
@@ -40,7 +48,7 @@ struct BoughtNft: View {
                     viewModel.idOfBoughtNftToDelete = boughtNftModel.id
                     viewModel.isDeleteItemViewShown = true
                 } label: {
-                    Image(.deleteItem)
+                    Image(.deleteItem).foregroundColor(.blackDay)
                 }
             }
         }
@@ -51,12 +59,17 @@ struct BoughtNft: View {
 
 #Preview {
     BoughtNft(
-        viewModel: BasketViewModel(),
-        boughtNftModel: MockBoughtNftModel(
-            imageName: "mockBoughtImagesNft1",
-            name: "April",
-            rating: 1,
-            price: 1.78
+        viewModel: BasketViewModel(
+            services: ServicesAssembly(networkClient: DefaultNetworkClient(),
+                                       nftStorage: NftStorageImpl()
+                                      )
+        ),
+        boughtNftModel: Nft(
+            name: "Terry",
+            rating: 3,
+            price: 30,
+            id: "1",
+            images: [URL(string: "https://code.s3.yandex.net/Mobile/iOS/NFT/Blue/Bonnie/1.png")!]
         )
     )
 }

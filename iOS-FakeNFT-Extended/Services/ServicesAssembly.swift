@@ -16,9 +16,17 @@ final class ServicesAssembly {
     }
 
     var nftService: NftService {
-        NftServiceImpl(
+        NftService(
             networkClient: networkClient,
             storage: nftStorage
         )
+    }
+    
+    var nftOrdersService: NftOrdersServiceProtocol {
+        NftOrdersService(networkClient: networkClient)
+    }
+    
+    var currencyService: CurrencyServiceProtocol {
+        CurrencyService(networkClient: networkClient)
     }
 }
