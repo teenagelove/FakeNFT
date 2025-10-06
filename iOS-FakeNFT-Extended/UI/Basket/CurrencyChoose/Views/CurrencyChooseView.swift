@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CurrencyChooseView: View {
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) private var dismiss
     @State private var currencyChooseViewModel: CurrencyChooseViewModel
     @State private var isWebViewPresented: Bool = false
     @Bindable var basketViewModel: BasketViewModel
@@ -72,6 +72,7 @@ struct CurrencyChooseView: View {
                 .frame(maxWidth: .infinity, maxHeight: 152)
             }
         }
+        .background(.appBackground)
         .toolbarRole(.editor)
         .toolbar {
             ToolbarItem(placement: .principal) {
@@ -84,10 +85,10 @@ struct CurrencyChooseView: View {
         .alert("Error.network", isPresented: .constant(currencyChooseViewModel.stateCurrencyOption.isFailed)) { errorButtonsCurrencyOption }
         .alert("Error.orderPayment", isPresented: .constant(currencyChooseViewModel.stateOrderPayment.isFailed)) { errorButtonsOrderPayment }
         .fullScreenCover(isPresented: $currencyChooseViewModel.isSuccessPaymentViewShown) {
-            SuccessPaymentView(
-                currencyChooseViewModel: currencyChooseViewModel,
-                basketViewModel: basketViewModel
-            ) { dismiss() }
+            SuccessPaymentView() {
+                basketViewModel.orderedNfts = []
+                dismiss()
+            }
         }
         .fullScreenCover(isPresented: $isWebViewPresented) {
             WebViewBridge()
@@ -97,14 +98,14 @@ struct CurrencyChooseView: View {
 
 private extension CurrencyChooseView {
     @ViewBuilder
-    private var stateOverlayCurrencyOption: some View {
+    var stateOverlayCurrencyOption: some View {
         if case .loading = currencyChooseViewModel.stateCurrencyOption {
             CustomProgressView()
         }
     }
     
     @ViewBuilder
-    private var stateOverlayOrderPayment: some View {
+    var stateOverlayOrderPayment: some View {
         if case .loading = currencyChooseViewModel.stateOrderPayment {
             CustomProgressView()
         }
@@ -112,7 +113,7 @@ private extension CurrencyChooseView {
     
     
     @ViewBuilder
-    private var errorButtonsCurrencyOption: some View {
+    var errorButtonsCurrencyOption: some View {
         Button("Cancel", role: .cancel) {}
         Button("Error.repeat") {
             Task { await currencyChooseViewModel.loadData() }
@@ -120,7 +121,7 @@ private extension CurrencyChooseView {
     }
     
     @ViewBuilder
-    private var errorButtonsOrderPayment: some View {
+    var errorButtonsOrderPayment: some View {
         Button("Cancel", role: .cancel) {}
         Button("Error.repeat") {
             Task { await currencyChooseViewModel.payOrder(currencyId: currencyId) }

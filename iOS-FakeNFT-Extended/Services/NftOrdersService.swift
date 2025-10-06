@@ -22,9 +22,9 @@ final class NftOrdersService: NftOrdersServiceProtocol {
         return try await networkClient.send(request: request)
     }
     
-    func orderPayment(currencyId: String) async throws {
+    func orderPayment(currencyId: String) async throws -> OrderPaymentResult {
         let request = GetOrderPayment(currencyId: currencyId)
-        try await networkClient.send(request: request)
+        return try await networkClient.send(request: request)
     }
 }
 

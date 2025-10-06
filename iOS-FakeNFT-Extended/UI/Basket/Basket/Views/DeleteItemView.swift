@@ -23,7 +23,7 @@ struct DeleteItemView: View {
                 }
                 .frame(maxWidth: .infinity, maxHeight: 44)
                 .font(.bodyRegular)
-                .background(.black)
+                .background(.blackDay)
                 .foregroundStyle(.red)
                 .clipShape(RoundedRectangle(cornerRadius: 16))
                 .padding(.trailing, 8)
@@ -33,8 +33,8 @@ struct DeleteItemView: View {
                 }
                 .frame(maxWidth: .infinity, maxHeight: 44)
                 .font(.bodyRegular)
-                .background(.black)
-                .foregroundStyle(.white)
+                .background(.blackDay)
+                .foregroundStyle(.whiteDay)
                 .clipShape(RoundedRectangle(cornerRadius: 16))
                 .padding(.trailing, 57)
             }

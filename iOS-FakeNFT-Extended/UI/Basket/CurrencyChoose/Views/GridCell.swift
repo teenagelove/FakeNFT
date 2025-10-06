@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Kingfisher
 
 struct GridCell: View {
     @Bindable var viewModel: CurrencyChooseViewModel
@@ -17,9 +16,13 @@ struct GridCell: View {
         ZStack(alignment: .leading) {
             RoundedRectangle(cornerRadius: 12).foregroundStyle(.lightGrey)
             HStack(spacing: .zero) {
-                KFImage(currency.image)
-                    .resizable()
-                    .scaledToFill()
+                AsyncImage(url: currency.image) { image in
+                    image
+                        .resizable()
+                        .scaledToFill()
+                } placeholder: {
+                    ProgressView()
+                }
                     .frame(width: 36, height: 36)
                 VStack(alignment: .leading, spacing: .zero) {
                     Text(currency.title).font(.system(size: 13, weight: .regular))
@@ -32,7 +35,7 @@ struct GridCell: View {
             .padding(.vertical, 5)
         }
         .overlay(
-            RoundedRectangle(cornerRadius: 12).stroke(.black, lineWidth: currency.isSelected ? 1 : 0)
+            RoundedRectangle(cornerRadius: 12).stroke(.blackDay, lineWidth: currency.isSelected ? 1 : 0)
         )
         .onTapGesture {
             viewModel.toggleSelection(for: currency)

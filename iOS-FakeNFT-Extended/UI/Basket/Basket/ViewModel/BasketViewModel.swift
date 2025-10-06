@@ -14,7 +14,6 @@ final class BasketViewModel {
     var idOfBoughtNftToDelete: String = ""
     var state: BasketOrderState = .loading
     var orderedNfts: [Nft] = []
-    var presentingDialog = false
     
     @ObservationIgnored
     @AppStorage("BasketNftsSortType") private var sortTypeRaw = BasketNftSortType.byPrice.rawValue
@@ -37,7 +36,7 @@ final class BasketViewModel {
         
         do {
             let order = try await services.nftOrdersService.loadOrders()
-            let nfts = try await services.nftService.loadNfts(ids: Array(order.nfts))
+            let nfts = try await fetchNfts(for: order.nfts)
             state = .success(nfts)
             
             idOfOrder = order.id
@@ -50,15 +49,9 @@ final class BasketViewModel {
     func updateOrders(nfts: [Nft]) async {
         state = .loading
         
-        var idsOfNft: [String] = []
-        
-        nfts.forEach { nft in
-            idsOfNft.append(nft.id)
-        }
-        
         do {
-            let updateOrder = try await services.nftOrdersService.updateOrders(for: Set(idsOfNft))
-            let nfts = try await services.nftService.loadNfts(ids: Array(updateOrder.nfts))
+            let updateOrder = try await services.nftOrdersService.updateOrders(for: Set(nfts.map(\.id)))
+            let nfts = try await fetchNfts(for: updateOrder.nfts)
             state = .success(nfts)
             isDeleteItemViewShown = false
         } catch {
@@ -81,5 +74,9 @@ final class BasketViewModel {
         case .byRating:
             state = .success(nfts.sorted { $0.rating < $1.rating } )
         }
+    }
+    
+    private func fetchNfts(for ids: Set<String>) async throws -> [Nft] {
+        try await services.nftService.loadNfts(ids: Array(ids))
     }
 }

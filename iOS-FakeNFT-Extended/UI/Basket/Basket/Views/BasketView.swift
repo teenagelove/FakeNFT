@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct BasketView: View {
-    @Environment(ServicesAssembly.self) var servicesAssembly
+    @Environment(ServicesAssembly.self) private var servicesAssembly
     @State private var viewModel: BasketViewModel
+    @State private var presentingDialog: Bool = false
     
     private var basketSum: String {
         var basketSum: Double = 0
@@ -54,11 +55,11 @@ struct BasketView: View {
             .overlay(stateOverlay)
             .animation(.spring(response: 0.4), value: viewModel.isDeleteItemViewShown)
         }
-        .tint(.black)
+        .background(.appBackground)
         .task { await viewModel.loadData() }
         .confirmationDialog(
             "Sort.title",
-            isPresented: $viewModel.presentingDialog,
+            isPresented: $presentingDialog,
             titleVisibility: .visible,
             actions: { sortButtons }
         )
@@ -67,24 +68,24 @@ struct BasketView: View {
 }
 
 private extension BasketView {
-    private var lowerBasketPart: some View {
+    var lowerBasketPart: some View {
         ZStack {
             background
             lowerBasketWindow
         }
     }
     
-    private var emptyBasketBack: some View {
+    var emptyBasketBack: some View {
         Text("EmptyBasket")
             .font(.system(size: 17, weight: .bold))
             .opacity(viewModel.orderedNfts.isEmpty ? 1 : 0)
     }
     
-    private var filterButton: some View {
+    var filterButton: some View {
         HStack(spacing: .zero) {
             Spacer()
-            Button { viewModel.presentingDialog = true } label: {
-                Image(.sortIcon)
+            Button { presentingDialog = true } label: {
+                Image(.sortIcon).foregroundColor(.blackDay)
             }
             .frame(width: 42, height: 42)
             .padding(.trailing, 9)
@@ -94,7 +95,7 @@ private extension BasketView {
         .padding(.bottom, 20)
     }
     
-    private var listOfBoughtNfts: some View {
+    var listOfBoughtNfts: some View {
         List(viewModel.orderedNfts, id: \.id) { boughtNft in
             BoughtNft(
                 viewModel: viewModel,
@@ -105,13 +106,13 @@ private extension BasketView {
         }.listStyle(.plain)
     }
     
-    private var background: some View {
+    var background: some View {
         UnevenRoundedRectangle(topLeadingRadius: 12, topTrailingRadius: 12)
             .foregroundStyle(.lightGrey)
             .frame(maxWidth: .infinity, maxHeight: 76)
     }
     
-    private var lowerBasketWindow: some View {
+    var lowerBasketWindow: some View {
         HStack(spacing: .zero) {
             VStack(alignment: .leading, spacing: .zero) {
                 Text(String(viewModel.orderedNfts.count) + " NFT").font(.caption1)
@@ -127,39 +128,23 @@ private extension BasketView {
             }
             .frame(maxWidth: .infinity, maxHeight: 44)
             .font(.bodyBold)
-            .background(.black)
-            .foregroundStyle(.white)
+            .background(.blackDay)
+            .foregroundStyle(.appBackground)
             .clipShape(RoundedRectangle(cornerRadius: 16))
             .padding(.trailing, 16)
             .padding(.leading, 24)
         }
     }
     
-    private var buttonToPay: some View {
-        NavigationLink("For.payment") {
-            CurrencyChooseView(
-                services: servicesAssembly,
-                basketViewModel: viewModel
-            ).toolbar(.hidden, for: .tabBar)
-        }
-        .frame(maxWidth: .infinity, maxHeight: 44)
-        .font(.bodyBold)
-        .background(.black)
-        .foregroundStyle(.white)
-        .clipShape(RoundedRectangle(cornerRadius: 16))
-        .padding(.trailing, 16)
-        .padding(.leading, 24)
-    }
-    
     @ViewBuilder
-    private var stateOverlay: some View {
+    var stateOverlay: some View {
         if case .loading = viewModel.state {
             CustomProgressView()
         }
     }
     
     @ViewBuilder
-    private var errorButtons: some View {
+    var errorButtons: some View {
         Button("Cancel", role: .cancel) {}
         Button("Error.repeat") {
             Task { await viewModel.loadData() }
@@ -167,7 +152,7 @@ private extension BasketView {
     }
     
     @ViewBuilder
-    private var sortButtons: some View {
+    var sortButtons: some View {
         Button("Sort.byPrice") { viewModel.applySort(by: .byPrice) }
         Button("Sort.byRating") { viewModel.applySort(by: .byRating) }
         Button("Sort.byName") { viewModel.applySort(by: .byName) }

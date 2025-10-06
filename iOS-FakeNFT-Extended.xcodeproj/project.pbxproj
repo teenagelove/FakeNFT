@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		331E9FA62E93F7AA002B7C85 /* OrderPaymentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331E9FA52E93F7AA002B7C85 /* OrderPaymentResult.swift */; };
 		335F65DC2E7D76D200E5E3D1 /* StarRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335F65DB2E7D76D200E5E3D1 /* StarRatingView.swift */; };
 		33609B7D2E7A9A5400B69721 /* SuccessPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33609B7C2E7A9A5400B69721 /* SuccessPaymentView.swift */; };
 		33609B7F2E7AA31C00B69721 /* CurrencyChooseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33609B7E2E7AA31C00B69721 /* CurrencyChooseView.swift */; };
@@ -96,6 +97,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		331E9FA52E93F7AA002B7C85 /* OrderPaymentResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPaymentResult.swift; sourceTree = "<group>"; };
 		335F65DB2E7D76D200E5E3D1 /* StarRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingView.swift; sourceTree = "<group>"; };
 		33609B7C2E7A9A5400B69721 /* SuccessPaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessPaymentView.swift; sourceTree = "<group>"; };
 		33609B7E2E7AA31C00B69721 /* CurrencyChooseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyChooseView.swift; sourceTree = "<group>"; };
@@ -417,6 +419,7 @@
 				337738242E8FCBCC0059FAE5 /* Order.swift */,
 				337738342E8FF6B60059FAE5 /* Nft.swift */,
 				338EB7F12E9134F600B0550C /* Currency.swift */,
+				331E9FA52E93F7AA002B7C85 /* OrderPaymentResult.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -685,6 +688,7 @@
 				33609B7F2E7AA31C00B69721 /* CurrencyChooseView.swift in Sources */,
 				ABC5E1E62C320585002B4068 /* LinePageControl.swift in Sources */,
 				ABC5E1DD2C3204DC002B4068 /* CellsReusingUtils.swift in Sources */,
+				331E9FA62E93F7AA002B7C85 /* OrderPaymentResult.swift in Sources */,
 				33C3A1A32E7AFC80002A9B96 /* MockCurrency.swift in Sources */,
 				ABC5E1B52C31FC57002B4068 /* TabBarView.swift in Sources */,
 				ABC5E1E42C32055B002B4068 /* ErrorView.swift in Sources */,

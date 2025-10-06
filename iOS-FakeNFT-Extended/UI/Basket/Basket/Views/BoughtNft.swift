@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Kingfisher
 
 struct BoughtNft: View {
     @Bindable var viewModel: BasketViewModel
@@ -19,9 +18,13 @@ struct BoughtNft: View {
     
     var body: some View {
         HStack(spacing: .zero) {
-            KFImage(boughtNftModel.images.first)
-                .resizable()
-                .scaledToFill()
+            AsyncImage(url: boughtNftModel.images.first) { image in
+                image
+                    .resizable()
+                    .scaledToFill()
+            } placeholder: {
+                ProgressView()
+            }
                 .frame(width: 108, height: 108)
                 .clipShape(RoundedRectangle(cornerRadius: 12))
             Spacer()
@@ -45,7 +48,7 @@ struct BoughtNft: View {
                     viewModel.idOfBoughtNftToDelete = boughtNftModel.id
                     viewModel.isDeleteItemViewShown = true
                 } label: {
-                    Image(.deleteItem)
+                    Image(.deleteItem).foregroundColor(.blackDay)
                 }
             }
         }

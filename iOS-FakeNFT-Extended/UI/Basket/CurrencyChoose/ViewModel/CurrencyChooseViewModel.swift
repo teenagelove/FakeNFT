@@ -39,10 +39,10 @@ final class CurrencyChooseViewModel {
         stateOrderPayment = .loading
         
         do {
-            try await services.nftOrdersService.orderPayment(currencyId: currencyId)
+            let orderPaymentResult = try await services.nftOrdersService.orderPayment(currencyId: currencyId)
             
             stateOrderPayment = .success
-            isSuccessPaymentViewShown = true
+            isSuccessPaymentViewShown = orderPaymentResult.success
         } catch {
             stateOrderPayment = .error(error)
         }
