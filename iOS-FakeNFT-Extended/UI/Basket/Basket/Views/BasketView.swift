@@ -18,7 +18,7 @@ struct BasketView: View {
             basketSum += item.price
         }
         
-        return String(basketSum).replacingOccurrences(of: ".", with: ",")
+        return String(format: "%.2f", basketSum).replacingOccurrences(of: ".", with: ",")
     }
     
     init(services: ServicesAssembly) {
