@@ -61,8 +61,8 @@ struct CurrencyChooseView: View {
                         }
                         .frame(maxWidth: .infinity, maxHeight: 60)
                         .font(.bodyBold)
-                        .background(.black)
-                        .foregroundStyle(.white)
+                        .background(.blackDay)
+                        .foregroundStyle(.whiteDay)
                         .clipShape(RoundedRectangle(cornerRadius: 16))
                         .padding(EdgeInsets(top: 0, leading: 20, bottom: 50, trailing: 12))
                         .disabled(currencyId == "")
