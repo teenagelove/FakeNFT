@@ -44,8 +44,5 @@ struct DeleteItemView: View {
 }
 
 #Preview {
-    DeleteItemView(viewModel: BasketViewModel(services: ServicesAssembly(
-            networkClient: DefaultNetworkClient(),
-            nftStorage: NftStorageImpl()
-        )))
+    DeleteItemView(viewModel: BasketViewModel(services: ServicesAssembly.preview))
 }

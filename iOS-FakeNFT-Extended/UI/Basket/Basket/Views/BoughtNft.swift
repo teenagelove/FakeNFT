@@ -54,16 +54,13 @@ struct BoughtNft: View {
         }
         .frame(maxWidth: .infinity)
         .padding(16)
+        .background(.appBackground)
     }
 }
 
 #Preview {
     BoughtNft(
-        viewModel: BasketViewModel(
-            services: ServicesAssembly(networkClient: DefaultNetworkClient(),
-                                       nftStorage: NftStorageImpl()
-                                      )
-        ),
+        viewModel: BasketViewModel(services: ServicesAssembly.preview),
         boughtNftModel: Nft(
             name: "Terry",
             rating: 3,

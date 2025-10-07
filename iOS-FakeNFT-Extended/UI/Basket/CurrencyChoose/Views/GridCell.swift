@@ -9,9 +9,9 @@ import SwiftUI
 
 struct GridCell: View {
     @Bindable var viewModel: CurrencyChooseViewModel
-    
+
     let currency: Currency
-    
+
     var body: some View {
         ZStack(alignment: .leading) {
             RoundedRectangle(cornerRadius: 12).foregroundStyle(.lightGrey)
@@ -23,7 +23,7 @@ struct GridCell: View {
                 } placeholder: {
                     ProgressView()
                 }
-                    .frame(width: 36, height: 36)
+                .frame(width: 36, height: 36)
                 VStack(alignment: .leading, spacing: .zero) {
                     Text(currency.title).font(.system(size: 13, weight: .regular))
                     Text(currency.name)
@@ -45,14 +45,13 @@ struct GridCell: View {
 }
 
 #Preview {
-    GridCell(viewModel: CurrencyChooseViewModel(services: ServicesAssembly(
-        networkClient: DefaultNetworkClient(),
-        nftStorage: NftStorageImpl()
-    )),
-             currency: Currency(
-                title: "Dogo",
-                name: "Dogi",
-                image: URL(string: "https://code.s3.yandex.net/Mobile/iOS/Currencies/Shiba_Inu_(SHIB).png")!,
-                id: "1"
-             ))
+    GridCell(
+        viewModel: CurrencyChooseViewModel(services: ServicesAssembly.preview),
+        currency: Currency(
+            title: "Dogo",
+            name: "Dogi",
+            image: URL(string: "https://code.s3.yandex.net/Mobile/iOS/Currencies/Shiba_Inu_(SHIB).png")!,
+            id: "1"
+        )
+    )
 }

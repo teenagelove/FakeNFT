@@ -28,6 +28,10 @@ struct BasketView: View {
     var body: some View {
         NavigationStack {
             ZStack {
+                if case .loading = viewModel.state {
+                    CustomProgressView()
+                }
+
                 if case .success(let nfts) = viewModel.state {
                     emptyBasketBack
                     VStack(spacing: .zero) {
@@ -39,7 +43,8 @@ struct BasketView: View {
                             )
                             .listRowSeparator(.hidden)
                             .listRowInsets(EdgeInsets())
-                        }.listStyle(.plain)
+                        }
+                        .listStyle(.plain)
                         Spacer()
                         lowerBasketPart
                     }
@@ -52,10 +57,9 @@ struct BasketView: View {
                     DeleteItemView(viewModel: viewModel).toolbar(viewModel.isDeleteItemViewShown ? .hidden : .visible, for: .tabBar)
                 }
             }
-            .overlay(stateOverlay)
+            .background(.appBackground)
             .animation(.spring(response: 0.4), value: viewModel.isDeleteItemViewShown)
         }
-        .background(.appBackground)
         .task { await viewModel.loadData() }
         .confirmationDialog(
             "Sort.title",
@@ -161,9 +165,5 @@ private extension BasketView {
 }
 
 #Preview {
-    BasketView(
-        services: ServicesAssembly(networkClient: DefaultNetworkClient(),
-        nftStorage: NftStorageImpl())
-    )
+    BasketView(services: ServicesAssembly.preview)
 }
-

@@ -131,14 +131,8 @@ private extension CurrencyChooseView {
 
 #Preview {
     CurrencyChooseView(
-        services: ServicesAssembly(
-            networkClient: DefaultNetworkClient(),
-            nftStorage: NftStorageImpl()
-        ),
-        basketViewModel: BasketViewModel(services: ServicesAssembly(
-            networkClient: DefaultNetworkClient(),
-            nftStorage: NftStorageImpl()
-        ))
+        services: ServicesAssembly.preview,
+        basketViewModel: BasketViewModel(services: ServicesAssembly.preview)
     )
 }
 

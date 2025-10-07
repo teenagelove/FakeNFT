@@ -45,10 +45,6 @@ final class ServicesAssembly {
         StatisticsServiceImpl(networkClient: networkClient)
     }
 
-    var nftOrdersService: NftOrdersServiceProtocol {
-        NftOrdersService(networkClient: networkClient)
-    }
-
     var currencyService: CurrencyServiceProtocol {
         CurrencyService(networkClient: networkClient)
     }

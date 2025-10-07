@@ -1,5 +1,5 @@
 //
-//  NftPrdersServiceProtocol.swift
+//  NftOrdersServiceProtocol.swift
 //  iOS-FakeNFT-Extended
 //
 //  Created by Danil Kazakov on 17.09.2025.
