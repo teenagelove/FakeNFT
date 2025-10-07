@@ -30,7 +30,7 @@ struct TabBarView: View {
                 .tabItem {
                     Label(
                         NSLocalizedString("Tab.basket", comment: ""),
-                        image: .secondBasket
+                        image: .basketTab
                     )
                 }
 
