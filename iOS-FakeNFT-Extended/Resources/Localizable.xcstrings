@@ -1,8 +1,37 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Cancel" : {
+    "" : {
+
+    },
+    " ETH" : {
+
+    },
+    "(%lld)" : {
+
+    },
+    "%@ (%lld)" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ (%2$lld)"
+          }
+        }
+      }
+    },
+    "%@ ETH" : {
+
+    },
+    "Cancel" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -41,6 +70,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Закрыть"
+          }
+        }
+      }
+    },
+    "Collection.Author" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Collection author:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автор коллекции:"
           }
         }
       }
@@ -119,7 +165,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Произошла ошибка сети"
+            "value" : "Не удалось получить данные"
           }
         }
       }
@@ -188,6 +234,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Произошла неизвестная ошибка"
+          }
+        }
+      }
+    },
+    "ETH" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ETH"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ETH"
           }
         }
       }
@@ -393,6 +456,43 @@
           }
         }
       }
+    },
+    "Tab.statistics" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statistics"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Статистика"
+          }
+        }
+      }
+    },
+    "Закрыть" : {
+
+    },
+    "Коллекция NFT" : {
+
+    },
+    "Не удалось получить данные" : {
+
+    },
+    "Отмена" : {
+
+    },
+    "Перейти на сайт пользователя" : {
+
+    },
+    "Повторить" : {
+
+    },
+    "Сортировка" : {
+
     },
     "UserAgreementPart1" : {
       "extractionState" : "manual",

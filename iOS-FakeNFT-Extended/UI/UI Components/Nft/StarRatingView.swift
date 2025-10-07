@@ -2,7 +2,7 @@
 //  StarRatingView.swift
 //  iOS-FakeNFT-Extended
 //
-//  Created by 1111 on 19.09.2025.
+//  Created by Danil Kazakov on 15.09.2025.
 //
 
 import SwiftUI
@@ -16,7 +16,7 @@ struct StarRatingView: View {
                 Image(systemName: .star)
                     .resizable()
                     .scaledToFit()
-                    .foregroundStyle(index < rating ? .yellowUniversal : .lightGrey)
+                    .foregroundColor(index < rating ? .yellowUniversal : .lightGrey)
             }
         }
     }

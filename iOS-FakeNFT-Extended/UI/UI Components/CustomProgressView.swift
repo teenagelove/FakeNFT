@@ -10,7 +10,7 @@ import SwiftUI
 struct CustomProgressView: View {
     var body: some View {
         ProgressView()
-            .tint(.primary)
+            .tint(.blackDay)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }

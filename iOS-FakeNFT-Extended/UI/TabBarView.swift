@@ -6,8 +6,7 @@ struct TabBarView: View {
     init() {
         let appearance = UITabBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.shadowColor = .clear
-        appearance.backgroundColor = UIColor.systemBackground
+        appearance.backgroundColor = UIColor.appBackground
         
         // Настройка цветов для неактивных
         appearance.stackedLayoutAppearance.normal.iconColor = UIColor.segmentActive
@@ -19,13 +18,22 @@ struct TabBarView: View {
     
     var body: some View {
         TabView {
-            TestCatalogView()
+            NftCatalogView(service: servicesAssembly.nftCollectionsService)
                 .tabItem {
                     Label(
                         NSLocalizedString("Tab.catalog", comment: ""),
                         systemImage: .squareStack,
                     )
                 }
+
+            StatisticsTabView()
+                .tabItem {
+                    Label(
+                        NSLocalizedString("Tab.statistics", comment: ""),
+                        systemImage: .crossedFlags,
+                    )
+                }
+
             BasketView(services: servicesAssembly)
                 .tabItem {
                     Image(.basketTab)
@@ -33,6 +41,5 @@ struct TabBarView: View {
                     Text(NSLocalizedString("Tab.basket", comment: ""))
                 }
         }
-        .tint(.blue)
     }
 }

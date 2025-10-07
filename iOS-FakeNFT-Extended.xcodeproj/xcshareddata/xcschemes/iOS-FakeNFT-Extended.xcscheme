@@ -29,30 +29,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
       shouldAutocreateTestPlan = "YES">
-      <Testables>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "ABC5E1772C31F5B0002B4068"
-               BuildableName = "iOS-FakeNFT-ExtendedTests.xctest"
-               BlueprintName = "iOS-FakeNFT-ExtendedTests"
-               ReferencedContainer = "container:iOS-FakeNFT-Extended.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "ABC5E1812C31F5B0002B4068"
-               BuildableName = "iOS-FakeNFT-ExtendedUITests.xctest"
-               BlueprintName = "iOS-FakeNFT-ExtendedUITests"
-               ReferencedContainer = "container:iOS-FakeNFT-Extended.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -81,8 +57,7 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "ABC5E1672C31F5AF002B4068"
@@ -90,7 +65,7 @@
             BlueprintName = "iOS-FakeNFT-Extended"
             ReferencedContainer = "container:iOS-FakeNFT-Extended.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
