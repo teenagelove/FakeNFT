@@ -41,6 +41,8 @@ final class BasketViewModel {
             
             idOfOrder = order.id
             orderedNfts = nfts
+        } catch where Task.isCancelled {
+            return
         } catch {
             state = .error(error)
         }
