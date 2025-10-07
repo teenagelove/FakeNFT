@@ -5,7 +5,14 @@
 
     },
     " ETH" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ETH"
+          }
+        }
+      }
     },
     "(%lld)" : {
 
@@ -91,6 +98,23 @@
         }
       }
     },
+    "Collection.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFT collection"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Коллекция NFT"
+          }
+        }
+      }
+    },
     "CurrencyChooseToPay" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -111,6 +135,12 @@
     "Delete" : {
       "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -274,6 +304,12 @@
     },
     "Pay" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pay"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -285,6 +321,12 @@
     "Price" : {
       "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Price"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -296,6 +338,12 @@
     "Return" : {
       "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Return"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -473,27 +521,6 @@
         }
       }
     },
-    "Закрыть" : {
-
-    },
-    "Коллекция NFT" : {
-
-    },
-    "Не удалось получить данные" : {
-
-    },
-    "Отмена" : {
-
-    },
-    "Перейти на сайт пользователя" : {
-
-    },
-    "Повторить" : {
-
-    },
-    "Сортировка" : {
-
-    },
     "UserAgreementPart1" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -524,6 +551,23 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Пользовательского соглашения"
+          }
+        }
+      }
+    },
+    "website.go" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Go to user’s website"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перейти на сайт пользователя"
           }
         }
       }

@@ -48,7 +48,7 @@ struct UserInformationView: View {
                 .stroke()
                 .frame(height: 40)
                 .overlay {
-                    Text("Перейти на сайт пользователя").font(.caption1)
+                    Text("website.go").font(.caption1)
                 }
         }
         .tint(.blackDay)
@@ -59,7 +59,7 @@ struct UserInformationView: View {
             UserCollectionView(viewModel: viewModel.userCollectionViewModel)
         } label: {
             HStack(spacing: 8) {
-                Text("Коллекция NFT").font(.bodyBold)
+                Text("Collection.title").font(.bodyBold)
                 Text("(\(viewModel.userCollectionViewModel.items.count))").font(.bodyBold)
                 Spacer()
                 Image(systemName: "chevron.right")
