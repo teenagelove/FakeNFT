@@ -66,6 +66,10 @@ actor DefaultNetworkClient: NetworkClient {
             urlRequest.setValue(RequestConstants.putHeader, forHTTPHeaderField: "Content-Type")
         }
 
+        if request.httpMethod == .put {
+            urlRequest.setValue(RequestConstants.putHeader, forHTTPHeaderField: "Content-Type")
+        }
+        
         return urlRequest
     }
 

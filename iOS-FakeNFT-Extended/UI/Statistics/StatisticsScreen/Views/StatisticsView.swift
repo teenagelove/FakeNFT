@@ -31,14 +31,14 @@ struct StatisticsView: View {
             }
         }
         .alert(
-            "Не удалось получить данные",
+            "Error.network",
             isPresented: $viewModel.hasError
         ) {
-            Button("Отмена") { viewModel.state = .loaded }
-            Button("Повторить") { Task { viewModel.loadFirstPage(assembly: servicesAssembly) } }
+            Button("Cancel") { viewModel.state = .loaded }
+            Button("Error.repeat") { Task { viewModel.loadFirstPage(assembly: servicesAssembly) } }
         }
         .confirmationDialog(
-            "Сортировка",
+            "Sort.title",
             isPresented: $viewModel.showSortMenu,
             titleVisibility: .visible
         ) {
@@ -50,7 +50,7 @@ struct StatisticsView: View {
                     }
                 }
             }
-            Button("Закрыть", role: .cancel) {}
+            Button("Close", role: .cancel) {}
         }
     }
 }

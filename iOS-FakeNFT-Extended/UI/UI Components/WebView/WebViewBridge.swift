@@ -12,6 +12,7 @@ struct WebViewBridge: View {
         NavigationStack {
             WebView()
                 .background(.appBackground)
+                .navigationBarBackButtonHidden(true)
                 .navigationBarTitleDisplayMode(.inline)
                 .ignoresSafeArea(edges: .bottom)
                 .toolbar {

@@ -8,6 +8,7 @@ final class ServicesAssembly {
     private let nftStorage: NftStorage
     private let nftCollectionsStorage: NftCollectionsStorageProtocol
 
+    
     init(
         networkClient: NetworkClient,
         nftStorage: NftStorage,
@@ -42,6 +43,10 @@ final class ServicesAssembly {
     
     var statisticsService: StatisticsService {
         StatisticsServiceImpl(networkClient: networkClient)
+    }
+
+    var currencyService: CurrencyServiceProtocol {
+        CurrencyService(networkClient: networkClient)
     }
 }
 

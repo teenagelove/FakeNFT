@@ -25,12 +25,20 @@ struct TabBarView: View {
                         systemImage: .squareStack,
                     )
                 }
+
             StatisticsTabView()
                 .tabItem {
                     Label(
                         NSLocalizedString("Tab.statistics", comment: ""),
                         systemImage: .crossedFlags,
                     )
+                }
+
+            BasketView(services: servicesAssembly)
+                .tabItem {
+                    Image(.basketTab)
+                        .renderingMode(.template)
+                    Text(NSLocalizedString("Tab.basket", comment: ""))
                 }
         }
     }
