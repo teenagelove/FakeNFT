@@ -2,20 +2,20 @@ import SwiftUI
 
 struct TabBarView: View {
     @Environment(ServicesAssembly.self) var servicesAssembly
-    
+
     init() {
         let appearance = UITabBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = UIColor.appBackground
-        
+
         // Настройка цветов для неактивных
         appearance.stackedLayoutAppearance.normal.iconColor = UIColor.segmentActive
         appearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.segmentActive]
-        
+
         UITabBar.appearance().standardAppearance = appearance
         UITabBar.appearance().scrollEdgeAppearance = appearance
     }
-    
+
     var body: some View {
         TabView {
             NftCatalogView(service: servicesAssembly.nftCollectionsService)
@@ -26,19 +26,20 @@ struct TabBarView: View {
                     )
                 }
 
+            BasketView(services: servicesAssembly)
+                .tabItem {
+                    Label(
+                        NSLocalizedString("Tab.basket", comment: ""),
+                        image: .secondBasket
+                    )
+                }
+
             StatisticsTabView()
                 .tabItem {
                     Label(
                         NSLocalizedString("Tab.statistics", comment: ""),
                         systemImage: .crossedFlags,
                     )
-                }
-
-            BasketView(services: servicesAssembly)
-                .tabItem {
-                    Image(.basketTab)
-                        .renderingMode(.template)
-                    Text(NSLocalizedString("Tab.basket", comment: ""))
                 }
         }
     }
