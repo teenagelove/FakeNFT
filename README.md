@@ -1,10 +1,5 @@
 # FakeNFT — Technical Specification
 
-## 🔗 Links  
-[Design in Figma](https://www.figma.com/design/Uz5G39wRRCr2mRE4SbnNla/FakeNFT--YP-)
-
----
-
 ### 🚀 Tech Stack & Principles  
 
 ![iOS](https://img.shields.io/badge/iOS-17%2B-000000?logo=apple&logoColor=white)
@@ -134,6 +129,3 @@ User preferences are stored locally (via `@AppStorage` or `UserDefaults`) and re
 - **UI updates only** from `@MainActor`  
 - Use Swift Concurrency: `async/await`, `async let`, `withTaskGroup`, etc.  
 
----
-
-✅ *End of specification.*
